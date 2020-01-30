@@ -123,9 +123,7 @@ void Object::Render()
 		c->Render();
 
 	for (Object* c : children)
-	{
 		c->Render();
-	}
 }
 
 void Object::SetIsActive(bool _isActive)

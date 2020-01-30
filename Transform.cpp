@@ -33,7 +33,6 @@ Vector2 Transform::GetScale()
 void Transform::SetPosition(Vector2 _position)
 {
 	position = Vector2(_position.x , -_position.y );
-	UpdateMatrix();
 };
 
 void Transform::SetWorldPosition(Vector2 _position)

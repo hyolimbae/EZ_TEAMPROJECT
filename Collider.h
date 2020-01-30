@@ -15,7 +15,7 @@ protected:
 	b2Fixture* fixture;
 	b2Filter filter;
 	bool fixedRotation = false;
-
+	bool isColliding = false;
 	bool onMouse = false;
 
 public:
@@ -23,13 +23,14 @@ public:
 	b2Body* GetBody();
 
 	void OnMouseDown();
-	//void OnMouseStay();
+	void OnMouse();
 	void OnMouseUp();
+	void OnMouseExit();
 
 	void SetFilter(b2Filter filter);
 
 	virtual bool PtInCollider(Vector2 point) = 0;
-	//virtual void Update() override;
+	virtual void Update() override;
 	virtual void Init() override;
 	virtual void Awake() override;
 	virtual void Release() override;

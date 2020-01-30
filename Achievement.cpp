@@ -3,10 +3,9 @@
 #include "AchievementBox.h"
 void Achievement::Init()
 {
+	//auto sprite = object->AddComponent<Sprite>();
+	
 
-	auto sprite = object->AddComponent<Sprite>();
-	sprite->SetSprite(Image::CreateImage("Sprite/AchievementUI.png"));
-	sprite->SetDepth((int)ZORDER::UI);
 
 	aList.push_back(aInfo{ L"수리의 귀재", L"마을의 건물을 4 채 수리하세요." , 1});
 	aList.push_back(aInfo{ L"수리의 대가", L"마을의 건물을 8 채 수리하세요.", 8 });
@@ -19,7 +18,7 @@ void Achievement::Init()
 	for (int i = 0; i < aList.size(); i++)
 	{
 		auto newAchievement = Object::CreateObject(object);
-		newAchievement->GetTransform()->SetPosition(Vector2(0, 190 - i * 100));
+		newAchievement->GetTransform()->SetPosition(Vector2(0, 125 - i * 92));
 		auto boxcompo = newAchievement->AddComponent<AchievementBox>();
 		boxcompo->SetString(make_pair(aList[i].title,aList[i].content));
 		boxcompo->SetNotifyNum(aList[i].notifyNum);

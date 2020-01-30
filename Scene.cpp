@@ -79,11 +79,7 @@ void Scene::Render()
 	Direct2D::GetInstance()->GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::Black));
 	sort(children.begin(), children.end(), Compare);
 	for (Object* c : children)
-	{
 		c->Render();
-		if (c->GetName() == "TEST")
-			int b = 10;
-	}
 	if (PhysicsManager::GetInstance()->GetDrawDebug())
 		physicsWorld->DrawDebugData();
 }
