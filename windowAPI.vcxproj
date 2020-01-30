@@ -198,6 +198,7 @@
     <ClInclude Include="NewBuilding.h" />
     <ClInclude Include="NotificationBox.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="PageButton.h" />
     <ClInclude Include="PolygonDraw.h" />
     <ClInclude Include="RandomMove.h" />
     <ClInclude Include="RayCallBack.h" />
@@ -298,6 +299,7 @@
     <ClCompile Include="NewBuilding.cpp" />
     <ClCompile Include="NotificationBox.cpp" />
     <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="PageButton.cpp" />
     <ClCompile Include="PolygonDraw.cpp" />
     <ClCompile Include="RandomMove.cpp" />
     <ClCompile Include="RayCallBack.cpp" />

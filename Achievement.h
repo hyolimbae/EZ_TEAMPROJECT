@@ -12,11 +12,15 @@ struct aInfo
 
 class Achievement: public Script, public Observer
 {
-public:
+private:
 	vector<Object*> aBox;
 	vector<aInfo> aList;
 
-private:
+	int maxPageNum;
+	int pageNum = 0;
+	Text* pageNumText;
+
+public :
 	virtual void Init() override;
 	virtual void OnNotify(MSGTYPE type, string event) override;
 
@@ -24,6 +28,22 @@ private:
 	{
 		USES_CONVERSION;
 		return std::wstring(A2W(str.c_str()));
+	}
+
+	int GetPageNum() { return pageNum; }
+	int GetMaxPageNum() { return maxPageNum; }
+	void SetPageNum(int pageNum) 
+	{ 
+		this->pageNum = pageNum; 
+		pageNumText->ChangeText(to_wstring(pageNum));
+		for (int i = 0; i < aBox.size(); i++)
+		{
+			if (i / 4 +1 == pageNum)
+				aBox[i]->SetIsActive(true);
+			else
+				aBox[i]->SetIsActive(false);
+		}
+
 	}
 };
 

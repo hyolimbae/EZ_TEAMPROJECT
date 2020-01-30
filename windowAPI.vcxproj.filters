@@ -350,6 +350,9 @@
     <ClInclude Include="DefaultBuilding.h">
       <Filter>소스 파일\Construction\Default</Filter>
     </ClInclude>
+    <ClInclude Include="PageButton.h">
+      <Filter>소스 파일\Achievement\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -600,6 +603,9 @@
     </ClCompile>
     <ClCompile Include="Character.cpp">
       <Filter>소스 파일\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="PageButton.cpp">
+      <Filter>소스 파일\Achievement\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

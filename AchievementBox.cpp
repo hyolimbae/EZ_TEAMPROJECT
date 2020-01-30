@@ -3,22 +3,16 @@
 
 void AchievementBox::Init()
 {
-	object->SetName("TEST11");
 	box = object->AddComponent<Sprite>();
-	box->SetSprite(Image::CreateImage("Sprite/AchievementBox.png"));
+	box->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementBox.png"));
+	box->GetTransform()->SetScaleY(0.95);
 	
 	auto bar = Object::CreateObject(object);
 	progressBar = bar->AddComponent<Sprite>();
-	progressBar->SetSprite(Image::CreateImage("Sprite/ProgressBar.png"));
+	progressBar->SetSprite(Image::CreateImage("Sprite/Achievement/ProgressBar.png"));
 	progressBar->GetTransform()->SetScaleX(0.f);
 	bar->GetTransform()->SetPosition(Vector2(-67, -24));
 	progressBar->GetTransform()->SetAnchorPoint(Vector2(0, 0.5));
-
-	/*auto trophyobj = Object::CreateObject(object);
-	trophy = trophyobj->AddComponent<Sprite>();
-	trophy->SetSprite(Image::CreateImage("Sprite/trophy_gold.png"));
-	trophyobj->GetTransform()->SetPosition(Vector2(-105, 190));
-	trophy->SetOpacity(0.1f);*/
 
 	auto titleText = Object::CreateObject(object);
 	title = titleText->AddComponent<Text>();
@@ -42,7 +36,7 @@ void AchievementBox::Init()
 
 	auto trophyobj = Object::CreateObject(object);
 	trophy = trophyobj->AddComponent<Sprite>();
-	trophy->SetSprite(Image::CreateImage("Sprite/trophy_gold.png"));
+	trophy->SetSprite(Image::CreateImage("Sprite/Achievement/trophy_gold.png"));
 	trophyobj->GetTransform()->SetPosition(Vector2(-105, 0));
 	trophy->SetOpacity(0.1f);
 
@@ -58,7 +52,5 @@ void AchievementBox::SetProgress()
 	progressBar->GetTransform()->SetScaleX((float)currentNum / (float)notifyNum);
 	ratio->ChangeText(to_wstring(currentNum) + L"/" + to_wstring(notifyNum));
 	ratio->SetAnchorPoint(AnchorPoint::Center);
-	ratio->SetDepth((int)ZORDER::UI + 100);
-
 
 }

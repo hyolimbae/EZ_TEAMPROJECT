@@ -25,7 +25,6 @@ private:
 	bool isOpen = false;
 
 	Tile* parent;
-	PolygonDraw* draw;
 
 
 public:
@@ -39,18 +38,15 @@ public:
 	void SetCostToGoal(float cost) { this->costToGoal = cost; }
 
 
-
 	Vector2 GetIndex() { return index; }
 	bool GetIsOpen() { return isOpen; }
 	ATTRIBUTE GetAttribute() { return attribute; }
 	Tile* GetParent() { return parent; }
 	map<ATTRIBUTE, string> GetAttributeToString() { return attribute_to_string; }
 
-
 	float GetTotalCost() { return totalCost; }
 	float GetCostFromStart() { return costFromStart; }
 	float GetCostToGoal() { return costToGoal; }
 
-	virtual void Init() override;
 };
 
