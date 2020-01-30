@@ -78,6 +78,9 @@
     <Filter Include="소스 파일\Construction\New">
       <UniqueIdentifier>{a8207c29-0e25-40ea-84e0-75ca8dfa9f3f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\UI\Tutorial">
+      <UniqueIdentifier>{2281331d-3ea4-4eea-ac77-54ee41bcd830}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -353,6 +356,9 @@
     <ClInclude Include="PageButton.h">
       <Filter>소스 파일\Achievement\UI</Filter>
     </ClInclude>
+    <ClInclude Include="TutorialBox.h">
+      <Filter>소스 파일\UI\Tutorial</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -606,6 +612,9 @@
     </ClCompile>
     <ClCompile Include="PageButton.cpp">
       <Filter>소스 파일\Achievement\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="TutorialBox.cpp">
+      <Filter>소스 파일\UI\Tutorial</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

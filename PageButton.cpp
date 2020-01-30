@@ -13,4 +13,11 @@ void PageButton::OnMouseDown()
 		if (linked->GetPageNum() < linked->GetMaxPageNum() + 1)
 			linked->SetPageNum(linked->GetPageNum() + 1);
 	}
+	object->GetTransform()->SetScale(Vector2(0.7, 0.7));
+
+}
+
+void PageButton::OnMouseUp()
+{
+	object->GetTransform()->SetScale(Vector2(0.8, 0.8));
 }

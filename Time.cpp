@@ -32,12 +32,10 @@ void Time::Init()
 	_dayText->GetComponent<Text>()->SetAnchorPoint(AnchorPoint::LeftCenter);
 	_dayText->GetComponent<Text>()->GetTransform()->SetPosition(Vector2(-25, -5));
 
-
 	//낮&밤 시간 이미지
 	_dayNightSprite = Object::CreateObject(object);
 	_dayNightSprite->GetTransform()->SetPosition(Vector2(-153, 0));
 	_dayNightSprite->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
-
 }
 
 
@@ -52,6 +50,7 @@ void Time::Update()
 	if (_isDay)
 	{
 		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
+		Notify(MSGTYPE::TIME, "NightEnd");
 	}
 }
 
@@ -61,7 +60,7 @@ void Time::GameTimeSet()
 	_realTime = TimeManager::GetInstance()->GetTime();
 	_gameTime = _realTime * 48 + 28800;
 
-	int gameDayTime = _realTime % 1200; //현실 시간 20분 // 900 = 15분(낮시간)
+	int gameDayTime = _realTime % 20; //현실 시간 20분 // 900 = 15분(낮시간)
 
 	//int gameDayTime = _gameTime % 720; //720초(48초*600) : realtime 기준 15분 (GameTime 기준 10시간 (낮시간)) 
 	//int gameNightTime = gameDayTime % 240; // 240초(48초*360) : realtime 기준 5분 (GameTime 기준 6시간 (밤시간))
@@ -75,6 +74,7 @@ void Time::GameTimeSet()
 	
 	_dayOfWeek = "월";
 
+
 	if (gameDayTime <= 5)
 	{ 
 		_isDay = true; //낮시간 끝 == 밤 시작 
@@ -87,15 +87,13 @@ void Time::GameTimeSet()
 		//cout << "밤이 끝났다" << _isDay;
 	}
 
-	cout << gameDayTime;
+	//cout << gameDayTime;
 
-	if (gameDayTime == 10)
+	if (gameDayTime % 8 ==0)
 	{
-		Notify(MSGTYPE::TIME, "DayEnd"); //밤 시간일 때 --> 달 이미지 
+		Notify(MSGTYPE::TIME, "SingleDateEnd"); //밤 시간일 때 --> 달 이미지 
 	}
 	
-
-
 #pragma region     요일 설정 
 	if ((_realTime / 1200) % 7 == 0) _dayOfWeek = "월";
 	if ((_realTime / 1200) % 7 == 1) _dayOfWeek = "화";

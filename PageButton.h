@@ -8,6 +8,7 @@ private:
 	Achievement* linked;
 public:
 	void SetLink(Achievement* achievement) { linked = achievement; }
-	void OnMouseDown();
+	void OnMouseDown() override;
+	void OnMouseUp() override;
 };
 
