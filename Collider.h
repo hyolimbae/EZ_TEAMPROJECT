@@ -23,7 +23,7 @@ public:
 	b2Body* GetBody();
 
 	void OnMouseDown();
-	void OnMouse();
+	//void OnMouse();
 	void OnMouseUp();
 	void OnMouseExit();
 

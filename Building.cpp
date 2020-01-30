@@ -19,20 +19,22 @@ void Building::Init()
 	_polydraw->SetColor(Color{ 100.f,100.f,100.f,0.f });
 }
 
+void Building::Update()
+{
+	if (_thisObj->GetComponent<BoxCollider>()->GetOnMouse())
+	{
+		_polydraw->SetColor(Color{ 100.0f,100.f,100.f,0.1f });
+	}
+	else
+	{
+		if (_houseClicked) return;
+		_polydraw->SetColor(Color{ 100.f,100.f,100.f,0.f });
+	}
+
+}
 
 void Building::OnMouseDown()
 {
 	_houseClicked = true;
 }
                                                                                                
-void Building::OnMouse()
-{
-	_polydraw->SetColor(Color{ 100.0f,100.f,100.f,0.1f });
-}
-
-void Building::OnMouseExit()
-{
-	if (_houseClicked) return;
-
-	_polydraw->SetColor(Color{ 100.f,100.f,100.f,0.f });
-}

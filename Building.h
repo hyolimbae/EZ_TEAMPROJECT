@@ -19,11 +19,10 @@ public:
 	Building(Object* obj);
 
 	virtual void Init();
-	virtual void Update() {};
+	virtual void Update();
 
 	virtual void OnMouseDown();
-	virtual void OnMouse();
-	virtual void OnMouseExit();
+
 
 	void SetLinkWithManager(BuildingManager* manager) { _buildingManager = manager; }
 	BuildingManager* GetManager() { return _buildingManager; }

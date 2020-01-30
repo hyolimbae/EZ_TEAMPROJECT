@@ -19,6 +19,7 @@ void ConstructionTimeBar::Init()
 	_polydraw->SetVertices(_polygonPos);
 	_polydraw->SetStrokeWidth(5.f);
 
+
 	_color.a = 0.6f;
 	_color.r = 0.2f;
 	_color.g = 0.8f;

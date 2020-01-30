@@ -131,6 +131,32 @@ void GameScene::Init()
 		citizen->AddComponent<CitizenAnimation>();
 	}*/
 
+	auto achievementLinkButton = Object::CreateObject();
+	achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 50));
+	auto aSprite = achievementLinkButton->AddComponent<Sprite>();
+	aSprite->SetSprite(Image::CreateImage("Sprite/AchievementButton.png"));
+	aSprite->SetDepth((int)ZORDER::UI);
+
+
+	auto achievement = Object::CreateObject();
+	achievement->GetTransform()->SetPosition(Vector2(4, 65));
+	auto acompo = achievement->AddComponent<Achievement>();
+	auto asprite = achievement->AddComponent<Sprite>();
+	asprite->SetSprite(Image::CreateImage("Sprite/AchievementUI.png"));
+	asprite->SetDepth((int)ZORDER::UI);
+	achievement->AddComponent<BoxCollider>();
+
+	achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
+
+	auto notificationBox = Object::CreateObject();
+	auto ncompo = notificationBox->AddComponent<NotificationBox>();
+
+	auto bulidingManager = Object::CreateObject();
+	auto manager = bulidingManager->AddComponent<BuildingManager>();
+	manager->AddObserver(ncompo);
+	manager->AddObserver(acompo);
+
+
 #pragma endregion
 
 }

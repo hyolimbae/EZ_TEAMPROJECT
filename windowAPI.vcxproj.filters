@@ -329,9 +329,6 @@
     <ClInclude Include="Test.h">
       <Filter>소스 파일\Construction\New</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultBuilding.h">
-      <Filter>소스 파일\Construction\New</Filter>
-    </ClInclude>
     <ClInclude Include="NewBuilding.h">
       <Filter>소스 파일\Construction\New</Filter>
     </ClInclude>
@@ -349,6 +346,9 @@
     </ClInclude>
     <ClInclude Include="Character.h">
       <Filter>소스 파일\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultBuilding.h">
+      <Filter>소스 파일\Construction\Default</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

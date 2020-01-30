@@ -24,9 +24,8 @@ public:
 
 	DefaultBuilding(Object* obj) : Building::Building(obj) {};
 
-	virtual void Init();
-	virtual void OnMouse();
-	virtual void OnMouseExit();
+	virtual void Init() override;
+	virtual void Update() override;
 
 	Object* GetConstructionTimeBar() { return _constructionTimeBar; }
 

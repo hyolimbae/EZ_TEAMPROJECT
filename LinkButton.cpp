@@ -9,8 +9,8 @@ void LinkButton::Init()
 void LinkButton::Update()
 {
 	if (linked->GetIsActive() && InputManager::GetInstance()->GetKeyDown(VK_LBUTTON) &&
-		!linked->GetComponent<BoxCollider>()->PtInCollider(InputManager::GetInstance()->GetMousePosition())&&
-		!object->GetComponent<BoxCollider>()->PtInCollider(InputManager::GetInstance()->GetMousePosition()))
+		!linked->GetComponent<BoxCollider>()->PtInCollider(InputManager::GetInstance()->GetMouseWorldPosition())&&
+		!object->GetComponent<BoxCollider>()->PtInCollider(InputManager::GetInstance()->GetMouseWorldPosition()))
 	{
 		linked->SetIsActive(false);
 	}

@@ -15,21 +15,19 @@ void DefaultBuilding::Init()
 	_infoBox->SetIsActive(false);
 }
 
-void DefaultBuilding::OnMouse()
+void DefaultBuilding::Update()
 {
-	Building::OnMouse();
-
-	if (_houseState == HOUSE_RUINED)
-		_infoBox->SetIsActive(true);
+	if (_thisObj->GetComponent<BoxCollider>()->GetOnMouse())
+	{
+		if (_houseState == HOUSE_RUINED)
+			_infoBox->SetIsActive(true);
+		else
+			_infoBox->SetIsActive(false);
+	}
 	else
-		_infoBox->SetIsActive(false);
+	{
+		if (_houseState == HOUSE_RUINED)
+			_infoBox->SetIsActive(false);
+	}
 }
 
-void DefaultBuilding::OnMouseExit()
-{
-	Building::OnMouseExit();
-
-	if (_houseState == HOUSE_RUINED)
-		_infoBox->SetIsActive(false);
-	
-}

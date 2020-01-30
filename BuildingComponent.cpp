@@ -21,12 +21,3 @@ void BuildingComponent::OnMouseDown()
 	building->OnMouseDown();
 }
 
-void BuildingComponent::OnMouse()
-{
-	building->OnMouse();
-}
-
-void BuildingComponent::OnMouseExit()
-{
-	building->OnMouseExit();
-}

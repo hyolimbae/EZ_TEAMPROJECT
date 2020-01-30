@@ -16,7 +16,6 @@ public:
 	virtual void Update() override;
 
 	virtual void OnMouseDown() override;
-	virtual void OnMouse() override;
-	virtual void OnMouseExit() override;
+
 };
 

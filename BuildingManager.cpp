@@ -84,7 +84,7 @@ void BuildingManager::SetFixedNum(int num)
 	Notify(MSGTYPE::INFORMATION, "수리의 귀재");
 	Notify(MSGTYPE::INFORMATION, "수리의 대가");
 
-	if (_fixedHouseNum == 4)
+	if (_fixedHouseNum == 1)
 		Notify(MSGTYPE::NOTIFICATION,"수리의 귀재");
 	else if(_fixedHouseNum == 8)
 		Notify(MSGTYPE::NOTIFICATION,"수리의 대가");
