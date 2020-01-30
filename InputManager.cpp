@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "GgaetIp.h"
+#include "InputManager.h"
 
 InputManager* InputManager::GetInstance()
 {
@@ -7,14 +8,14 @@ InputManager* InputManager::GetInstance()
 	return instance;
 }
 
-Vector2 InputManager::GetMouseWorldPosition()
-{
-	return mousePosition * (DesignResolution/ApplicationManager::GetInstance()->GetResolution());
-}
-
 Vector2 InputManager::GetMousePosition()
 {
 	return mousePosition;
+}
+
+Vector2 InputManager::GetMouseWorldPosition()
+{
+	return mousePosition * (DesignResolution / ApplicationManager::GetInstance()->GetResolution());
 }
 
 void InputManager::SetMousePosition(Vector2 mousePosition)
@@ -32,7 +33,7 @@ bool InputManager::GetKeyDown(int key)
 {
 	bool keyState = GetAsyncKeyState(key) & 0x8000;
 	bool result = (keyState && keyStates[key] != KeyState::Down && keyStates[key] != KeyState::Stay) ? true : false;
-	
+
 	if (result)
 		keyStates[key] = KeyState::Down;
 
@@ -55,6 +56,7 @@ bool InputManager::GetKeyUp(int key)
 
 void InputManager::Update()
 {
+	mouseWheelDelta = 0;
 	for (auto k : keyStates)
 	{
 		bool keyState = GetAsyncKeyState(k.first) & 0x8000;

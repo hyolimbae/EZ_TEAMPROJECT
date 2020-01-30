@@ -168,8 +168,8 @@ LRESULT Scene::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 			hdc = BeginPaint(hWnd, &ps);
 			Direct2D::GetInstance()->GetRenderTarget()->BeginDraw();
 			this->Render();
-			ImGuiManager::GetInstnace()->Render();
 			Direct2D::GetInstance()->GetRenderTarget()->EndDraw();
+			ImGuiManager::GetInstnace()->Render();
 			EndPaint(hWnd, &ps);
 		}
 		break;

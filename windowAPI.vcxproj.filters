@@ -51,6 +51,33 @@
     <Filter Include="소스 파일\ObserverPattern">
       <UniqueIdentifier>{35cbe1b7-b7e2-45f2-821a-0f642c2a7878}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Achievement">
+      <UniqueIdentifier>{b60225e2-3dd2-4e55-9cd3-6f814913f38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\AStar">
+      <UniqueIdentifier>{ee820338-04e5-4015-8604-04623cc06bcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Construction">
+      <UniqueIdentifier>{cf6f735d-c9c7-47b5-880d-db4efef6db84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Camera">
+      <UniqueIdentifier>{35914010-8173-43f1-bbd3-e6b1cfd7d4f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Map">
+      <UniqueIdentifier>{e119033b-5dfb-4bca-8c30-072f90f3dc54}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Achievement\UI">
+      <UniqueIdentifier>{117f1192-ff7a-4fe9-8f3e-8e335d0b5987}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Mouse">
+      <UniqueIdentifier>{b1394a13-e61e-48bf-9367-caae9ff80e64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Construction\Default">
+      <UniqueIdentifier>{55bd3213-5880-4f7a-9d01-016dd6b730f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Construction\New">
+      <UniqueIdentifier>{a8207c29-0e25-40ea-84e0-75ca8dfa9f3f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -212,14 +239,8 @@
     <ClInclude Include="PolygonDraw.h">
       <Filter>GgaetIp\Component\Draw</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>소스 파일\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="GameScene.h">
       <Filter>소스 파일\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="ScaleCamera.h">
-      <Filter>GgaetIp\Component</Filter>
     </ClInclude>
     <ClInclude Include="ShowWorker.h">
       <Filter>소스 파일\UI</Filter>
@@ -242,14 +263,92 @@
     <ClInclude Include="Subject.h">
       <Filter>소스 파일\ObserverPattern</Filter>
     </ClInclude>
-    <ClInclude Include="NotificationBox.h">
-      <Filter>소스 파일\ObserverPattern</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>소스 파일\ObserverPattern</Filter>
     </ClInclude>
     <ClInclude Include="WcDoneButton.h">
       <Filter>소스 파일\UI\UI Button</Filter>
+    </ClInclude>
+    <ClInclude Include="Achievement.h">
+      <Filter>소스 파일\Achievement</Filter>
+    </ClInclude>
+    <ClInclude Include="AchievementBox.h">
+      <Filter>소스 파일\Achievement\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.h">
+      <Filter>소스 파일\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingComponent.h">
+      <Filter>소스 파일\Construction</Filter>
+    </ClInclude>
+    <ClInclude Include="Building.h">
+      <Filter>소스 파일\Construction</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingManager.h">
+      <Filter>소스 파일\Construction</Filter>
+    </ClInclude>
+    <ClInclude Include="CitizenAnimation.h">
+      <Filter>소스 파일\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>소스 파일\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomMove.h">
+      <Filter>소스 파일\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="Tile.h">
+      <Filter>소스 파일\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TileMap.h">
+      <Filter>소스 파일\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="TilePick.h">
+      <Filter>소스 파일\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="BuildingInfo.h">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="ConstructionTimeBar.h">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="FixButton.h">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoBox.h">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="InfoSpriteAndText.h">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadButton.h">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClInclude>
+    <ClInclude Include="TileCheck.h">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClInclude>
+    <ClInclude Include="Test.h">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClInclude>
+    <ClInclude Include="DefaultBuilding.h">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClInclude>
+    <ClInclude Include="NewBuilding.h">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>GgaetIp</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkButton.h">
+      <Filter>소스 파일\Achievement\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="NotificationBox.h">
+      <Filter>소스 파일\Achievement</Filter>
+    </ClInclude>
+    <ClInclude Include="ControlCamera.h">
+      <Filter>소스 파일\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Character.h">
+      <Filter>소스 파일\AStar</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -391,14 +490,8 @@
     <ClCompile Include="PolygonDraw.cpp">
       <Filter>GgaetIp\Component\Draw</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp">
-      <Filter>소스 파일\Scene</Filter>
-    </ClCompile>
     <ClCompile Include="GameScene.cpp">
       <Filter>소스 파일\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="ScaleCamera.cpp">
-      <Filter>GgaetIp\Component</Filter>
     </ClCompile>
     <ClCompile Include="ShowWorker.cpp">
       <Filter>소스 파일\UI</Filter>
@@ -421,14 +514,92 @@
     <ClCompile Include="Subject.cpp">
       <Filter>소스 파일\ObserverPattern</Filter>
     </ClCompile>
-    <ClCompile Include="NotificationBox.cpp">
-      <Filter>소스 파일\ObserverPattern</Filter>
-    </ClCompile>
     <ClCompile Include="Observer.cpp">
       <Filter>소스 파일\ObserverPattern</Filter>
     </ClCompile>
     <ClCompile Include="WcDoneButton.cpp">
       <Filter>소스 파일\UI\UI Button</Filter>
+    </ClCompile>
+    <ClCompile Include="Achievement.cpp">
+      <Filter>소스 파일\Achievement</Filter>
+    </ClCompile>
+    <ClCompile Include="AchievementBox.cpp">
+      <Filter>소스 파일\Achievement\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="AStar.cpp">
+      <Filter>소스 파일\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingComponent.cpp">
+      <Filter>소스 파일\Construction</Filter>
+    </ClCompile>
+    <ClCompile Include="Building.cpp">
+      <Filter>소스 파일\Construction</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingManager.cpp">
+      <Filter>소스 파일\Construction</Filter>
+    </ClCompile>
+    <ClCompile Include="CitizenAnimation.cpp">
+      <Filter>소스 파일\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>소스 파일\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomMove.cpp">
+      <Filter>소스 파일\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="Tile.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TileMap.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="TilePick.cpp">
+      <Filter>소스 파일\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="BuildingInfo.cpp">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="ConstructionTimeBar.cpp">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="FixButton.cpp">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoBox.cpp">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="InfoSpriteAndText.cpp">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadButton.cpp">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClCompile>
+    <ClCompile Include="TileCheck.cpp">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClCompile>
+    <ClCompile Include="Test.cpp">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClCompile>
+    <ClCompile Include="DefaultBuilding.cpp">
+      <Filter>소스 파일\Construction\Default</Filter>
+    </ClCompile>
+    <ClCompile Include="NewBuilding.cpp">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene.cpp">
+      <Filter>GgaetIp</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkButton.cpp">
+      <Filter>소스 파일\Achievement\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="NotificationBox.cpp">
+      <Filter>소스 파일\Achievement</Filter>
+    </ClCompile>
+    <ClCompile Include="ControlCamera.cpp">
+      <Filter>소스 파일\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Character.cpp">
+      <Filter>소스 파일\AStar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

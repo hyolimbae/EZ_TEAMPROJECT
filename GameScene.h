@@ -4,6 +4,7 @@
 
 class GameScene : public Scene
 {
+private:
 
 public:
 	virtual void Init() override;
@@ -16,9 +17,6 @@ public:
 
 		return temp;
 	}
-
-private:
-
 
 };
 

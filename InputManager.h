@@ -16,6 +16,7 @@ class InputManager
 private:
 	map<int, KeyState> keyStates;
 	Vector2 mousePosition;
+	float mouseWheelDelta = 0;
 public:
 	static InputManager* GetInstance();
 
@@ -25,9 +26,14 @@ public:
 	bool GetKeyDown(int key);
 	bool GetKeyUp(int key);
 
+	float GetWheelDelta() { return mouseWheelDelta; }
+	void SetWheelDelta(float wheelDelta) { mouseWheelDelta = wheelDelta; }
+
 	void Update();
 
-	Vector2 GetMouseWorldPosition();
 	Vector2 GetMousePosition();
+	Vector2 GetMouseWorldPosition();
+
+
 };
 

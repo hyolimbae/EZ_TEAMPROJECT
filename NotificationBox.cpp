@@ -8,7 +8,7 @@ void NotificationBox::Init()
 	sprite->SetOpacity(0.f);
 	sprite->SetSprite(Image::CreateImage("Sprite/NotificationBox.png"));
 	sprite->GetTransform()->SetScale(Vector2(0.5, 0.5));
-	//sprite->SetDepth((int)ZORDER::UI);
+	sprite->SetDepth((int)ZORDER::UI);
 
 	//좌표때문에 현 OBJ의 CHILD로 등록 
 	auto textChild = Object::CreateObject(object);
@@ -16,7 +16,7 @@ void NotificationBox::Init()
 	text->CreateText(L"체크", L"HYHeadLine-Medium", L"ko-KR", { 1,1,1,0 }, 30, 400, 40);
 	text->GetTransform()->SetPosition(text->GetTransform()->GetPosition() + Vector2(-60, -2));
 	text->SetAnchorPoint(AnchorPoint::LeftCenter);
-	//text->SetDepth((int)ZORDER::UI);
+	text->SetDepth((int)ZORDER::UI);
 }
 
 void NotificationBox::OnNotify(MSGTYPE type, string event)
