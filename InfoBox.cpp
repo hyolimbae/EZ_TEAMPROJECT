@@ -5,9 +5,7 @@
 #include "InfoSpriteAndText.h"
 #include "FixButton.h"
 
-
 //#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
-
 
 void InfoBox::Init()
 {
@@ -41,7 +39,7 @@ void InfoBox::Init()
 		infoSpriteAndText->GetComponent<InfoSpriteAndText>()->SetResourceKey(it.first);
 
 		infoSpriteAndText->GetComponent<InfoSpriteAndText>()
-			->SetSpriteStartPos(Vector2(_sprite->GetTransform()->GetPosition().x - 50, 110 + i * 50));
+			->SetSpriteStartPos(Vector2(_sprite->GetTransform()->GetPosition().x + 170,  i * 50 - 52));
 
 
 		infoSpriteAndText->GetComponent<InfoSpriteAndText>()
@@ -60,7 +58,6 @@ void InfoBox::Init()
 	fixButton->GetTransform()->SetPosition(Vector2(object->GetTransform()->GetPosition().x, 
 		object->GetTransform()->GetPosition().y - 100));
 	fixButton->GetComponent<FixButton>()->SetLink(_building);
-
 }
 
 void InfoBox::Update()

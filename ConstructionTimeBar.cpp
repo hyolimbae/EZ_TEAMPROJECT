@@ -19,7 +19,6 @@ void ConstructionTimeBar::Init()
 	_polydraw->SetVertices(_polygonPos);
 	_polydraw->SetStrokeWidth(5.f);
 
-
 	_color.a = 0.6f;
 	_color.r = 0.2f;
 	_color.g = 0.8f;
@@ -30,21 +29,27 @@ void ConstructionTimeBar::Init()
 
 void ConstructionTimeBar::Update()
 {
-	if (((DefaultBuilding*)(_building->GetComponent<BuildingComponent>()->GetBuilding()))->GetHouseState() != HOUSE_UNDER_CONSTRUCTION) 
-			return;
-
-	_polydraw->SetVertices(_polygonPos);
-	
-	if (_polygonPos[1].x < _maxPosX)
-		_polygonPos[1].x = (200.0 * (TimeManager::GetInstance()->GetTime() - _startTime)) / _infoTime + _startPosX;
-	else
+	if (((DefaultBuilding*)(_building->GetComponent<BuildingComponent>()->GetBuilding()))->GetHouseState() == HOUSE_UNDER_CONSTRUCTION)
 	{
-		_polygonPos[1].x = _maxPosX;
-		((DefaultBuilding*)(_building->GetComponent<BuildingComponent>()->GetBuilding()))->SetHouseState(HOUSE_FIXED);
-		_building->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/" + _building->GetTag() + "_Fixed.png"));
+		_polydraw->SetVertices(_polygonPos);
 
-		//概聪历 贸府 
-		BuildingManager* manager = _building->GetComponent<BuildingComponent>()->GetBuilding()->GetManager();
-		manager->SetFixedNum(manager->GetFixedNum() + 1);
+		if (_polygonPos[1].x < _maxPosX)
+			_polygonPos[1].x = (200.0 * (TimeManager::GetInstance()->GetTime() - _startTime)) / _infoTime + _startPosX;
+		else
+		{
+			_polygonPos[1].x = _maxPosX;
+			((DefaultBuilding*)(_building->GetComponent<BuildingComponent>()->GetBuilding()))->SetHouseState(HOUSE_FIXED);
+			_building->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/" + _building->GetTag() + "_Fixed.png"));
+
+			//概聪历 贸府 
+			BuildingManager* manager = _building->GetComponent<BuildingComponent>()->GetBuilding()->GetManager();
+			manager->SetFixedNum(manager->GetFixedNum() + 1);
+		}
+	}
+
+	if (((DefaultBuilding*)(_building->GetComponent<BuildingComponent>()->GetBuilding()))->GetHouseState() == HOUSE_FIXED)
+	{
+		_color.a = 0.f;
+		_polydraw->SetColor(_color);
 	}
 }

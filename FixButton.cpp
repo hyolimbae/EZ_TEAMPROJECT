@@ -17,5 +17,4 @@ void FixButton::OnMouseDown()
 	((DefaultBuilding*)_building->GetComponent<BuildingComponent>()->GetBuilding())->GetConstructionTimeBar()->SetIsActive(true);
 	((DefaultBuilding*)_building->GetComponent<BuildingComponent>()->GetBuilding())->GetConstructionTimeBar()
 								->GetComponent<ConstructionTimeBar>()->SetStartTime(TimeManager::GetInstance()->GetTime());
-
 }

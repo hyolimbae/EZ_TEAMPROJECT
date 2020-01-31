@@ -30,4 +30,3 @@ void DefaultBuilding::Update()
 			_infoBox->SetIsActive(false);
 	}
 }
-
