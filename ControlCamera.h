@@ -7,7 +7,6 @@ private:
 
 	Transform* transform;
 
-
 	float _lerpCount = 0;
 	float _moveTime = 5;
 

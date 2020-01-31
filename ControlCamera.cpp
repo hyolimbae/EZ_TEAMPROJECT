@@ -32,8 +32,8 @@ void ControlCamera::Zoom()
 
 	if (!_delta)
 		return;
-	if (_scale + _delta * _scaleSpeed < 0.4 ||
-		_scale + _delta * _scaleSpeed > 3)
+	if (_scale + _delta * _scaleSpeed < 0.1 ||
+		_scale + _delta * _scaleSpeed > 2.5)
 		return;
 
 	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      

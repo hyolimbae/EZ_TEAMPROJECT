@@ -19,12 +19,13 @@ private:
 	Object* newBuilding;
 	Sprite* newBuildingSprite;
 
-	bool isOnce = false;
 
 public:
 	virtual void Init() override;
-	virtual void OnMouse() override;
+	virtual void Update() override;
 	virtual void OnMouseDown() override;
+
+	void DrawTile();
 
 	Vector2 GetMouseIndex() { return Vector2(index_X, index_Y); }
 	vector<Object*> GetvTotal() { return vTotal; }

@@ -46,6 +46,7 @@ void TileMap::Init()
 		for (int j = 0; j < TILENUM_Y; j++)
 		{
 			Object* normalTile = Object::CreateObject(object);
+			
 			normalTile->GetTransform()->SetPosition(Vector2(-250 + i*TILEWIDTH, +250 - j*TILEHEIGHT));
 			
 			normalTile->SetName("Normal");
@@ -71,6 +72,7 @@ void TileMap::Init()
 
 			tile->SetAttribute(ATTRIBUTE::NONE);
 			auto tilePoly = normalTile->AddComponent<PolygonDraw>();
+			normalTile->GetComponent<PolygonDraw>()->SetDepth(-1);
 			tilePoly->SetDepth((int)ZORDER::TILE);
 			tilePoly->SetVertices(pos);
 			tilePoly->SetStrokeWidth(1);
@@ -114,11 +116,6 @@ void TileMap::Init()
 
 }
 
-void TileMap::Update()
-{
-	//if (InputManager::GetInstance()->GetKeyDown(VK_RETURN))
-		//tilePick->SetIsActive(false);
-}
 
 void TileMap::SetTile(Vector2 index, ATTRIBUTE attribute)
 {         

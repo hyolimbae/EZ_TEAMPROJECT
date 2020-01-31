@@ -15,6 +15,5 @@ public:
 	bool GetFixedPosition() { return _fixedPosition; }
 	void SetFixedPosition(bool fixedPosition) { _fixedPosition = fixedPosition; }
 
-
 };
 

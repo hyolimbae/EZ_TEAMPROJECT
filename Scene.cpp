@@ -179,6 +179,13 @@ LRESULT Scene::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		}
 		break;
 
+		case WM_MOUSEWHEEL:
+		{
+			float delta = GET_WHEEL_DELTA_WPARAM(wParam);
+			InputManager::GetInstance()->SetWheelDelta(!delta ? 0 : delta / abs(delta));
+		}
+		break;
+
 
 		case WM_DESTROY:
 			ApplicationManager::GetInstance()->ExitFullScreen();

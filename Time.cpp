@@ -68,23 +68,23 @@ void Time::GameTimeSet()
 	//TEST 
 
 
-	//if (gameDayTime> 13)
-	//{
-	//	if (_isDay)
-	//		return;
-	//	_isDay = true;
-	//	gameDayTime = 0;
-	//	_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
-	//	Notify(MSGTYPE::TIME, "NightStart");
-	//	
-	//}else if (gameDayTime>5)
-	//{
-	//	if (!_isDay)
-	//		return;
-	//	_isDay = false;
-	//	_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
-	//	Notify(MSGTYPE::TIME, "DayStart");
-	//}
+	if (gameDayTime> 13)
+	{
+		if (_isDay)
+			return;
+		_isDay = true;
+		gameDayTime = 0;
+		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
+		Notify(MSGTYPE::TIME, "NightStart");
+		
+	}else if (gameDayTime>5)
+	{
+		if (!_isDay)
+			return;
+		_isDay = false;
+		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
+		Notify(MSGTYPE::TIME, "DayStart");
+	}
 
 	//cout << gameDayTime;
 

@@ -27,8 +27,8 @@ void LoadButton::OnMouseDown()
 	newBuilding->SetIsActive(true);
 
 	////Å¸ÀÏºä Á¦¾î 
-	if (isClicked)
-		map->SetIsActive(true);
+	//if (isClicked)
+	//	map->SetIsActive(true);
 	//else
 	//	map->SetIsActive(false);
 

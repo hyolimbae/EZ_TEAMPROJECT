@@ -30,7 +30,33 @@ void TileCheck::Init()
 
 }
 
-void TileCheck::OnMouse()
+void TileCheck::Update()
+{
+	if (object->GetComponent<BoxCollider>()->GetOnMouse())
+	{
+		DrawTile();
+	}
+	
+}
+
+void TileCheck::OnMouseDown()
+{
+	if (newBuilding->GetComponent<Test>()->GetIsFixedPosition())
+		return;
+
+
+	//FIX POSITION 
+	for (int i = 0; i < dimension.x; i++)
+		for (int j = 0; j < dimension.y; j++)
+			vTotal[(GetMouseIndex().x - dimension.x / 2 + i) * TILENUM_Y + GetMouseIndex().y + dimension.y / 2 - j]->GetComponent<Tile>()->SetAttribute(ATTRIBUTE::WALL);
+		
+
+	newBuilding->GetComponent<Test>()->SetIsFixedPosition(true);
+	newBuilding->GetComponent<Sprite>()->SetOpacity(1.f);
+	object->SetIsActive(false);
+}
+
+void TileCheck::DrawTile()
 {
 	if (!map->GetIsActive())
 		return;
@@ -39,15 +65,15 @@ void TileCheck::OnMouse()
 	float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
 	float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
 
-	 index_X = (mouseX - (vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2)) / TILEWIDTH + 1;
-	 index_Y = (mouseY - (vTotal[TILENUM_Y-1]->GetTransform()->GetPosition().y - TILEWIDTH / 2)) / TILEHEIGHT -2;
+	index_X = (mouseX - (vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2)) / TILEWIDTH + 1;
+	index_Y = ((-1)*mouseY  +(vTotal[TILENUM_Y - 1]->GetTransform()->GetPosition().y - TILEWIDTH / 2)) / TILEHEIGHT - 2;
 
-	 //抗寇 贸府 
+	//抗寇 贸府 
 	if (index_Y + index_X * TILENUM_Y < 0 || index_Y + index_X * TILENUM_Y > vTotal.size() - 1)
 		return;
 	if (mouseY > vTotal[TILENUM_Y-1]->GetTransform()->GetPosition().y + TILEHEIGHT / 2)
 		return;
-	if (index_X - dimension.x / 2 <= 0 || index_X + dimension.x/2 >= TILENUM_X-1)
+	if (index_X - dimension.x / 2 <= 0 || index_X + dimension.x / 2 >= TILENUM_X - 1)
 		return;
 	/*if (index_Y + dimension.y / 2 <= 0 || index_Y - dimension.y / 2 >= TILENUM_Y - 1)
 		return;*/
@@ -58,10 +84,10 @@ void TileCheck::OnMouse()
 	{
 		for (int j = 0; j < dimension.y; j++)
 		{
-			auto tilePoly = vTemp[i*dimension.y+j]->GetComponent<PolygonDraw>();
+			auto tilePoly = vTemp[i * dimension.y + j]->GetComponent<PolygonDraw>();
 
 			vTemp[i * dimension.y + j]->SetIsActive(true);
-			tilePoly->GetTransform()->SetPosition(vTotal[(index_X-dimension.x/2 + i)*TILENUM_Y+ index_Y+ dimension.y/2 -j]->GetTransform()->GetPosition());
+			tilePoly->GetTransform()->SetPosition(vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2 - j]->GetTransform()->GetPosition());
 			tilePoly->SetDepth(4);
 
 
@@ -73,40 +99,5 @@ void TileCheck::OnMouse()
 	}
 
 	SetMouseIndex(Vector2(index_X, index_Y));
-}
-
-void TileCheck::OnMouseDown()
-{
-	if (newBuilding->GetComponent<Test>()->GetIsFixedPosition())
-		return;
-
-	if (map->GetIsActive() && !isOnce)
-	{
-		isOnce = true;
-		return;
-	}
-
-	//CHECK IF OVERLAPPING WITH WALL 
-	for (int i = 0; i < dimension.x; i++)
-	{
-		for (int j = 0; j < dimension.y; j++)
-		{
-			if (vTotal[(GetMouseIndex().x - dimension.x / 2 + i) * TILENUM_Y + GetMouseIndex().y + dimension.y / 2 - j]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL)
-			{
-				isOnce = false;
-				return;
-			}
-		}
-	}
-
-	//FIX POSITION 
-	for (int i = 0; i < dimension.x; i++)
-		for (int j = 0; j < dimension.y; j++)
-			vTotal[(GetMouseIndex().x - dimension.x / 2 + i) * TILENUM_Y + GetMouseIndex().y + dimension.y / 2 - j]->GetComponent<Tile>()->SetAttribute(ATTRIBUTE::WALL);
-		
-
-	newBuilding->GetComponent<Test>()->SetIsFixedPosition(true);
-	newBuilding->GetComponent<Sprite>()->SetOpacity(1.f);
-	object->SetIsActive(false);
 }
 
