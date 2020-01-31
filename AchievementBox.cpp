@@ -52,5 +52,4 @@ void AchievementBox::SetProgress()
 	progressBar->GetTransform()->SetScaleX((float)currentNum / (float)notifyNum);
 	ratio->ChangeText(to_wstring(currentNum) + L"/" + to_wstring(notifyNum));
 	ratio->SetAnchorPoint(AnchorPoint::Center);
-
 }

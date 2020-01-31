@@ -1,6 +1,7 @@
 #pragma once
 #include "GgaetIp.h"
 #include "Observer.h"
+#include "Subject.h"
 #include <atlconv.h>
 
 struct aInfo
@@ -10,7 +11,7 @@ struct aInfo
 	int notifyNum;
 };
 
-class Achievement: public Script, public Observer
+class Achievement: public Script, public Observer, public Subject
 {
 private:
 	vector<Object*> aBox;
