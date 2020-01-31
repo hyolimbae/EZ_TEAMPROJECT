@@ -81,6 +81,12 @@
     <Filter Include="소스 파일\UI\Tutorial">
       <UniqueIdentifier>{2281331d-3ea4-4eea-ac77-54ee41bcd830}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Worker">
+      <UniqueIdentifier>{5d62218b-542d-41f0-a064-5461d0d0b053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Crafting">
+      <UniqueIdentifier>{758bb205-9343-43f9-a813-c4429356ea26}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -359,6 +365,45 @@
     <ClInclude Include="TutorialBox.h">
       <Filter>소스 파일\UI\Tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="FactoryScene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ForestScene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftInfo.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftResult.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftSpriteAndText.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftTimeBar.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftBox.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="CraftButton.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="Bubble.h">
+      <Filter>소스 파일\Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkArea.h">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClInclude>
+    <ClInclude Include="WorkerAnimation.h">
+      <Filter>소스 파일\Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="ForestWorkerMove.h">
+      <Filter>소스 파일\Worker</Filter>
+    </ClInclude>
+    <ClInclude Include="FactoryWorkerMove.h">
+      <Filter>소스 파일\Worker</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -615,6 +660,45 @@
     </ClCompile>
     <ClCompile Include="TutorialBox.cpp">
       <Filter>소스 파일\UI\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ForestScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftInfo.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftResult.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftSpriteAndText.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftTimeBar.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftBox.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="CraftButton.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="Bubble.cpp">
+      <Filter>소스 파일\Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkArea.cpp">
+      <Filter>소스 파일\Crafting</Filter>
+    </ClCompile>
+    <ClCompile Include="WorkerAnimation.cpp">
+      <Filter>소스 파일\Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="ForestWorkerWorkerMove.cpp">
+      <Filter>소스 파일\Worker</Filter>
+    </ClCompile>
+    <ClCompile Include="FactoryWorkerMove.cpp">
+      <Filter>소스 파일\Worker</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

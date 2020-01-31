@@ -158,6 +158,7 @@
     <ClInclude Include="ApplicationManager.h" />
     <ClInclude Include="AStar.h" />
     <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="Bubble.h" />
     <ClInclude Include="Building.h" />
     <ClInclude Include="BuildingComponent.h" />
     <ClInclude Include="BuildingInfo.h" />
@@ -171,12 +172,21 @@
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConstructionTimeBar.h" />
     <ClInclude Include="ControlCamera.h" />
+    <ClInclude Include="CraftBox.h" />
+    <ClInclude Include="CraftButton.h" />
+    <ClInclude Include="CraftInfo.h" />
+    <ClInclude Include="CraftResult.h" />
+    <ClInclude Include="CraftSpriteAndText.h" />
+    <ClInclude Include="CraftTimeBar.h" />
     <ClInclude Include="DebugDraw.h" />
     <ClInclude Include="DefaultBuilding.h" />
     <ClInclude Include="Direct2D.h" />
     <ClInclude Include="Direct3D.h" />
     <ClInclude Include="DrawComponent.h" />
+    <ClInclude Include="FactoryScene.h" />
+    <ClInclude Include="FactoryWorkerMove.h" />
     <ClInclude Include="FixButton.h" />
+    <ClInclude Include="ForestScene.h" />
     <ClInclude Include="GameScene.h" />
     <ClInclude Include="ImGuiButton.h" />
     <ClInclude Include="ImGuiManager.h" />
@@ -195,6 +205,7 @@
     <ClInclude Include="LinkButton.h" />
     <ClInclude Include="LoadButton.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="ForestWorkerMove.h" />
     <ClInclude Include="NewBuilding.h" />
     <ClInclude Include="NotificationBox.h" />
     <ClInclude Include="Observer.h" />
@@ -238,6 +249,8 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ImGuiWindow.h" />
+    <ClInclude Include="WorkArea.h" />
+    <ClInclude Include="WorkerAnimation.h" />
     <ClInclude Include="WorkerControl.h" />
     <ClInclude Include="WcDoneButton.h" />
   </ItemGroup>
@@ -250,6 +263,7 @@
     <ClCompile Include="ApplicationManager.cpp" />
     <ClCompile Include="AStar.cpp" />
     <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="Bubble.cpp" />
     <ClCompile Include="Building.cpp" />
     <ClCompile Include="BuildingComponent.cpp" />
     <ClCompile Include="BuildingInfo.cpp" />
@@ -263,12 +277,21 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConstructionTimeBar.cpp" />
     <ClCompile Include="ControlCamera.cpp" />
+    <ClCompile Include="CraftBox.cpp" />
+    <ClCompile Include="CraftButton.cpp" />
+    <ClCompile Include="CraftInfo.cpp" />
+    <ClCompile Include="CraftResult.cpp" />
+    <ClCompile Include="CraftSpriteAndText.cpp" />
+    <ClCompile Include="CraftTimeBar.cpp" />
     <ClCompile Include="DebugDraw.cpp" />
     <ClCompile Include="DefaultBuilding.cpp" />
     <ClCompile Include="Direct2D.cpp" />
     <ClCompile Include="Direct3D.cpp" />
     <ClCompile Include="DrawComponent.cpp" />
+    <ClCompile Include="FactoryScene.cpp" />
+    <ClCompile Include="FactoryWorkerMove.cpp" />
     <ClCompile Include="FixButton.cpp" />
+    <ClCompile Include="ForestScene.cpp" />
     <ClCompile Include="GameScene.cpp" />
     <ClCompile Include="ImGuiButton.cpp" />
     <ClCompile Include="ImGuiManager.cpp" />
@@ -297,6 +320,7 @@
     <ClCompile Include="LinkButton.cpp" />
     <ClCompile Include="LoadButton.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="ForestWorkerWorkerMove.cpp" />
     <ClCompile Include="NewBuilding.cpp" />
     <ClCompile Include="NotificationBox.cpp" />
     <ClCompile Include="Observer.cpp" />
@@ -342,6 +366,8 @@
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="ImGuiWindow.cpp" />
     <ClCompile Include="windowAPI.cpp" />
+    <ClCompile Include="WorkArea.cpp" />
+    <ClCompile Include="WorkerAnimation.cpp" />
     <ClCompile Include="WorkerControl.cpp" />
     <ClCompile Include="WcDoneButton.cpp" />
   </ItemGroup>

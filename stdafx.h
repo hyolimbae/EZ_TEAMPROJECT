@@ -17,7 +17,7 @@
 
 using namespace std;
 
-#define DesignResolution Vector2(1600,900) 
+#define DesignResolution Vector2(818,763) 
 #define WINSTYLE WS_VISIBLE || WS_BORDER || WS_CAPTION
 
 enum class MSGTYPE
@@ -32,7 +32,8 @@ enum class ZORDER
 {
 	TILE = 1,
 	OBJECT = 5,
-	UI = 10
+	UI = 10,
+	MOUSE
 };
 
 
