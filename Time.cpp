@@ -42,16 +42,6 @@ void Time::Init()
 void Time::Update()
 {
 	GameTimeSet(); 
-	if(!_isDay)
-	{
-		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Night.png"));
-		Notify(MSGTYPE::TIME, "NightStart"); //≥∑¿Ã ≥°≥µ¥Ÿ ->π„ Ω√¿€
-	}
-	if (_isDay)
-	{
-		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
-		Notify(MSGTYPE::TIME, "NightEnd");
-	}
 }
 
 
@@ -75,17 +65,26 @@ void Time::GameTimeSet()
 	_dayOfWeek = "ø˘";
 
 
-	if (gameDayTime <= 5)
-	{ 
-		_isDay = true; //≥∑Ω√∞£ ≥° == π„ Ω√¿€ 
-		//cout << "≥∑¿Ã ≥°≥µ¥Ÿ" << _isDay;
-	}
+	//TEST 
 
-	if (gameDayTime > 5)
-	{
-		_isDay = false; //≥∑Ω√∞£ ≥° == π„ Ω√¿€ 
-		//cout << "π„¿Ã ≥°≥µ¥Ÿ" << _isDay;
-	}
+
+	//if (gameDayTime> 13)
+	//{
+	//	if (_isDay)
+	//		return;
+	//	_isDay = true;
+	//	gameDayTime = 0;
+	//	_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
+	//	Notify(MSGTYPE::TIME, "NightStart");
+	//	
+	//}else if (gameDayTime>5)
+	//{
+	//	if (!_isDay)
+	//		return;
+	//	_isDay = false;
+	//	_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
+	//	Notify(MSGTYPE::TIME, "DayStart");
+	//}
 
 	//cout << gameDayTime;
 
@@ -94,6 +93,7 @@ void Time::GameTimeSet()
 		Notify(MSGTYPE::TIME, "SingleDateEnd"); //π„ Ω√∞£¿œ ∂ß --> ¥ﬁ ¿ÃπÃ¡ˆ 
 	}
 	
+
 #pragma region     ø‰¿œ º≥¡§ 
 	if ((_realTime / 1200) % 7 == 0) _dayOfWeek = "ø˘";
 	if ((_realTime / 1200) % 7 == 1) _dayOfWeek = "»≠";

@@ -3,7 +3,6 @@
 #include <atlconv.h>
 #include "Subject.h"
 
-
 class Time : public Script, public Subject
 {
 private: 
