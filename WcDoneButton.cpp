@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "WcDoneButton.h"
-#include "WorkerControl.h"
+#include "WorkerPanel.h"
 
 void WcDoneButton::Init()
 {
@@ -12,5 +12,6 @@ void WcDoneButton::Update()
 
 void WcDoneButton::OnMouseDown()
 {
-	_workerControl->ControlOnOff(false);
+	WorkerControlManager::GetInstance()->SetPopulation(_workerPanel->GetMForSettingWorker());
+	_workerPanel->ControlOnOff(false);
 }

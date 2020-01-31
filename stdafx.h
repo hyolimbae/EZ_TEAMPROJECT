@@ -17,8 +17,11 @@
 
 using namespace std;
 
-#define DesignResolution Vector2(818,763) 
+#define DesignResolution Vector2(1600,900) 
 #define WINSTYLE WS_VISIBLE || WS_BORDER || WS_CAPTION
+
+//전체 인구 조절 
+#define TOTALPOPULATION 50
 
 enum class MSGTYPE
 {
@@ -33,7 +36,7 @@ enum class ZORDER
 	TILE = 1,
 	OBJECT = 5,
 	UI = 10,
-	MOUSE
+	MOUSE = 50
 };
 
 

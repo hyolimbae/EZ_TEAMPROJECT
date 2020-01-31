@@ -10,6 +10,5 @@ public:
 	void AddObserver(Observer* observer);
 	void RemoveObserver(Observer* observer);
 	void Notify(MSGTYPE type, string event);
-	//void Notify(TIMETYPE type); 
 };
 

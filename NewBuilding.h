@@ -1,17 +1,20 @@
 #pragma once
 #include "Building.h"
+#include "Observer.h"
 class NewBuilding: public Building
 {
 private:
 	bool _fixedPosition = false;
-
-
-	//나중에 night용 스프라이트 
-	Sprite* night;
+	Sprite* lighted;
 
 public:
-
+	NewBuilding(Object* obj) : Building::Building(obj) {};
+	virtual void Init() override;
+	virtual void Update() override;
+		 
 	bool GetFixedPosition() { return _fixedPosition; }
 	void SetFixedPosition(bool fixedPosition) { _fixedPosition = fixedPosition; }
+
+
 };
 

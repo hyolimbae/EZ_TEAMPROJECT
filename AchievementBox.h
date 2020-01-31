@@ -22,5 +22,6 @@ public:
 	void SetString(pair<wstring, wstring> p) { text = p;}
 	void SetNotifyNum(int num) { notifyNum = num; }
 	void SetProgress();
+	float GetProgress() { return currentNum / (float)notifyNum; }
 };
 

@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "GameScene.h"
-#include "WorkerControl.h"
-#include "UI_ClickButton.h"
-#include "WorkerControlUiSet.h"
+#include "WorkerPanel.h"
+#include "PlusMinusButton.h"
 #include "TotalWorker.h"
 #include "ShowWorker.h"
 #include "Time.h"
@@ -42,85 +41,84 @@ void GameScene::Init()
 
 #pragma region EUNSOL
 
-	////BackGround
-	////Object* backGround = Object::CreateObject();
-	////backGround->SetTag("BackGround");
-	////backGround->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Test_background.png"));
-	////
-
-	////LuytenTown UI
-	//Object* luytenTown = Object::CreateObject();
-	//luytenTown->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown.png"));
-	//luytenTown->GetTransform()->SetPosition(Convert(41, 23, 245, 53));
+	//BackGround
+	//Object* backGround = Object::CreateObject();
+	//backGround->SetTag("BackGround");
+	//backGround->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Test_background.png"));
 	//
 
-	////ShowWorker Tap UI
-	////Object* showWorkerTap = Object::CreateObject();
-	////showWorkerTap->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/PeopleUI.png"));
-	////showWorkerTap->GetTransform()->SetPosition(Convert(397, 86, 314, 458));
-
-
-	////Time UI
-	//Object* time = Object::CreateObject();
-	//time->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown_Time.png"));
-	//time->GetTransform()->SetPosition(Convert(821, 23, 320, 52));
-	//time->AddComponent<Time>(); 
-	//time->SetIsActive(true); 
-
-
-	////Setting Icon                   
-	//Object* UI_Setting = Object::CreateObject();
-	//UI_Setting->SetTag("UI");
-	//UI_Setting->SetName("Setting");
-	//UI_Setting->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Setting_Icon.png"));
-	//UI_Setting->GetTransform()->SetPosition(Convert(1480, 23, 51, 56));
-
-
-	////Inventory Bag Icon 
-	//Object* bag = Object::CreateObject(); 
-	//bag->SetTag("UI"); 
-	//bag->SetName("Inventory"); 
-	//bag->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Inventory_Icon.png"));
-	//bag->GetTransform()->SetPosition(Convert(53, 714, 99, 96));
-
-
-	////workerControl POP-UP â 
-	//Object* workerControl = Object::CreateObject(); 
-	//workerControl->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/SetPopulation.png"));
-	//workerControl->GetTransform()->SetPosition(Convert(566, 238, 500, 500));
-	//workerControl->AddComponent<WorkerControl>();
-	//workerControl->SetIsActive(false); 
-	//time->GetComponent<Time>()->AddObserver(workerControl->GetComponent<WorkerControl>());
-
-
-	////ShowWorker Total UI
-	//Object* totalWorker = Object::CreateObject();
-	//totalWorker->AddComponent<BoxCollider>();
-	//totalWorker->AddComponent<TotalWorker>();
-	//totalWorker->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Town_people.png"));
-	//totalWorker->GetTransform()->SetPosition(Convert(360, 23, 314, 52));
-	//totalWorker->GetComponent<BoxCollider>()->SetSize(Vector2(157, 26));
-
-	//
-	//Object* showWorker = Object::CreateObject();
-	//showWorker->GetTransform()->SetPosition(Vector2(-440, -90));
-	//showWorker->AddComponent<ShowWorker>();
-	//showWorker->SetIsActive(false);
-	//time->GetComponent<Time>()->AddObserver(showWorker->GetComponent<ShowWorker>());
-
-
-	////<Address Link>
-	//showWorker->GetComponent<ShowWorker>()->SetLinkWithWorkerControl(workerControl->GetComponent<WorkerControl>());
-	//totalWorker->GetComponent<TotalWorker>()->SetLinkWithShowWorker(showWorker);
-	//totalWorker->GetComponent<TotalWorker>()->SetLinkWithControl(workerControl);
-	//workerControl->GetComponent<WorkerControl>()->SetLinkWithWorker(totalWorker);
+	//LuytenTown UI
+	Object* luytenTown = Object::CreateObject();
+	luytenTown->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown.png"));
+	luytenTown->GetTransform()->SetPosition(Convert(41, 23, 245, 53));
 	
+
+	//ShowWorker Tap UI
+	//Object* showWorkerTap = Object::CreateObject();
+	//showWorkerTap->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/PeopleUI.png"));
+	//showWorkerTap->GetTransform()->SetPosition(Convert(397, 86, 314, 458));
+
+
+	//Time UI
+	Object* time = Object::CreateObject();
+	time->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown_Time.png"));
+	time->GetTransform()->SetPosition(Convert(821, 23, 320, 52));
+	time->AddComponent<Time>(); 
+	time->SetIsActive(true); 
+
+
+	//Setting Icon                   
+	Object* UI_Setting = Object::CreateObject();
+	UI_Setting->SetTag("UI");
+	UI_Setting->SetName("Setting");
+	UI_Setting->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Setting_Icon.png"));
+	UI_Setting->GetTransform()->SetPosition(Convert(1480, 23, 51, 56));
+
+
+	//Inventory Bag Icon 
+	Object* bag = Object::CreateObject(); 
+	bag->SetTag("UI"); 
+	bag->SetName("Inventory"); 
+	bag->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Inventory_Icon.png"));
+	bag->GetTransform()->SetPosition(Convert(53, 714, 99, 96));
+
+
+	//WorkerPanel POP-UP â 
+	Object* workerPanel = Object::CreateObject(); 
+	workerPanel->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/SetPopulation.png"));
+	workerPanel->GetTransform()->SetPosition(Convert(566, 238, 500, 500));
+	workerPanel->AddComponent<WorkerPanel>();
+	workerPanel->SetIsActive(false); 
+	time->GetComponent<Time>()->AddObserver(workerPanel->GetComponent<WorkerPanel>());
+
+
+	//ShowWorker Total UI
+	Object* totalWorker = Object::CreateObject();
+	totalWorker->AddComponent<BoxCollider>();
+	totalWorker->AddComponent<TotalWorker>();
+	totalWorker->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Town_people.png"));
+	totalWorker->GetTransform()->SetPosition(Convert(360, 23, 314, 52));
+	totalWorker->GetComponent<BoxCollider>()->SetSize(Vector2(157, 26));
+
+	
+	Object* showWorker = Object::CreateObject();
+	showWorker->GetTransform()->SetPosition(Vector2(-440, -90));
+	showWorker->AddComponent<ShowWorker>();
+	showWorker->SetIsActive(false);
+	time->GetComponent<Time>()->AddObserver(showWorker->GetComponent<ShowWorker>());
+
+
+	//<Address Link>
+	totalWorker->GetComponent<TotalWorker>()->SetLinkWithShowWorker(showWorker);
+	//totalWorker->GetComponent<TotalWorker>()->SetLinkWithControl(workerPanel);
+	workerPanel->GetComponent<WorkerPanel>()->SetLinkWithWorker(totalWorker);
+	showWorker->GetComponent<ShowWorker>()->SetLinkWithWorkerPanel(workerPanel->GetComponent<WorkerPanel>());
 
 #pragma endregion
 
 #pragma region HYOLIM
 
-	//auto tileMap = Object::CreateObject();
+	///*auto tileMap = Object::CreateObject();
 	//tileMap->GetTransform()->SetPosition(Vector2::zero);
 	//tileMap->AddComponent<ControlCamera>();
 	//tileMap->AddComponent<TileMap>();
@@ -128,17 +126,16 @@ void GameScene::Init()
 	//collider->SetSize(DesignResolution);
 	//tileMap->AddComponent<Physics>()->SetBodyType(StaticBody);
 
-
-	/*for (int i = 0; i < 10; i++)
-	{
-		auto citizen = Object::CreateObject();
-		citizen->SetTag("H6");
-		citizen->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H6_Move_Front.png"));
-		citizen->GetTransform()->SetScale(Vector2(0.5, 0.5));
-		citizen->AddComponent<Animator>();
-		citizen->AddComponent<RandomMove>()->SetLinkToMap(tileMap);
-		citizen->AddComponent<CitizenAnimation>();
-	}*/
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	auto citizen = Object::CreateObject();
+	//	citizen->SetTag("H6");
+	//	citizen->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H6_Move_Front.png"));
+	//	citizen->GetTransform()->SetScale(Vector2(0.5, 0.5));
+	//	citizen->AddComponent<Animator>();
+	//	citizen->AddComponent<RandomMove>()->SetLinkToMap(tileMap);
+	//	citizen->AddComponent<CitizenAnimation>();
+	//}*/
 
 	//auto achievementLinkButton = Object::CreateObject();
 	//achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 50));

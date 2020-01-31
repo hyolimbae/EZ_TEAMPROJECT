@@ -21,6 +21,8 @@ void Building::Init()
 
 void Building::Update()
 {
+
+
 	if (_thisObj->GetComponent<BoxCollider>()->GetOnMouse())
 	{
 		_polydraw->SetColor(Color{ 100.0f,100.f,100.f,0.1f });
