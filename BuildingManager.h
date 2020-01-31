@@ -2,7 +2,7 @@
 #include "GgaetIp.h"
 #include "Subject.h"
 
-class BuildingManager :	public Script, public Subject
+class BuildingManager :	public Script, public Subject, public Observer
 {
 private:
 	vector<Object*> _vHouses;
@@ -10,9 +10,10 @@ private:
 	
 public:
 	virtual void Init();
-	virtual void Update();
 
 	vector<Object*> GetVHouses() { return _vHouses; }
 	int GetFixedNum() { return _fixedHouseNum;}
 	void SetFixedNum(int num);
+
+	virtual void OnNotify(MSGTYPE type, string event);
 };

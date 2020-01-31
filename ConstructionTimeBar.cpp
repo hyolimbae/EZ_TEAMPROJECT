@@ -4,6 +4,7 @@
 #include "BuildingManager.h"
 #include "BuildingComponent.h"
 #include "DefaultBuilding.h"
+#include "NewBuilding.h"
 
 void ConstructionTimeBar::Init()
 {
@@ -39,11 +40,18 @@ void ConstructionTimeBar::Update()
         {
             _polygonPos[1].x = _maxPosX;
             ((DefaultBuilding*)(_building->GetComponent<BuildingComponent>()->GetBuilding()))->SetHouseState(HOUSE_FIXED);
-            _building->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/" + _building->GetTag() + "_Fixed.png"));
+           // _building->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/" + _building->GetTag() + "_Fixed.png"));
+
 
             //매니저 처리 
             BuildingManager* manager = _building->GetComponent<BuildingComponent>()->GetBuilding()->GetManager();
             manager->SetFixedNum(manager->GetFixedNum() + 1);
+
+            //new Building으로 전환
+            _building->GetComponent<BuildingComponent>()->SetBuilding(new NewBuilding(_building));
+            _building->GetComponent<BuildingComponent>()->GetBuilding()->Init();
+            return;
+
         }
     }
 

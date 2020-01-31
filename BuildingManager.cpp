@@ -73,9 +73,7 @@ void BuildingManager::Init()
 
 
 }
-void BuildingManager::Update()
-{
-}
+
 
 void BuildingManager::SetFixedNum(int num)
 {
@@ -89,4 +87,26 @@ void BuildingManager::SetFixedNum(int num)
 	else if(_fixedHouseNum == 8)
 		Notify(MSGTYPE::NOTIFICATION,"수리의 대가");
 
+}
+
+void BuildingManager::OnNotify(MSGTYPE type, string event)
+{
+	if (type != MSGTYPE::TIME)
+		return;
+
+	for (int i = 0; i < _vHouses.size(); i++)
+	{
+		auto buildingCompo = _vHouses[i]->GetComponent<BuildingComponent>();
+		if (buildingCompo->GetBuilding()->GetBuildingType() != NEW)
+			return;
+
+		if (event == "DayStart")
+		{
+			_vHouses[i]->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/"+ _vHouses[i]->GetTag() + "_Fixed.png"));
+		}
+		else if (event == "NightStart")
+		{
+			_vHouses[i]->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/" + _vHouses[i]->GetTag() + "_Lighted.png"));
+		}
+	}
 }

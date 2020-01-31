@@ -6,6 +6,7 @@
 void DefaultBuilding::Init()
 {
 	Building::Init();
+	buildingType = DEFAULT;
 	_sprite = _thisObj->GetComponent<Sprite>();
 	_sprite->SetSprite(Image::CreateImage("Sprite/" + _thisObj->GetTag() + "_Ruined.png"));
 	_polydraw = _thisObj->GetComponent<PolygonDraw>();
