@@ -17,6 +17,8 @@
 #include "BuildingManager.h"
 #include "Building.h"
 
+#include "Mouse.h"
+
 #include "LinkButton.h"
 #include "NotificationBox.h"
 #include "Achievement.h"
@@ -30,15 +32,21 @@
 
 void GameScene::Init()
 {
+	ShowCursor(false);
+
+	Object* mouse = Object::CreateObject();
+	mouse->SetTag("Mouse");
+	mouse->AddComponent<Mouse>();
+	ShowCursor(false);
 
 
 #pragma region EUNSOL
 
 	//BackGround
-	Object* backGround = Object::CreateObject();
-	backGround->SetTag("BackGround");
-	backGround->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Test_background.png"));
-	
+	//Object* backGround = Object::CreateObject();
+	//backGround->SetTag("BackGround");
+	//backGround->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Test_background.png"));
+	//
 
 	//LuytenTown UI
 	Object* luytenTown = Object::CreateObject();
@@ -156,10 +164,10 @@ void GameScene::Init()
 	//manager->AddObserver(ncompo);
 	//manager->AddObserver(acompo);
 
-	auto nightTest = Object::CreateObject();
-	auto nightTestSprite = nightTest->AddComponent<Sprite>();
-	nightTestSprite->SetSprite(Image::CreateImage("Sprite/Night.png"));
-	nightTestSprite->SetOpacity(0.7);
+	//auto nightTest = Object::CreateObject();
+	//auto nightTestSprite = nightTest->AddComponent<Sprite>();
+	//nightTestSprite->SetSprite(Image::CreateImage("Sprite/Night.png"));
+	//nightTestSprite->SetOpacity(0.7);
 
 #pragma endregion
 
