@@ -3,10 +3,21 @@
 
 void Mouse::Init()
 {
+	object->AddComponent<Sprite>();
+	object->AddComponent<Sound>();
+	
 	_transform = object->GetTransform();
 	_sprite = object->GetComponent<Sprite>();
-	_sprite->SetDepth(5);
 	_sound = object->GetComponent<Sound>();
+	
+	_sprite->SetSprite(Image::CreateImage("Sprite/Mouse_Basic.png"));
+	_sprite->GetTransform()->SetScale(Vector2(0.5f, 0.5f));
+	auto click = AudioClip::CreateSound("Sound/SE/Click.wav");
+	_sound->SetSound(click);
+
+
+	_sprite->SetDepth((int)ZORDER::MOUSE);
+
 
 	_transform->SetAnchorPoint(Vector2(0,1));
 
@@ -21,6 +32,7 @@ void Mouse::Update()
 
 void Mouse::ClickMotionAndSound()
 {
+
 	if (InputManager::GetInstance()->GetKeyDown(VK_LBUTTON))
 	{
 		_sound->Play();

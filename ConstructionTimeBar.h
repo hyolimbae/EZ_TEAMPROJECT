@@ -13,6 +13,8 @@ private:
 	float _maxPosX;
 
 	float _barLength = 200;
+
+	bool _decreaseResource = false;
 	
 
 	// TimeBar¿ë PolyDraw
