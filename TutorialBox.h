@@ -11,7 +11,7 @@ struct tagTutorialInfo
 	float alphaTime = 0;
 };
 
-class Tutorial : public Script, public Observer
+class TutorialBox : public Script, public Observer
 {
 private:
 	vector<tagTutorialInfo> vTutorialInfo;
