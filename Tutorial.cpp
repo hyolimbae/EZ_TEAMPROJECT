@@ -1,22 +1,26 @@
 #include "stdafx.h"
-#include "TutorialBox.h"
+#include "Tutorial.h"
 
-void TutorialBox::Init()
+void Tutorial::Init()
 {
 	//튜토리얼 내용 관리 
 	tagTutorialInfo achievement;
 	achievement.name = "Achievement";
-	achievement.position = Vector2(200, 200);
-	achievement.spriteRoute = "Sprite/UI/Tutorial_Achievement.png";
+	achievement.position = Vector2(500, 300);
+	achievement.spriteRoute = "Sprite/Tutorial/Tutorial_Achievement.png";
 	vTutorialInfo.push_back(achievement);
 
 	tagTutorialInfo construction;
 	construction.name = "Construction";
+	construction.spriteRoute = "Sprite/Tutorial/Tutorial_Achievement.png";
 	construction.position = Vector2::zero;
-	//construction.textBody = L"필요한 재료를 모아 건물을 수리 해 보세요!";
 	vTutorialInfo.push_back(construction);
 
-
+	tagTutorialInfo time;
+	time.name = "Time";
+	time.spriteRoute = "Sprite/Tutorial/Tutorial_Time.png";
+	time.position = Vector2::zero;
+	vTutorialInfo.push_back(time);
 
 	for (int i = 0; i < vTutorialInfo.size(); i++)
 	{
@@ -31,13 +35,13 @@ void TutorialBox::Init()
 	}
 }
 
-void TutorialBox::Update()
+void Tutorial::Update()
 {
 	FadeOut();
 }
 
 
-void TutorialBox::OnNotify(MSGTYPE type, string event)
+void Tutorial::OnNotify(MSGTYPE type, string event)
 {
 	if (type != MSGTYPE::TUTORIAL)
 		return;
@@ -53,7 +57,7 @@ void TutorialBox::OnNotify(MSGTYPE type, string event)
 	}
 }
 
-void TutorialBox::FadeOut()
+void Tutorial::FadeOut()
 {
 	for (int i = 0; i < vTutorialBox.size(); i++)
 	{
@@ -63,10 +67,8 @@ void TutorialBox::FadeOut()
 			TimeManager::GetInstance()->GetTime() - vTutorialBox[i].second.alphaTime < 1)
 			return;
 
-		//auto textCompo = vTutorialBox[i].first->GetComponent<Text>();
 
 		spriteCompo->SetOpacity(spriteCompo->GetOpacity() - 0.01f);
-		//textCompo->SetColor(Color{ 1,1,1,spriteCompo->GetOpacity()-0.01f }, 0, 100);
 
 	}
 }

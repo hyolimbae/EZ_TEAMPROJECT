@@ -6,7 +6,6 @@
 
 void Title::Init()
 {
-	//ApplicationManager::GetInstance()->SetResolution(818, 763, false);
-	//SceneManager::GetInstance()->PushScene(new FactoryScene);
-
+	ApplicationManager::GetInstance()->SetResolution(1600, 900, false);
+	SceneManager::GetInstance()->PushScene(new GameScene);
 }

@@ -6,7 +6,7 @@
 #include "ShowWorker.h"
 #include "Time.h"
 
-//Hyolm and Haeun
+//Hyolim and Haeun
 #include "AStar.h"
 #include "ControlCamera.h"
 #include "Character.h"
@@ -28,6 +28,7 @@
 
 #include "RandomMove.h"
 #include "CitizenAnimation.h"
+#include "Tutorial.h"
 
 void GameScene::Init()
 {
@@ -137,30 +138,35 @@ void GameScene::Init()
 	//	citizen->AddComponent<CitizenAnimation>();
 	//}*/
 
-	//auto achievementLinkButton = Object::CreateObject();
-	//achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 50));
-	//auto aSprite = achievementLinkButton->AddComponent<Sprite>();
-	//aSprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementButton.png"));
-	//aSprite->SetDepth((int)ZORDER::UI);
+	auto achievementLinkButton = Object::CreateObject();
+	achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 50));
+	auto aSprite = achievementLinkButton->AddComponent<Sprite>();
+	aSprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementButton.png"));
+	aSprite->SetDepth((int)ZORDER::UI);
 
 
-	//auto achievement = Object::CreateObject();
-	//achievement->GetTransform()->SetPosition(Vector2(4, 65));
-	//auto acompo = achievement->AddComponent<Achievement>();
-	//auto asprite = achievement->AddComponent<Sprite>();
-	//asprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementUI.png"));
-	//asprite->SetDepth((int)ZORDER::UI);
-	//achievement->AddComponent<BoxCollider>();
+	auto achievement = Object::CreateObject();
+	achievement->GetTransform()->SetPosition(Vector2(4, 65));
+	auto acompo = achievement->AddComponent<Achievement>();
+	auto asprite = achievement->AddComponent<Sprite>();
+	asprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementUI.png"));
+	asprite->SetDepth((int)ZORDER::UI);
+	achievement->AddComponent<BoxCollider>();
+	achievement->SetIsActive(false);
 
-	//achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
+	achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
 
-	//auto notificationBox = Object::CreateObject();
-	//auto ncompo = notificationBox->AddComponent<NotificationBox>();
+	auto notificationBox = Object::CreateObject();
+	auto ncompo = notificationBox->AddComponent<NotificationBox>();
 
-	//auto bulidingManager = Object::CreateObject();
-	//auto manager = bulidingManager->AddComponent<BuildingManager>();
-	//manager->AddObserver(ncompo);
-	//manager->AddObserver(acompo);
+	auto bulidingManager = Object::CreateObject();
+	auto manager = bulidingManager->AddComponent<BuildingManager>();
+	manager->AddObserver(ncompo);
+	manager->AddObserver(acompo);
+
+	auto tutorial = Object::CreateObject();
+	tutorial->AddComponent<Tutorial>();
+	acompo->AddObserver(tutorial->GetComponent<Tutorial>());
 
 	//auto nightTest = Object::CreateObject();
 	//auto nightTestSprite = nightTest->AddComponent<Sprite>();
@@ -168,5 +174,4 @@ void GameScene::Init()
 	//nightTestSprite->SetOpacity(0.7);
 
 #pragma endregion
-
 }
