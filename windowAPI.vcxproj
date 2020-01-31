@@ -199,10 +199,12 @@
     <ClInclude Include="NotificationBox.h" />
     <ClInclude Include="Observer.h" />
     <ClInclude Include="PageButton.h" />
+    <ClInclude Include="PlusMinusButton.h" />
     <ClInclude Include="PolygonDraw.h" />
     <ClInclude Include="RandomMove.h" />
     <ClInclude Include="RayCallBack.h" />
     <ClInclude Include="RayHit.h" />
+    <ClInclude Include="ResourceControl.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="GgaetIp.h" />
@@ -234,12 +236,12 @@
     <ClInclude Include="Transform.h" />
     <ClInclude Include="TutorialBox.h" />
     <ClInclude Include="UI.h" />
-    <ClInclude Include="UI_ClickButton.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ImGuiWindow.h" />
-    <ClInclude Include="WorkerControl.h" />
     <ClInclude Include="WcDoneButton.h" />
+    <ClInclude Include="WorkerControlManager.h" />
+    <ClInclude Include="WorkerPanel.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Achievement.cpp" />
@@ -301,10 +303,12 @@
     <ClCompile Include="NotificationBox.cpp" />
     <ClCompile Include="Observer.cpp" />
     <ClCompile Include="PageButton.cpp" />
+    <ClCompile Include="PlusMinusButton.cpp" />
     <ClCompile Include="PolygonDraw.cpp" />
     <ClCompile Include="RandomMove.cpp" />
     <ClCompile Include="RayCallBack.cpp" />
     <ClCompile Include="RayHit.cpp" />
+    <ClCompile Include="ResourceControl.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Matrix2x2.cpp" />
@@ -337,13 +341,13 @@
     <ClCompile Include="TotalWorker.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="TutorialBox.cpp" />
-    <ClCompile Include="UI_ClickButton.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="ImGuiWindow.cpp" />
     <ClCompile Include="windowAPI.cpp" />
-    <ClCompile Include="WorkerControl.cpp" />
     <ClCompile Include="WcDoneButton.cpp" />
+    <ClCompile Include="WorkerControlManager.cpp" />
+    <ClCompile Include="WorkerPanel.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
