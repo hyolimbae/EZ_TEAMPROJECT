@@ -168,5 +168,7 @@ void GameScene::Init()
 	auto tuto = tutorialTest->AddComponent<Tutorial>();
 	acompo->AddObserver(tuto);
 
+
 #pragma endregion
+
 }

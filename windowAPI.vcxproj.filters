@@ -371,6 +371,10 @@
     <ClInclude Include="WorkerControlManager.h">
       <Filter>소스 파일\UI\ControlCenter</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="Tutorial.h">
+      <Filter>소스 파일\UI\Tutorial</Filter>
+=======
     <ClInclude Include="CraftBox.h">
       <Filter>소스 파일\Crafting</Filter>
     </ClInclude>
@@ -409,6 +413,7 @@
     </ClInclude>
     <ClInclude Include="Bubble.h">
       <Filter>소스 파일\Worker</Filter>
+>>>>>>> f2a89f52faa1a3de910c572a74f98a5fbda09d54
     </ClInclude>
     <ClInclude Include="Tutorial.h">
       <Filter>소스 파일\UI\Tutorial</Filter>
@@ -673,6 +678,10 @@
     <ClCompile Include="WorkerControlManager.cpp">
       <Filter>소스 파일\UI\ControlCenter</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>소스 파일\UI\Tutorial</Filter>
+=======
     <ClCompile Include="CraftBox.cpp">
       <Filter>소스 파일\Crafting</Filter>
     </ClCompile>
@@ -711,6 +720,7 @@
     </ClCompile>
     <ClCompile Include="Bubble.cpp">
       <Filter>소스 파일\Worker</Filter>
+>>>>>>> f2a89f52faa1a3de910c572a74f98a5fbda09d54
     </ClCompile>
     <ClCompile Include="Tutorial.cpp">
       <Filter>소스 파일\UI\Tutorial</Filter>
