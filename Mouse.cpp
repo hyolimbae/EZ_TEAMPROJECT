@@ -14,9 +14,10 @@ void Mouse::Init()
 	_sprite->GetTransform()->SetScale(Vector2(0.5f, 0.5f));
 	auto click = AudioClip::CreateSound("Sound/SE/Click.wav");
 	_sound->SetSound(click);
+	_sprite->SetDepth(100);
 
 
-	_sprite->SetDepth((int)ZORDER::MOUSE);
+	//_sprite->SetDepth((int)ZORDER::MOUSE);
 
 
 	_transform->SetAnchorPoint(Vector2(0,1));

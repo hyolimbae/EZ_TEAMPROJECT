@@ -29,6 +29,8 @@ void Scene::Init()
 	physicsWorld->SetContinuousPhysics(true);
 	physicsWorld->SetDebugDraw(DebugDraw::GetInstance());
 	physicsWorld->SetContactListener(PhysicsManager::GetInstance());
+
+	WorkerControlManager::GetInstance()->Init();
 }
 
 Camera* Scene::GetMainCamera()
@@ -67,7 +69,7 @@ void Scene::Update()
 		exit(0);
 	if (InputManager::GetInstance()->GetKeyDown(VK_F1))
 		PhysicsManager::GetInstance()->SetDrawDebug(!PhysicsManager::GetInstance()->GetDrawDebug());
-
+	WorkerControlManager::GetInstance()->Update();
 }
 
 extern bool Compare(Object* a, Object* b);

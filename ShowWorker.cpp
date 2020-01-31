@@ -1,75 +1,81 @@
 #include "stdafx.h"
 #include "ShowWorker.h"
-#include "WorkerControl.h"
+#include "WorkerPanel.h"
 
 void ShowWorker::Init()
 {
-	//WorkerManager에서 Map 으로 묶어둔 직업별 인구 설정 자료 가져오기
-	//_showWorker = Object::CreateObject(); 
+	_isNight = false;
+
 	object->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/ShowWorkerSprite/PeopleUI.png"));
-	//object->GetComponent<Sprite>()->GetTransform()->SetPosition(Vector2(_pos.x - 156, _pos.y-490));
 	object->GetComponent<Sprite>()->GetTransform()->SetAnchorPoint(Vector2(0, 0));
 
-	//int i = 0; 
-	//for (auto it : _workerControl->GetMWorkers())
-	//{
-	//	//if (it.second == NULL) continue;
-	//	/*_showWorkerSprite = Object::CreateObject(object);
-	//	_showWorkerSprite->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/ShowWorkerSprite/" 
-	//		+ _workerControl->GetVWorkerNum()[i]->GetName() + ".png"));
-	//	_showWorkerSprite->GetTransform()->SetPosition(object->GetTransform()->GetPosition() + Vector2(+20, 100+ i * 81));
-	//	 */
-	//	i++;
-
-	//	cout << _workerControl->GetVWorkerNum()[i]->GetName() << endl;
-	//}
-
-	for (int i = 0; i < _workerControl->GetVWorkerNum().size(); i++)
+	for (int i = 0; i < _workerPanel->GetVWorkerNum().size(); i++)
 	{
-		//if (it.second == NULL) continue;
 		_showWorkerSprite = Object::CreateObject(object);
 		_showWorkerSprite->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/ShowWorkerSprite/"
-			+ _workerControl->GetVWorkerNum()[i]->GetName() + ".png"));
-		_showWorkerSprite->GetTransform()->SetPosition(Vector2(-340, 36 + i * 73));
-
-		//cout << _workerControl->GetVWorkerNum()[i] << endl;
+															+_workerPanel->GetVWorkerNum()[i]->GetName() + ".png"));
+		_showWorkerSprite->GetTransform()->SetPosition(Vector2(96, 120 + i * 75));
 
 		_showWorkerText = Object::CreateObject(object); 
 		_showWorkerText->AddComponent<Text>()->
-		CreateText(to_wstring(_workerControl->GetMWorkers()[_workerControl->GetVWorkerNum()[i]->GetName()]), L"HYHeadLine-Medium", L"ko-KR", { 1,1,1,1 }, 30, 100, 40);
+		CreateText(to_wstring(WorkerControlManager::GetInstance()->GetMWorkers()[_workerPanel->GetVWorkerNum()[i]->GetName()]), L"HYHeadLine-Medium", L"ko-KR", { 1,1,1,1 }, 30, 100, 40);
 		_showWorkerText->GetTransform()->SetPosition(Vector2(300, 120 + i * 75));
 
-		_vTest.push_back(_showWorkerText);
+		_vWorkerNumList.push_back(_showWorkerText);
+		_vWorkerAmount.push_back(WorkerControlManager::GetInstance()->GetMWorkers()[_workerPanel->GetVWorkerNum()[i]->GetName()]);
 	}
+
+	_inHouseWorkerText = Object::CreateObject(object);
+	_inHouseWorkerText->AddComponent<Text>();
+	_inHouseWorkerText->GetComponent<Text>()->CreateText(to_wstring(_totalHouseWorker), L"HYHeadLine-Medium", L"ko-KR", { 1,1,1,1 }, 30, 100, 40);
+	_inHouseWorkerText->GetTransform()->SetPosition(Vector2(300, 45));
 }
 
 void ShowWorker::Update()
 {
-	for (int i = 0; i < _vTest.size(); i++)
-	{
-		//cout << _workerControl->GetMWorkers()[_workerControl->GetVWorkerNum()[i]->GetName()] << endl;
-		_vTest[i]->GetComponent<Text>()->ChangeText(to_wstring(_workerControl->GetMWorkers()[_workerControl->GetVWorkerNum()[i]->GetName()]));
-	}
-	/*
-	if (TIME->밤 시작될 때 신호) 
-	{
-		기존의 숫자들을 집에 있는 인구로 다 보내기
-	}
-	*/
-	/*
-	if (TIME->하루 시작 신호 받기) 
-	{
-		기존의 숫자들을 집에 있는 인구로 다 보내기
-	}
-	*/
+	cout << _isNight;
 
-	//for (int i = 0; i < _workerControl->GetVWorkerNum().size(); i++)
-//{
-//	//Create 가 아니라 changeText로 해야함 
-//	_showWorkerText->GetComponent<Text>()->ChangeText(to_wstring(_workerControl->GetMWorkers()[_workerControl->GetVWorkerNum()[i]->GetName()]));
-//}
+	//인부들 int값만 담아놓은 vector
+	for (int i = 0; i < _vWorkerAmount.size(); i++)
+	{
+		_vWorkerAmount[i] = WorkerControlManager::GetInstance()->GetMWorkers()[_workerPanel->GetVWorkerNum()[i]->GetName()];
+	}
+
+	if (!_isNight) //낮일 때만 WorkerPanel 값 받아올 수 있도록
+	{
+		_inHouseWorkerText->GetComponent<Text>()->ChangeText(to_wstring(0));
+
+		//설정한 worker 숫자 노출 
+		for (int i = 0; i < _vWorkerNumList.size(); i++)
+		{
+			_vWorkerNumList[i]->GetComponent<Text>()->ChangeText(to_wstring(WorkerControlManager::GetInstance()->GetMWorkers()[_workerPanel->GetVWorkerNum()[i]->GetName()]));
+		}
+	}
+	else if(_isNight) //밤일 때 
+	{
+		//전체 인부 집으로 돌아가는 설정 -> 잘들어옴
+		_totalHouseWorker = _vWorkerAmount[0] + _vWorkerAmount[1] + _vWorkerAmount[2] + _vWorkerAmount[3] + _vWorkerAmount[4];
+		_inHouseWorkerText->GetComponent<Text>()->ChangeText(to_wstring(_totalHouseWorker));
+
+		//설정한 worker 숫자 0으로 --> Inhouse
+		for (int i = 0; i < _vWorkerNumList.size(); i++)
+		{
+			_vWorkerNumList[i]->GetComponent<Text>()->ChangeText(to_wstring(0));
+		}
+	}
 }
 
 void ShowWorker::OnNotify(MSGTYPE type, string event)
 {
+	if (type != MSGTYPE::TIME) return;
+
+	if (event == "NightStart") //밤일 때
+	{
+		_isNight = true; 
+	}
+	else if (event == "NightEnd") //낮일 때 
+	{
+		_isNight = false; //두번째 날 아침은 신호가 안들어옴
+	}
 }
+

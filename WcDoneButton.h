@@ -1,11 +1,12 @@
 #pragma once
 #include "Script.h"
 
-class WorkerControl;
+class WorkerPanel;
 class WcDoneButton : public Script
 {
+private: 
 	Transform* _transform;
-	WorkerControl* _workerControl;
+	WorkerPanel* _workerPanel;
 	Collider* collider;
 
 public:
@@ -14,6 +15,6 @@ public:
 
 	virtual void OnMouseDown();
 
-	void SetLinkWithWC(WorkerControl* wc) { _workerControl = wc; }
+	void SetLinkWithWC(WorkerPanel* wc) { _workerPanel = wc; }
 };
 

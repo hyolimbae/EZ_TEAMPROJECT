@@ -2,7 +2,7 @@
 #include "Script.h"
 #include "Observer.h"
 
-class WorkerControl; 
+class WorkerPanel; 
 class ShowWorker : public Script, public Observer
 {
 private:
@@ -11,21 +11,24 @@ private:
 	Object* _showWorkerText;
 	Object* _showWorkerSprite;
 	Object* _totalWorker;
+	Object* _inHouseWorkerText; //집에 있는 인구
 
-	WorkerControl* _workerControl; 
+	WorkerPanel* _workerPanel; 
 
-	vector<Object*> _vTest;
+	vector<Object*> _vWorkerNumList;
+	vector<int> _vWorkerAmount;
 
+	int _totalHouseWorker = 0;
+
+	bool _isNight;
 
 public:
 
 	virtual void Init();
 	virtual void Update();
 
-	//totalWorker ui와 showworker 패널 이미지 연결하기 위한 링크 
-	void SetLinkWithShowWorker(Object* total) { _totalWorker = total; }
-	void SetLinkWithWorkerControl(WorkerControl* workerControl) { _workerControl = workerControl; }
-
 	virtual void OnNotify(MSGTYPE type, string event) override;
+
+	void SetLinkWithWorkerPanel(WorkerPanel* workerPanel) { _workerPanel = workerPanel; }
 };
 

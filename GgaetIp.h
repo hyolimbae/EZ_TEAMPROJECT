@@ -33,12 +33,12 @@
 #include "UI.h"
 #include "ImGuiText.h"
 #include "PolygonDraw.h"
+#include "WorkerControlManager.h"
+//#include "WorkerControlManager.h"
 
 
 #define FrameRate 60
-
 #define Lerp_Float(a,b,i) (1 - i)*a + i * b
-
 #define Clamp(l,h,x) max(min(x,h),l)
 #define Deg2Rad 3.1415f/180
 #define Rad2Deg 180.f/3.1415f
