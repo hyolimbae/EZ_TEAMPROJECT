@@ -3,8 +3,11 @@
 class NewBuilding: public Building
 {
 private:
-
 	bool _fixedPosition = false;
+
+
+	//나중에 night용 스프라이트 
+	Sprite* night;
 
 public:
 

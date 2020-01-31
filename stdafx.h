@@ -24,7 +24,8 @@ enum class MSGTYPE
 {
 	INFORMATION,
 	NOTIFICATION,
-	TIME
+	TIME,
+	TUTORIAL
 };
 
 enum class ZORDER

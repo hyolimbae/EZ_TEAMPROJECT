@@ -198,6 +198,7 @@
     <ClInclude Include="NewBuilding.h" />
     <ClInclude Include="NotificationBox.h" />
     <ClInclude Include="Observer.h" />
+    <ClInclude Include="PageButton.h" />
     <ClInclude Include="PolygonDraw.h" />
     <ClInclude Include="RandomMove.h" />
     <ClInclude Include="RayCallBack.h" />
@@ -231,6 +232,7 @@
     <ClInclude Include="Title.h" />
     <ClInclude Include="TotalWorker.h" />
     <ClInclude Include="Transform.h" />
+    <ClInclude Include="TutorialBox.h" />
     <ClInclude Include="UI.h" />
     <ClInclude Include="UI_ClickButton.h" />
     <ClInclude Include="Vector2.h" />
@@ -298,6 +300,7 @@
     <ClCompile Include="NewBuilding.cpp" />
     <ClCompile Include="NotificationBox.cpp" />
     <ClCompile Include="Observer.cpp" />
+    <ClCompile Include="PageButton.cpp" />
     <ClCompile Include="PolygonDraw.cpp" />
     <ClCompile Include="RandomMove.cpp" />
     <ClCompile Include="RayCallBack.cpp" />
@@ -333,6 +336,7 @@
     <ClCompile Include="Title.cpp" />
     <ClCompile Include="TotalWorker.cpp" />
     <ClCompile Include="Transform.cpp" />
+    <ClCompile Include="TutorialBox.cpp" />
     <ClCompile Include="UI_ClickButton.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
