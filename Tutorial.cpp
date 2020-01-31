@@ -1,19 +1,20 @@
 #include "stdafx.h"
-#include "TutorialBox.h"
+#include "Tutorial.h"
 
-void TutorialBox::Init()
+void Tutorial::Init()
 {
 	//튜토리얼 내용 관리 
 	tagTutorialInfo achievement;
 	achievement.name = "Achievement";
 	achievement.position = Vector2(200, 200);
-	achievement.spriteRoute = "Sprite/UI/Tutorial_Achievement.png";
+	achievement.spriteRoute = "Sprite/Tutorial/Tutorial_Achievement.png";
 	vTutorialInfo.push_back(achievement);
 
 	tagTutorialInfo construction;
 	construction.name = "Construction";
 	construction.position = Vector2::zero;
-	//construction.textBody = L"필요한 재료를 모아 건물을 수리 해 보세요!";
+	construction.spriteRoute = "Sprite/Tutorial/Tutorial_Achievement.png";
+
 	vTutorialInfo.push_back(construction);
 
 
@@ -31,13 +32,13 @@ void TutorialBox::Init()
 	}
 }
 
-void TutorialBox::Update()
+void Tutorial::Update()
 {
 	FadeOut();
 }
 
 
-void TutorialBox::OnNotify(MSGTYPE type, string event)
+void Tutorial::OnNotify(MSGTYPE type, string event)
 {
 	if (type != MSGTYPE::TUTORIAL)
 		return;
@@ -53,7 +54,7 @@ void TutorialBox::OnNotify(MSGTYPE type, string event)
 	}
 }
 
-void TutorialBox::FadeOut()
+void Tutorial::FadeOut()
 {
 	for (int i = 0; i < vTutorialBox.size(); i++)
 	{
