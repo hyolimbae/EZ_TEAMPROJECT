@@ -347,9 +347,6 @@
     <ClInclude Include="PageButton.h">
       <Filter>소스 파일\Achievement\UI</Filter>
     </ClInclude>
-    <ClInclude Include="TutorialBox.h">
-      <Filter>소스 파일\UI\Tutorial</Filter>
-    </ClInclude>
     <ClInclude Include="ResourceControl.h">
       <Filter>소스 파일\UI\ControlCenter</Filter>
     </ClInclude>
@@ -367,6 +364,9 @@
     </ClInclude>
     <ClInclude Include="WorkerControlManager.h">
       <Filter>소스 파일\UI\ControlCenter</Filter>
+    </ClInclude>
+    <ClInclude Include="Tutorial.h">
+      <Filter>소스 파일\UI\Tutorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -610,9 +610,6 @@
     <ClCompile Include="PageButton.cpp">
       <Filter>소스 파일\Achievement\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TutorialBox.cpp">
-      <Filter>소스 파일\UI\Tutorial</Filter>
-    </ClCompile>
     <ClCompile Include="ResourceControl.cpp">
       <Filter>소스 파일\UI\ControlCenter</Filter>
     </ClCompile>
@@ -630,6 +627,9 @@
     </ClCompile>
     <ClCompile Include="WorkerControlManager.cpp">
       <Filter>소스 파일\UI\ControlCenter</Filter>
+    </ClCompile>
+    <ClCompile Include="Tutorial.cpp">
+      <Filter>소스 파일\UI\Tutorial</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,6 +28,7 @@
 
 #include "RandomMove.h"
 #include "CitizenAnimation.h"
+#include "Tutorial.h"
 
 void GameScene::Init()
 {
@@ -41,78 +42,78 @@ void GameScene::Init()
 
 #pragma region EUNSOL
 
-	//BackGround
-	//Object* backGround = Object::CreateObject();
-	//backGround->SetTag("BackGround");
-	//backGround->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Test_background.png"));
+	////BackGround
+	////Object* backGround = Object::CreateObject();
+	////backGround->SetTag("BackGround");
+	////backGround->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Test_background.png"));
+	////
+
+	////LuytenTown UI
+	//Object* luytenTown = Object::CreateObject();
+	//luytenTown->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown.png"));
+	//luytenTown->GetTransform()->SetPosition(Convert(41, 23, 245, 53));
 	//
 
-	//LuytenTown UI
-	Object* luytenTown = Object::CreateObject();
-	luytenTown->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown.png"));
-	luytenTown->GetTransform()->SetPosition(Convert(41, 23, 245, 53));
-	
-
-	//ShowWorker Tap UI
-	//Object* showWorkerTap = Object::CreateObject();
-	//showWorkerTap->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/PeopleUI.png"));
-	//showWorkerTap->GetTransform()->SetPosition(Convert(397, 86, 314, 458));
+	////ShowWorker Tap UI
+	////Object* showWorkerTap = Object::CreateObject();
+	////showWorkerTap->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/PeopleUI.png"));
+	////showWorkerTap->GetTransform()->SetPosition(Convert(397, 86, 314, 458));
 
 
-	//Time UI
-	Object* time = Object::CreateObject();
-	time->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown_Time.png"));
-	time->GetTransform()->SetPosition(Convert(821, 23, 320, 52));
-	time->AddComponent<Time>(); 
-	time->SetIsActive(true); 
+	////Time UI
+	//Object* time = Object::CreateObject();
+	//time->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/LuytenTown_Time.png"));
+	//time->GetTransform()->SetPosition(Convert(821, 23, 320, 52));
+	//time->AddComponent<Time>(); 
+	//time->SetIsActive(true); 
 
 
-	//Setting Icon                   
-	Object* UI_Setting = Object::CreateObject();
-	UI_Setting->SetTag("UI");
-	UI_Setting->SetName("Setting");
-	UI_Setting->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Setting_Icon.png"));
-	UI_Setting->GetTransform()->SetPosition(Convert(1480, 23, 51, 56));
+	////Setting Icon                   
+	//Object* UI_Setting = Object::CreateObject();
+	//UI_Setting->SetTag("UI");
+	//UI_Setting->SetName("Setting");
+	//UI_Setting->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Setting_Icon.png"));
+	//UI_Setting->GetTransform()->SetPosition(Convert(1480, 23, 51, 56));
 
 
-	//Inventory Bag Icon 
-	Object* bag = Object::CreateObject(); 
-	bag->SetTag("UI"); 
-	bag->SetName("Inventory"); 
-	bag->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Inventory_Icon.png"));
-	bag->GetTransform()->SetPosition(Convert(53, 714, 99, 96));
+	////Inventory Bag Icon 
+	//Object* bag = Object::CreateObject(); 
+	//bag->SetTag("UI"); 
+	//bag->SetName("Inventory"); 
+	//bag->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Inventory_Icon.png"));
+	//bag->GetTransform()->SetPosition(Convert(53, 714, 99, 96));
 
 
-	//WorkerPanel POP-UP â 
-	Object* workerPanel = Object::CreateObject(); 
-	workerPanel->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/SetPopulation.png"));
-	workerPanel->GetTransform()->SetPosition(Convert(566, 238, 500, 500));
-	workerPanel->AddComponent<WorkerPanel>();
-	workerPanel->SetIsActive(false); 
-	time->GetComponent<Time>()->AddObserver(workerPanel->GetComponent<WorkerPanel>());
+	////WorkerPanel POP-UP â 
+	//Object* workerPanel = Object::CreateObject(); 
+	//workerPanel->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/SetPopulation.png"));
+	//workerPanel->GetTransform()->SetPosition(Convert(566, 238, 500, 500));
+	//workerPanel->AddComponent<WorkerPanel>();
+	//workerPanel->SetIsActive(false); 
+	//time->GetComponent<Time>()->AddObserver(workerPanel->GetComponent<WorkerPanel>());
 
 
-	//ShowWorker Total UI
-	Object* totalWorker = Object::CreateObject();
-	totalWorker->AddComponent<BoxCollider>();
-	totalWorker->AddComponent<TotalWorker>();
-	totalWorker->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Town_people.png"));
-	totalWorker->GetTransform()->SetPosition(Convert(360, 23, 314, 52));
-	totalWorker->GetComponent<BoxCollider>()->SetSize(Vector2(157, 26));
+	////ShowWorker Total UI
+	//Object* totalWorker = Object::CreateObject();
+	//totalWorker->AddComponent<BoxCollider>();
+	//totalWorker->AddComponent<TotalWorker>();
+	//totalWorker->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/Town_people.png"));
+	//totalWorker->GetTransform()->SetPosition(Convert(360, 23, 314, 52));
+	//totalWorker->GetComponent<BoxCollider>()->SetSize(Vector2(157, 26));
 
-	
-	Object* showWorker = Object::CreateObject();
-	showWorker->GetTransform()->SetPosition(Vector2(-440, -90));
-	showWorker->AddComponent<ShowWorker>();
-	showWorker->SetIsActive(false);
-	time->GetComponent<Time>()->AddObserver(showWorker->GetComponent<ShowWorker>());
+	//
+	//Object* showWorker = Object::CreateObject();
+	//showWorker->GetTransform()->SetPosition(Vector2(-440, -90));
+	//showWorker->AddComponent<ShowWorker>();
+	//showWorker->SetIsActive(false);
+	//time->GetComponent<Time>()->AddObserver(showWorker->GetComponent<ShowWorker>());
 
 
-	//<Address Link>
-	totalWorker->GetComponent<TotalWorker>()->SetLinkWithShowWorker(showWorker);
-	//totalWorker->GetComponent<TotalWorker>()->SetLinkWithControl(workerPanel);
-	workerPanel->GetComponent<WorkerPanel>()->SetLinkWithWorker(totalWorker);
-	showWorker->GetComponent<ShowWorker>()->SetLinkWithWorkerPanel(workerPanel->GetComponent<WorkerPanel>());
+	////<Address Link>
+	//totalWorker->GetComponent<TotalWorker>()->SetLinkWithShowWorker(showWorker);
+	////totalWorker->GetComponent<TotalWorker>()->SetLinkWithControl(workerPanel);
+	//workerPanel->GetComponent<WorkerPanel>()->SetLinkWithWorker(totalWorker);
+	//showWorker->GetComponent<ShowWorker>()->SetLinkWithWorkerPanel(workerPanel->GetComponent<WorkerPanel>());
 
 #pragma endregion
 
@@ -137,35 +138,36 @@ void GameScene::Init()
 	//	citizen->AddComponent<CitizenAnimation>();
 	//}*/
 
-	//auto achievementLinkButton = Object::CreateObject();
-	//achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 50));
-	//auto aSprite = achievementLinkButton->AddComponent<Sprite>();
-	//aSprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementButton.png"));
-	//aSprite->SetDepth((int)ZORDER::UI);
+	auto achievementLinkButton = Object::CreateObject();
+	achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 50));
+	auto aSprite = achievementLinkButton->AddComponent<Sprite>();
+	aSprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementButton.png"));
+	aSprite->SetDepth((int)ZORDER::UI);
 
 
-	//auto achievement = Object::CreateObject();
-	//achievement->GetTransform()->SetPosition(Vector2(4, 65));
-	//auto acompo = achievement->AddComponent<Achievement>();
-	//auto asprite = achievement->AddComponent<Sprite>();
-	//asprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementUI.png"));
-	//asprite->SetDepth((int)ZORDER::UI);
-	//achievement->AddComponent<BoxCollider>();
+	auto achievement = Object::CreateObject();
+	achievement->GetTransform()->SetPosition(Vector2(4, 65));
+	auto acompo = achievement->AddComponent<Achievement>();
+	auto asprite = achievement->AddComponent<Sprite>();
+	asprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementUI.png"));
+	asprite->SetDepth((int)ZORDER::UI);
+	achievement->AddComponent<BoxCollider>();
 
-	//achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
+	achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
 
-	//auto notificationBox = Object::CreateObject();
-	//auto ncompo = notificationBox->AddComponent<NotificationBox>();
+	auto notificationBox = Object::CreateObject();
+	auto ncompo = notificationBox->AddComponent<NotificationBox>();
 
-	//auto bulidingManager = Object::CreateObject();
-	//auto manager = bulidingManager->AddComponent<BuildingManager>();
-	//manager->AddObserver(ncompo);
-	//manager->AddObserver(acompo);
+	auto bulidingManager = Object::CreateObject();
+	auto manager = bulidingManager->AddComponent<BuildingManager>();
+	manager->AddObserver(ncompo);
+	manager->AddObserver(acompo);
 
-	//auto nightTest = Object::CreateObject();
-	//auto nightTestSprite = nightTest->AddComponent<Sprite>();
-	//nightTestSprite->SetSprite(Image::CreateImage("Sprite/Night.png"));
-	//nightTestSprite->SetOpacity(0.7);
+
+	auto tutorialTest = Object::CreateObject();
+	auto tuto = tutorialTest->AddComponent<Tutorial>();
+	acompo->AddObserver(tuto);
+
 
 #pragma endregion
 
