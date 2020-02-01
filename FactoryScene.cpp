@@ -77,5 +77,4 @@ void FactoryScene::Init()
 		workArea->GetComponent<WorkArea>()->SetTimeBarLink(craftTimeBar);
 	}
 
-	#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
 }

@@ -6,8 +6,6 @@
 
 #include <numeric>
 
-#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
-
 void WorkerPanel::Init()
 {
 	_mForSettingWorker = WorkerControlManager::GetInstance()->GetMWorkers(); 

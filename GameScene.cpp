@@ -35,14 +35,24 @@
 #include "LotExpansion.h"
 #include "Inventory.h"
 
+#include "MapManager.h"
+
 void GameScene::Init()
 {
-	//ShowCursor(false);
-
-	//Object* mouse = Object::CreateObject();
+	//auto mouse = Object::CreateObject();
 	//mouse->SetTag("Mouse");
 	//mouse->AddComponent<Mouse>();
+	//auto mouseSprite = mouse->AddComponent<Sprite>();
+	//mouseSprite->SetSprite(Image::CreateImage("Sprite/Mouse_Basic.png"));
+	//mouseSprite->GetTransform()->SetScale(Vector2(0.5f, 0.5f));
+	//auto mouseSound = mouse->AddComponent<Sound>();
+	//auto click = AudioClip::CreateSound("Sound/SE/Click.wav");
+	//mouseSound->SetSound(click);
 	//ShowCursor(false);
+
+	Object* buildingManager = Object::CreateObject();
+	buildingManager->AddComponent<BuildingManager>();
+
 
 
 #pragma region EUNSOL
@@ -127,23 +137,23 @@ void GameScene::Init()
 	auto tileMap = Object::CreateObject();
 	tileMap->GetTransform()->SetPosition(Vector2::zero);
 	tileMap->AddComponent<ControlCamera>();
-	tileMap->AddComponent<TileMap>();
+	//tileMap->AddComponent<TileMap>();
 	//auto collider = tileMap->AddComponent<BoxCollider>();
 	//collider->SetSize(DesignResolution);
 	//tileMap->AddComponent<Physics>()->SetBodyType(StaticBody);
 
 
-	//인벤토리 
-	auto inven = Object::CreateObject();
-	auto invenCompo = inven->AddComponent<Inventory>();
-	//부지 확장 테스트
+	////인벤토리 
+	//auto inven = Object::CreateObject();
+	//auto invenCompo = inven->AddComponent<Inventory>();
+	////부지 확장 테스트
 
-	auto lotExpansion = Object::CreateObject();
-	auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
-	auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
-	lotExpansionColliderCompo->SetSize(DesignResolution * 2);
-	expansionCompo->SetLinkToMap(tileMap);
-	expansionCompo->SetLinkToInventory(invenCompo);
+	//auto lotExpansion = Object::CreateObject();
+	//auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
+	//auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
+	//lotExpansionColliderCompo->SetSize(DesignResolution * 2);
+	//expansionCompo->SetLinkToMap(tileMap);
+	//expansionCompo->SetLinkToInventory(invenCompo);
 
 
 	/*for (int i = 0; i < 10; i++)

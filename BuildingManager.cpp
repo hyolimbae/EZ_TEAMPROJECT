@@ -8,71 +8,73 @@
 #include "DefaultBuilding.h"
 #include "NewBuilding.h"
 
+#include "MapManager.h"
+
 void BuildingManager::Init()
 {
-//	// ÀÓ½Ã House
-	Object* houseTest = Object::CreateObject();
-	houseTest->SetTag("House_C");
-	houseTest->AddComponent<Sprite>();/*->SetSprite(Image::CreateImage("Sprite/House_C_Ruined.png"));*/
-	houseTest->AddComponent<BuildingInfo>();
-	houseTest->AddComponent<PolygonDraw>();
-	houseTest->AddComponent<BuildingComponent>()->SetBuilding(new DefaultBuilding(houseTest));
-	auto houseTestCollider = houseTest->AddComponent<BoxCollider>();
-	houseTestCollider->SetSize(Vector2(90, 100));
-	houseTest->GetTransform()->SetPosition(Vector2(-220, -110));
 
-	// InfoBox
-	Object* infoBox = Object::CreateObject();
-	infoBox->AddComponent<InfoBox>();
+	MapManager::GetInstance()->Load("CityMap",this);
+	//for (int i = 0; i < 21; i++)
+	//{
+	//	// House
+	//	Object* house = Object::CreateObject();
 
-	// ConstructionTimeBar
-	Object* constructionTimeBar = Object::CreateObject();
-	constructionTimeBar->AddComponent<ConstructionTimeBar>();
-	constructionTimeBar->AddComponent<PolygonDraw>();
-	constructionTimeBar->SetIsActive(false);
-	constructionTimeBar->GetComponent<ConstructionTimeBar>()->SetLink(houseTest);
+	//	if (i % 4 == 0) house->SetTag("House_A");
+	//	if (i % 4 == 1) house->SetTag("House_B");
+	//	if (i % 4 == 2) house->SetTag("House_C");
+	//	if (i % 4 == 3) house->SetTag("House_D");
 
-	// House¶û InfoBox ¸µÅ©
-	infoBox->GetComponent<InfoBox>()->SetLink(houseTest);
-	((DefaultBuilding*)(houseTest->GetComponent<BuildingComponent>()->GetBuilding()))->SetLink(infoBox);
-	((DefaultBuilding*)(houseTest->GetComponent<BuildingComponent>()->GetBuilding()))->SetTimeBarLink(constructionTimeBar);
-	((DefaultBuilding*)(houseTest->GetComponent<BuildingComponent>()->GetBuilding()))->SetLinkWithManager(this);
+	//	house->AddComponent<Sprite>();
+	//	house->AddComponent<BuildingInfo>();
+	//	house->AddComponent<PolygonDraw>();
+	//	house->AddComponent<BuildingComponent>()->SetBuilding(new DefaultBuilding(house));
+	//	auto houseCollider = house->AddComponent<BoxCollider>();
+	//	houseCollider->SetSize(Vector2(90, 100));
+	//	house->GetTransform()->SetPosition(Vector2(0, 0));
 
+	//	// InfoBox
+	//	Object* infoBox = Object::CreateObject();
+	//	infoBox->AddComponent<InfoBox>();
 
-	_vHouses.push_back(houseTest);
-	
+	//	// ConstructionTimeBar
+	//	Object* constructionTimeBar = Object::CreateObject();
+	//	constructionTimeBar->AddComponent<ConstructionTimeBar>();
+	//	constructionTimeBar->AddComponent<PolygonDraw>();
+	//	constructionTimeBar->SetIsActive(false);
+	//	constructionTimeBar->GetComponent<ConstructionTimeBar>()->SetLink(house);
 
+	//	// House¶û InfoBox ¸µÅ©
+	//	infoBox->GetComponent<InfoBox>()->SetLink(house);
+	//	((DefaultBuilding*)(house->GetComponent<BuildingComponent>()->GetBuilding()))->SetLink(infoBox);
+	//	((DefaultBuilding*)(house->GetComponent<BuildingComponent>()->GetBuilding()))->SetTimeBarLink(constructionTimeBar);
+	//	((DefaultBuilding*)(house->GetComponent<BuildingComponent>()->GetBuilding()))->SetLinkWithManager(this);
 
-	////================================================================
-	//// ÀÓ½Ã House2
-	//Object* houseTest2 = Object::CreateObject();
-	//houseTest2->SetTag("House_A");
-	//houseTest2->AddComponent<Building>();
-	//houseTest2->AddComponent<BuildingInfo>();
-	//houseTest2->AddComponent<PolygonDraw>();
-	//auto houseTest2Collider = houseTest2->AddComponent<BoxCollider>();
-	//houseTest2Collider->SetSize(Vector2(90, 100));
-	//houseTest2->GetTransform()->SetPosition(Vector2(220, -110));
-	//// InfoBox
-	//Object* infoBox2 = Object::CreateObject();
-	//infoBox2->AddComponent<InfoBox>();
-	//// ConstructionTimeBar
-	//Object* constructionTimeBar2 = Object::CreateObject();
-	//constructionTimeBar2->AddComponent<ConstructionTimeBar>();
-	//constructionTimeBar2->AddComponent<PolygonDraw>();
-	//constructionTimeBar2->SetIsActive(false);
-	//constructionTimeBar2->GetComponent<ConstructionTimeBar>()->SetLink(houseTest2);
+	//	_vHouses.push_back(house);
+	//}
 
-	//// House¶û InfoBox ¸µÅ©
-	//infoBox2->GetComponent<InfoBox>()->SetLink(houseTest2);
-	//houseTest2->GetComponent<Building>()->SetLink(infoBox2);
-	//houseTest2->GetComponent<Building>()->SetTimeBarLink(constructionTimeBar2);
-
-	//_vHouses.push_back(houseTest2);
-
-
-
+	//_vHouses[0]->GetTransform()->SetPosition(Vector2(-363, 387));
+	//_vHouses[1]->GetTransform()->SetPosition(Vector2(-58, 387));
+	//_vHouses[2]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[3]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[4]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[5]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[6]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[7]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[8]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[9]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[10]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[11]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[12]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[13]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[14]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[15]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[16]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[17]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[18]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[19]->GetTransform()->SetPosition(Vector2(0, 0));
+	//_vHouses[20]->GetTransform()->SetPosition(Vector2(0, 0));
 }
+
 
 
 void BuildingManager::SetFixedNum(int num)
