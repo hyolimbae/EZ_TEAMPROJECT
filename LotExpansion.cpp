@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "LotExpansion.h"
 #include "TileMap.h"
+#include "ConfirmButton.h"
+#include "ConfirmWindow.h"
 
 void LotExpansion::Init()
 {
@@ -30,10 +32,22 @@ void LotExpansion::Init()
 
 	auto textObj = Object::CreateObject();
 	dimensionText = textObj->AddComponent<Text>();
-	dimensionText->CreateText(L"", L"Vivaldi", L"ko-KR", { 0,1,0,0.7 }, 20, 400, 40);
+	dimensionText->CreateText(L"", L"¸¼Àº °íµñ", L"ko-KR", { 0,1,0,0.7 }, 20, 400, 40);
+
+
+	//CONFIRMATION WINDOW & BUTTON
+	confirmationWindow = Object::CreateObject();
+	confirmationWindow->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/ExpansionConfirmWindow.png"));
+	confirmationWindow->AddComponent<Text>()->CreateText(L"", L"Vivaldi", L"ko-KR", { 0,1,0,0.7 }, 20, 400, 40);
+	confirmationWindow->SetIsActive(false);
+
+	auto confirmationButton = Object::CreateObject(confirmationWindow);
+	confirmationButton->GetTransform()->SetPosition(Vector2(80, -40));
+	confirmationButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/ExpansionConfirmButton.png"));
+
+
 
 	testDirt = testStone = 100;
-	
 }
 
 void LotExpansion::Update()
@@ -68,7 +82,8 @@ void LotExpansion::OnMouseDown()
 
 void LotExpansion::OnMouseUp()
 {
-	CostCheck();
+	if (CostCheck())
+		confirmationWindow->SetIsActive(true);
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -76,6 +91,7 @@ void LotExpansion::OnMouseUp()
 		vInfo[i]->SetIsActive(false);
 		dimensionText->GetGameObject()->SetIsActive(false);
 	}
+
 }
 
 void LotExpansion::DrawExpansion()
@@ -120,17 +136,25 @@ void LotExpansion::DrawExpansion()
 		polyVertices_info.push_back(startPos);
 		polyVertices_info.push_back(Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEWIDTH / 2,
 											vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2));
-
 		vInfo[0]->GetComponent<PolygonDraw>()->SetVertices(polyVertices_info);
 
+		//REDAREA - 1 (³ªÁß¿¡)
+		/*vector<Vector2> redArea1;
+		Vector2 startPos1 = Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y-1]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
+									vTotal[maxIndex.x * TILENUM_Y + maxIndex.y-1]->GetTransform()->GetPosition().y + TILEWIDTH / 2);
+		Vector2 endPos1 =   Vector2(vTotal[endIndex.x * TILENUM_Y + endIndex.y-1]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
+									vTotal[endIndex.x * TILENUM_Y + endIndex.y-1]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
-		vector<Vector2> redArea1;
-		redArea1.push_back(Vector2());
-		vExpansion[1]->GetComponent<PolygonDraw>();
+		redArea1.push_back(Vector2(startPos1.x, (maxIndex.y - endIndex.y -2) * TILEHEIGHT / 2 + startPos1.y + TILEHEIGHT / 2));
+		redArea1.push_back(Vector2(endPos1.x,   (maxIndex.y - endIndex.y -2) * TILEHEIGHT / 2 + startPos1.y + TILEHEIGHT / 2));*/
+
+		//redArea1.push_back(startPos1);
+		//redArea1.push_back(endPos1);
+		//vExpansion[1]->GetComponent<PolygonDraw>()->SetVertices(redArea1);
+		//vExpansion[1]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - maxIndex.y + 1) * TILEHEIGHT);
 
 
 		return;
-
 	}
 	else
 	{

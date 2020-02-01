@@ -13,6 +13,8 @@ private:
 	Vector2 startIndex;
 	Vector2 maxIndex;	
 
+	Object* confirmationWindow;
+
 	int testDirt;
 	int testStone;
 

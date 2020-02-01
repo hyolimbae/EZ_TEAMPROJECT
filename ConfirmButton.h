@@ -1,5 +1,10 @@
 #pragma once
-class ConfirmButton
+#include "GgaetIp.h"
+
+class ConfirmButton: public Script
 {
+private:
+
+public:
 };
 
