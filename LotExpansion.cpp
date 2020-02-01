@@ -141,11 +141,11 @@ void LotExpansion::DrawExpansion()
 	endPos.x = vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().x + TILEWIDTH / 2;
 	endPos.y = vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2;
 
-	polyVertices.push_back(Vector2(startPos.x,(startIndex.y - endIndex.y-2)*TILEHEIGHT/2 + startPos.y+ TILEHEIGHT/2));
-	polyVertices.push_back(Vector2(endPos.x, (startIndex.y - endIndex.y-2) * TILEHEIGHT / 2 + startPos.y +TILEHEIGHT/2));
+	//polyVertices.push_back(Vector2(startPos.x,(startIndex.y - endIndex.y-2)*TILEHEIGHT/2 + startPos.y+ TILEHEIGHT/2));
+	//polyVertices.push_back(Vector2(endPos.x, (startIndex.y - endIndex.y-2) * TILEHEIGHT / 2 + startPos.y +TILEHEIGHT/2));
 
-	vExpansion[0]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - startIndex.y+1)*TILEHEIGHT);
-	vExpansion[0]->GetComponent<PolygonDraw>()->SetVertices(polyVertices);
+	//vExpansion[0]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - startIndex.y+1)*TILEHEIGHT);
+	//vExpansion[0]->GetComponent<PolygonDraw>()->SetVertices(polyVertices);
 
 	//Dimension update
 	dimension = Vector2((int)abs(endIndex.x - startIndex.x + 1), (int)(abs(endIndex.y - startIndex.y + 1)));
@@ -156,37 +156,78 @@ void LotExpansion::DrawExpansion()
 	//코스트가 넘어간다면 
 	if (!CostCheck())
 	{
+		vExpansion[1]->SetIsActive(true);
+		vExpansion[2]->SetIsActive(true);
 
-		vExpansion[0]->GetComponent<PolygonDraw>()->SetColor({ 1,0,0,0.4 });
+		//vExpansion[0]->GetComponent<PolygonDraw>()->SetColor({ 1,0,0,0.4 });
 		polyVertices_info.push_back(startPos);
 		polyVertices_info.push_back(Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEWIDTH / 2,
 											vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2));
 		vInfo[0]->GetComponent<PolygonDraw>()->SetVertices(polyVertices_info);
 
+		//GREEN AREA
+		vector<Vector2> greenArea;
+		Vector2 startPos0 = Vector2(vTotal[startIndex.x * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
+									vTotal[startIndex.x  * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+		Vector2 endPos0 = Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEWIDTH / 2,
+								  vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
-		//REDAREA - 1 (나중에)
+		greenArea.push_back(Vector2(startPos0.x, ((-1)*maxIndex.y + startIndex.y-2) * TILEHEIGHT / 2 + startPos0.y + TILEHEIGHT / 2));
+		greenArea.push_back(Vector2(endPos0.x, ((-1)*maxIndex.y + startIndex.y-2) * TILEHEIGHT / 2 + startPos0.y + TILEHEIGHT / 2));
+
+		vExpansion[0]->GetComponent<PolygonDraw>()->SetVertices(greenArea);
+		vExpansion[0]->GetComponent<PolygonDraw>()->SetStrokeWidth((maxIndex.y - startIndex.y + 1) * TILEHEIGHT);
+
+		//REDAREA - 1 
 		vector<Vector2> redArea1;
 		Vector2 startPos1 = Vector2(vTotal[(maxIndex.x+1) * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
 									vTotal[(maxIndex.x+1) * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
-
 		Vector2 endPos1 =   Vector2(vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
 									vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
-		redArea1.push_back(Vector2(startPos1.x, startPos1.y + TILEHEIGHT/2));
-		redArea1.push_back(Vector2(endPos1.x,   startPos1.y + TILEHEIGHT/2));
+		redArea1.push_back(Vector2(startPos1.x, (startIndex.y - endIndex.y - 2) * TILEHEIGHT / 2 + startPos.y + TILEHEIGHT / 2));
+		redArea1.push_back(Vector2(endPos1.x, (startIndex.y - endIndex.y - 2) * TILEHEIGHT / 2 + startPos.y + TILEHEIGHT / 2));
 
 		vExpansion[1]->GetComponent<PolygonDraw>()->SetVertices(redArea1);
 		vExpansion[1]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - startIndex.y + 1) * TILEHEIGHT);
 
+		//REDAREA - 2
+		vector<Vector2> redArea2;
+		Vector2 startPos2 = Vector2(vTotal[startIndex.x * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
+									vTotal[(maxIndex.x) * TILENUM_Y + maxIndex.y +1]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+		Vector2 endPos2 = Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
+								  vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
+		redArea2.push_back(Vector2(startPos2.x, (startIndex.y - endIndex.y - 4) * TILEHEIGHT / 2 + startPos.y + TILEHEIGHT / 2));
+		redArea2.push_back(Vector2(endPos2.x, (startIndex.y - endIndex.y - 4) * TILEHEIGHT / 2 + startPos.y + TILEHEIGHT / 2));
+
+		vExpansion[2]->GetComponent<PolygonDraw>()->SetVertices(redArea2);
+		vExpansion[2]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - maxIndex.y) * TILEHEIGHT);
 		return;
 	}
 	else
 	{
+		vExpansion[1]->SetIsActive(false);
+		vExpansion[2]->SetIsActive(false);
 
-		vExpansion[0]->GetComponent<PolygonDraw>()->SetColor({ 0,1,0,0.4 });
+		//vExpansion[0]->GetComponent<PolygonDraw>()->SetColor({ 0,1,0,0.4 });
 		maxIndex = endIndex;
+
+		//GREEN AREA
+		vector<Vector2> greenArea;
+		Vector2 startPos0 = Vector2(vTotal[startIndex.x * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
+			vTotal[startIndex.x * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+		Vector2 endPos0 = Vector2(vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
+			vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+
+		greenArea.push_back(Vector2(startPos0.x, ((-1) * maxIndex.y + startIndex.y - 2) * TILEHEIGHT / 2 + startPos0.y + TILEHEIGHT / 2));
+		greenArea.push_back(Vector2(endPos0.x, ((-1) * maxIndex.y + startIndex.y - 2) * TILEHEIGHT / 2 + startPos0.y + TILEHEIGHT / 2));
+
+
+		vExpansion[0]->GetComponent<PolygonDraw>()->SetVertices(greenArea);
+		vExpansion[0]->GetComponent<PolygonDraw>()->SetStrokeWidth((startIndex.y - endIndex.y + 1) * TILEHEIGHT);
 	}
+
 
 	polyVertices_info.push_back(startPos);
 	polyVertices_info.push_back(endPos);
