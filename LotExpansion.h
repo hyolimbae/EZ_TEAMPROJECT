@@ -1,5 +1,8 @@
 #pragma once
 #include "GgaetIp.h"
+
+class Inventory;
+
 class LotExpansion: public Script
 {
 private:
@@ -14,6 +17,9 @@ private:
 	Vector2 maxIndex;	
 
 	Object* confirmationWindow;
+	Text* confirmationText;
+
+	Inventory* inventory;
 
 	int testDirt;
 	int testStone;
@@ -27,5 +33,8 @@ public:
 	void DrawExpansion();
 	bool CostCheck();
 	void SetLinkToMap(Object* map) { this->map = map; }
+	void SetLinkToInventory(Inventory* inventory) { this->inventory = inventory; }
+	
+	Vector2 GetDimension() { return dimension; }
 };
 

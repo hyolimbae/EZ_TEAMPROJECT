@@ -2,7 +2,8 @@
 #include "LotExpansion.h"
 #include "TileMap.h"
 #include "ConfirmButton.h"
-#include "ConfirmWindow.h"
+#include "Inventory.h"
+#include "LinkButton.h"
 
 void LotExpansion::Init()
 {
@@ -32,20 +33,34 @@ void LotExpansion::Init()
 
 	auto textObj = Object::CreateObject();
 	dimensionText = textObj->AddComponent<Text>();
-	dimensionText->CreateText(L"", L"¸¼Àº °íµñ", L"ko-KR", { 0,1,0,0.7 }, 20, 400, 40);
+	dimensionText->CreateText(L"", L"¸¼Àº °íµñ", L"ko-KR", { 0,1,0,0.7 }, 20, 300, 40);
 
 
-	//CONFIRMATION WINDOW & BUTTON
+	//CONFIRMATION WINDOW 
 	confirmationWindow = Object::CreateObject();
+	confirmationWindow->AddComponent<BoxCollider>();
+	confirmationWindow->GetTransform()->SetScale(Vector2(1.5, 1.5));
 	confirmationWindow->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/ExpansionConfirmWindow.png"));
-	confirmationWindow->AddComponent<Text>()->CreateText(L"", L"Vivaldi", L"ko-KR", { 0,1,0,0.7 }, 20, 400, 40);
 	confirmationWindow->SetIsActive(false);
+	
+	auto linkButton = Object::CreateObject(confirmationWindow);
+	linkButton->AddComponent<BoxCollider>()->SetSize(confirmationWindow->GetComponent<BoxCollider>()->GetSize());
+	linkButton->AddComponent<LinkButton>()->SetLink(confirmationWindow);
 
+
+	//CONFIRMATION TEXT
+	auto confirmationTextObj = Object::CreateObject(confirmationWindow);
+	confirmationText= confirmationTextObj->AddComponent<Text>();
+	confirmationTextObj->GetTransform()->SetPosition(Vector2(160, -45));
+	confirmationText->CreateText(L"", L"Vivaldi", L"ko-KR", { 1,1,1,1 }, 15, 355, 40);
+
+	//CONFIRMATION BUTTON 
 	auto confirmationButton = Object::CreateObject(confirmationWindow);
+	confirmationButton->AddComponent<BoxCollider>();
 	confirmationButton->GetTransform()->SetPosition(Vector2(80, -40));
 	confirmationButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/ExpansionConfirmButton.png"));
-
-
+	confirmationButton->AddComponent<ConfirmButton>()->SetLinkToInventory(inventory);
+	confirmationButton->GetComponent<ConfirmButton>()->SetLinkToWindow(confirmationWindow);
 
 	testDirt = testStone = 100;
 }
@@ -60,6 +75,9 @@ void LotExpansion::Update()
 
 void LotExpansion::OnMouseDown()
 {
+	if (confirmationWindow->GetIsActive())
+		return;
+
 	//½ÃÀÛ ÁÂÇ¥ ÀúÀå 
 	float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
 	float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
@@ -82,8 +100,12 @@ void LotExpansion::OnMouseDown()
 
 void LotExpansion::OnMouseUp()
 {
-	if (CostCheck())
+	if (CostCheck()&& vExpansion[0]->GetIsActive())
+	{
 		confirmationWindow->SetIsActive(true);
+		confirmationText->ChangeText(to_wstring((int)(20*dimension.x*dimension.y)) + L"       " +
+									 to_wstring((int)(20 *dimension.x * dimension.y)));
+	}
 
 	for (int i = 0; i < 3; i++)
 	{
@@ -130,34 +152,38 @@ void LotExpansion::DrawExpansion()
 	dimensionText->GetTransform()->SetPosition(Vector2(startPos.x + (endPos.x - startPos.x)/2+200, startPos.y - (startPos.y - endPos.y) / 2 + 50));
 	dimensionText->ChangeText(to_wstring((int)dimension.x) + L" X " + to_wstring((int)(dimension.y)));
 
+
+	//ÄÚ½ºÆ®°¡ ³Ñ¾î°£´Ù¸é 
 	if (!CostCheck())
 	{
+
 		vExpansion[0]->GetComponent<PolygonDraw>()->SetColor({ 1,0,0,0.4 });
 		polyVertices_info.push_back(startPos);
 		polyVertices_info.push_back(Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEWIDTH / 2,
 											vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2));
 		vInfo[0]->GetComponent<PolygonDraw>()->SetVertices(polyVertices_info);
 
+
 		//REDAREA - 1 (³ªÁß¿¡)
-		/*vector<Vector2> redArea1;
-		Vector2 startPos1 = Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y-1]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
-									vTotal[maxIndex.x * TILENUM_Y + maxIndex.y-1]->GetTransform()->GetPosition().y + TILEWIDTH / 2);
-		Vector2 endPos1 =   Vector2(vTotal[endIndex.x * TILENUM_Y + endIndex.y-1]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
-									vTotal[endIndex.x * TILENUM_Y + endIndex.y-1]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+		vector<Vector2> redArea1;
+		Vector2 startPos1 = Vector2(vTotal[(maxIndex.x+1) * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
+									vTotal[(maxIndex.x+1) * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
 
-		redArea1.push_back(Vector2(startPos1.x, (maxIndex.y - endIndex.y -2) * TILEHEIGHT / 2 + startPos1.y + TILEHEIGHT / 2));
-		redArea1.push_back(Vector2(endPos1.x,   (maxIndex.y - endIndex.y -2) * TILEHEIGHT / 2 + startPos1.y + TILEHEIGHT / 2));*/
+		Vector2 endPos1 =   Vector2(vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
+									vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
-		//redArea1.push_back(startPos1);
-		//redArea1.push_back(endPos1);
-		//vExpansion[1]->GetComponent<PolygonDraw>()->SetVertices(redArea1);
-		//vExpansion[1]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - maxIndex.y + 1) * TILEHEIGHT);
+		redArea1.push_back(Vector2(startPos1.x, startPos1.y + TILEHEIGHT/2));
+		redArea1.push_back(Vector2(endPos1.x,   startPos1.y + TILEHEIGHT/2));
+
+		vExpansion[1]->GetComponent<PolygonDraw>()->SetVertices(redArea1);
+		vExpansion[1]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - startIndex.y + 1) * TILEHEIGHT);
 
 
 		return;
 	}
 	else
 	{
+
 		vExpansion[0]->GetComponent<PolygonDraw>()->SetColor({ 0,1,0,0.4 });
 		maxIndex = endIndex;
 	}

@@ -33,6 +33,7 @@
 #include "Tutorial.h"
 
 #include "LotExpansion.h"
+#include "Inventory.h"
 
 void GameScene::Init()
 {
@@ -132,12 +133,17 @@ void GameScene::Init()
 	//tileMap->AddComponent<Physics>()->SetBodyType(StaticBody);
 
 
+	//인벤토리 
+	auto inven = Object::CreateObject();
+	auto invenCompo = inven->AddComponent<Inventory>();
 	//부지 확장 테스트
+
 	auto lotExpansion = Object::CreateObject();
 	auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
 	auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
 	lotExpansionColliderCompo->SetSize(DesignResolution * 2);
 	expansionCompo->SetLinkToMap(tileMap);
+	expansionCompo->SetLinkToInventory(invenCompo);
 
 
 	/*for (int i = 0; i < 10; i++)

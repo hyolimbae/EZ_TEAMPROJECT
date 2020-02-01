@@ -96,6 +96,9 @@
     <Filter Include="소스 파일\Construction\Expansion\UI">
       <UniqueIdentifier>{273c4429-8a45-43b8-b7af-514bb4923b94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Inventory">
+      <UniqueIdentifier>{bfcda2c8-09c9-4bcb-9b43-8af79735ca24}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -425,8 +428,8 @@
     <ClInclude Include="ConfirmButton.h">
       <Filter>소스 파일\Construction\Expansion\UI</Filter>
     </ClInclude>
-    <ClInclude Include="ConfirmWindow.h">
-      <Filter>소스 파일\Construction\Expansion\UI</Filter>
+    <ClInclude Include="Inventory.h">
+      <Filter>소스 파일\Inventory</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -736,8 +739,8 @@
     <ClCompile Include="ConfirmButton.cpp">
       <Filter>소스 파일\Construction\Expansion\UI</Filter>
     </ClCompile>
-    <ClCompile Include="ConfirmWindow.cpp">
-      <Filter>소스 파일\Construction\Expansion\UI</Filter>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>소스 파일\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

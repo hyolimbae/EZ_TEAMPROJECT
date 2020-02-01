@@ -35,8 +35,8 @@ enum class ZORDER
 {
 	TILE = 1,
 	OBJECT = 5,
-	UI = 10,
-	MOUSE = 50
+	UI = 50,
+	MOUSE = 100
 };
 
 
