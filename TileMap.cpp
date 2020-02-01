@@ -52,6 +52,8 @@ void TileMap::Init()
 			tile->SetIndex(Vector2(i, j));
 			tile->SetAttribute(ATTRIBUTE::NONE);
 
+			
+
 			vTotal.push_back(normalTile);
 
 		}
@@ -69,6 +71,7 @@ void TileMap::Init()
 		pos.push_back(startPos);
 		pos.push_back(endPos);
 		poly->SetVertices(pos);
+
 	}
 	for (int i = 0; i < TILENUM_Y; i++)
 	{
@@ -100,6 +103,8 @@ void TileMap::Init()
 	pos2.push_back(endPos2);
 	pos2.push_back(startPos2);
 	poly2->SetVertices(pos2);
+
+	//tileView->SetIsActive(false);
 
 	//테스트 코드  
 	testInfo infoNone;

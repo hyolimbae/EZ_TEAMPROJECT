@@ -40,6 +40,8 @@ protected:
 	bool allowsInit = true;
 	bool isActive = true;
 	bool cameraAffected = true;
+
+	void SortChildren();
 public:
 	static Object* CreateObject(Object* parent = nullptr);
 

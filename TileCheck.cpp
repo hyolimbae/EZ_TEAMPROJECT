@@ -1,7 +1,8 @@
 #include "stdafx.h"
 #include "TileCheck.h"
 #include "TileMap.h"
-#include "Test.h"
+#include "NewBuilding.h"
+#include "BuildingComponent.h"
 
 void TileCheck::Init()
 {
@@ -25,6 +26,7 @@ void TileCheck::Init()
 			auto tilePoly = normalTile->AddComponent<PolygonDraw>();
 			tilePoly->SetVertices(pos);
 			vTemp.push_back(normalTile);
+			normalTile->SetIsActive(false);
 		}
 	}
 
@@ -41,9 +43,12 @@ void TileCheck::Update()
 
 void TileCheck::OnMouseDown()
 {
-	if (newBuilding->GetComponent<Test>()->GetIsFixedPosition())
+	if (((NewBuilding*)((newBuilding->GetComponent<BuildingComponent>()->GetBuilding())))->GetFixedPosition())
 		return;
 
+	int a = 0;
+	if (!newBuilding->GetIsActive())
+		return;
 
 	//FIX POSITION 
 	for (int i = 0; i < dimension.x; i++)
@@ -51,27 +56,37 @@ void TileCheck::OnMouseDown()
 			vTotal[(GetMouseIndex().x - dimension.x / 2 + i) * TILENUM_Y + GetMouseIndex().y + dimension.y / 2 - j]->GetComponent<Tile>()->SetAttribute(ATTRIBUTE::WALL);
 		
 
-	newBuilding->GetComponent<Test>()->SetIsFixedPosition(true);
+	((NewBuilding*)((newBuilding->GetComponent<BuildingComponent>()->GetBuilding())))->SetFixedPosition(true);
 	newBuilding->GetComponent<Sprite>()->SetOpacity(1.f);
 	object->SetIsActive(false);
+	map->GetComponent<TileMap>()->SetTileView(false);
 }
 
 void TileCheck::DrawTile()
 {
-	if (!map->GetIsActive())
+	if (!newBuilding->GetIsActive())
 		return;
 
 	//마우스 좌표  
-	float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
-	float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
+	auto mousePosition = InputManager::GetInstance()->GetMouseWorldPosition();
+	Vector3 mousePosition_V3 = Vector3(mousePosition.x, mousePosition.y, 1);
+	Vector3 mouseWorldPosition = Matrix3x3::Mul(mousePosition_V3, CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetLocalToWorldMatrix().GetInverseMatrix());
 
-	index_X = (mouseX - (vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2)) / TILEWIDTH + 1;
-	index_Y = ((-1)*mouseY  +(vTotal[TILENUM_Y - 1]->GetTransform()->GetPosition().y - TILEWIDTH / 2)) / TILEHEIGHT - 2;
+	//float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
+	//float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
+
+	float mouseX = mouseWorldPosition.x;
+	float mouseY = (-1)*mouseWorldPosition.y;
+
+
+
+	index_X = (int)(mouseX - (vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2)) / TILEWIDTH;
+	index_Y = (int)(vTotal[0]->GetTransform()->GetPosition().y + TILEHEIGHT / 2 - mouseY) / TILEHEIGHT;
 
 	//예외 처리 
 	if (index_Y + index_X * TILENUM_Y < 0 || index_Y + index_X * TILENUM_Y > vTotal.size() - 1)
 		return;
-	if (mouseY > vTotal[TILENUM_Y-1]->GetTransform()->GetPosition().y + TILEHEIGHT / 2)
+	if (mouseY > vTotal[TILENUM_Y]->GetTransform()->GetPosition().y + TILEHEIGHT / 2)
 		return;
 	if (index_X - dimension.x / 2 <= 0 || index_X + dimension.x / 2 >= TILENUM_X - 1)
 		return;

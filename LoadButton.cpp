@@ -2,12 +2,11 @@
 #include "LoadButton.h"
 #include "TileCheck.h"
 #include "TileMap.h"
-#include "Building.h"
-#include "Test.h"
+#include "NewBuilding.h"
+#include "BuildingComponent.h"
 
 void LoadButton::Init()
 {
-	object->AddComponent<BoxCollider>();
 	vTotal = map->GetComponent<TileMap>()->GetVTotal();
 	check = checkObj->GetComponent<TileCheck>();
 	newBuilding->GetComponent<Sprite>()->SetOpacity(0.5f);
@@ -15,16 +14,17 @@ void LoadButton::Init()
 
 void LoadButton::Update()
 {
-	if (!isClicked || newBuilding->GetComponent<Test>()->GetIsFixedPosition())
+	if (!isClicked || ((NewBuilding*)(newBuilding->GetComponent<BuildingComponent>()->GetBuilding()))->GetFixedPosition())
 		return;
 
-	newBuilding->GetTransform()->SetPosition(vTotal[check->GetMouseIndex().y + check->GetMouseIndex().x * TILENUM_Y]->GetTransform()->GetPosition() - Vector2(TILEWIDTH/2,0));
+	newBuilding->GetTransform()->SetPosition(vTotal[check->GetMouseIndex().y + check->GetMouseIndex().x * TILENUM_Y]->GetTransform()->GetPosition() - Vector2(TILEWIDTH/2, - TILEHEIGHT/2));
 }
 
 void LoadButton::OnMouseDown()
 {
 	isClicked = true;
 	newBuilding->SetIsActive(true);
+	map->GetComponent<TileMap>()->SetTileView(true);
 
 	////타일뷰 제어 
 	//if (isClicked)

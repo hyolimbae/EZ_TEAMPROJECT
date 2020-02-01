@@ -335,9 +335,6 @@
     <ClInclude Include="TileCheck.h">
       <Filter>소스 파일\Construction\New</Filter>
     </ClInclude>
-    <ClInclude Include="Test.h">
-      <Filter>소스 파일\Construction\New</Filter>
-    </ClInclude>
     <ClInclude Include="NewBuilding.h">
       <Filter>소스 파일\Construction\New</Filter>
     </ClInclude>
@@ -662,9 +659,6 @@
       <Filter>소스 파일\Construction\New</Filter>
     </ClCompile>
     <ClCompile Include="TileCheck.cpp">
-      <Filter>소스 파일\Construction\New</Filter>
-    </ClCompile>
-    <ClCompile Include="Test.cpp">
       <Filter>소스 파일\Construction\New</Filter>
     </ClCompile>
     <ClCompile Include="DefaultBuilding.cpp">

@@ -79,8 +79,16 @@ void LotExpansion::OnMouseDown()
 		return;
 
 	//½ÃÀÛ ÁÂÇ¥ ÀúÀå 
-	float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
-	float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
+	//¸¶¿ì½º ÁÂÇ¥  
+	auto mousePosition = InputManager::GetInstance()->GetMouseWorldPosition();
+	Vector3 mousePosition_V3 = Vector3(mousePosition.x, mousePosition.y, 1);
+	Vector3 mouseWorldPosition = Matrix3x3::Mul(mousePosition_V3, CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetLocalToWorldMatrix().GetInverseMatrix());
+
+	//float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
+	//float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
+
+	float mouseX = mouseWorldPosition.x;
+	float mouseY = (-1) * mouseWorldPosition.y;
 
 	startIndex.x =  (int)(mouseX - (vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2)) / TILEWIDTH ;
 	startIndex.y = (int)(vTotal[0]->GetTransform()->GetPosition().y + TILEHEIGHT / 2 - mouseY) / TILEHEIGHT;
@@ -124,8 +132,16 @@ void LotExpansion::DrawExpansion()
 	vector<Vector2> polyVertices;
 	vector<Vector2> polyVertices_info;
 
-	float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
-	float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
+	//¸¶¿ì½º ÁÂÇ¥  
+	auto mousePosition = InputManager::GetInstance()->GetMouseWorldPosition();
+	Vector3 mousePosition_V3 = Vector3(mousePosition.x, mousePosition.y, 1);
+	Vector3 mouseWorldPosition = Matrix3x3::Mul(mousePosition_V3, CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetLocalToWorldMatrix().GetInverseMatrix());
+
+	//float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
+	//float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
+
+	float mouseX = mouseWorldPosition.x;
+	float mouseY = (-1) * mouseWorldPosition.y;
 
 	//½ÃÀÛ ÁöÁ¡ - startpos 
 	Vector2 startPos;
@@ -198,8 +214,8 @@ void LotExpansion::DrawExpansion()
 		Vector2 endPos2 = Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
 								  vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
-		redArea2.push_back(Vector2(startPos2.x, (startIndex.y - endIndex.y - 4) * TILEHEIGHT / 2 + startPos.y + TILEHEIGHT / 2));
-		redArea2.push_back(Vector2(endPos2.x, (startIndex.y - endIndex.y - 4) * TILEHEIGHT / 2 + startPos.y + TILEHEIGHT / 2));
+		redArea2.push_back(Vector2(startPos2.x, (maxIndex.y - endIndex.y - 1) * TILEHEIGHT / 2 + startPos2.y + TILEHEIGHT / 2));
+		redArea2.push_back(Vector2(endPos2.x, (maxIndex.y - endIndex.y - 1) * TILEHEIGHT / 2 + startPos2.y + TILEHEIGHT / 2));
 
 		vExpansion[2]->GetComponent<PolygonDraw>()->SetVertices(redArea2);
 		vExpansion[2]->GetComponent<PolygonDraw>()->SetStrokeWidth((endIndex.y - maxIndex.y) * TILEHEIGHT);
@@ -217,15 +233,14 @@ void LotExpansion::DrawExpansion()
 		vector<Vector2> greenArea;
 		Vector2 startPos0 = Vector2(vTotal[startIndex.x * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().x - TILEWIDTH / 2,
 			vTotal[startIndex.x * TILENUM_Y + startIndex.y]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
-		Vector2 endPos0 = Vector2(vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().x + TILEHEIGHT / 2,
-			vTotal[endIndex.x * TILENUM_Y + endIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+		Vector2 endPos0 = Vector2(vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().x + TILEWIDTH / 2,
+			vTotal[maxIndex.x * TILENUM_Y + maxIndex.y]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
 
 		greenArea.push_back(Vector2(startPos0.x, ((-1) * maxIndex.y + startIndex.y - 2) * TILEHEIGHT / 2 + startPos0.y + TILEHEIGHT / 2));
 		greenArea.push_back(Vector2(endPos0.x, ((-1) * maxIndex.y + startIndex.y - 2) * TILEHEIGHT / 2 + startPos0.y + TILEHEIGHT / 2));
 
-
 		vExpansion[0]->GetComponent<PolygonDraw>()->SetVertices(greenArea);
-		vExpansion[0]->GetComponent<PolygonDraw>()->SetStrokeWidth((startIndex.y - endIndex.y + 1) * TILEHEIGHT);
+		vExpansion[0]->GetComponent<PolygonDraw>()->SetStrokeWidth((maxIndex.y - startIndex.y + 1) * TILEHEIGHT);
 	}
 
 

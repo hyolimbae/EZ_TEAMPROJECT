@@ -102,7 +102,7 @@ void AStar::FindPath()
 
 		vTotal[i]->GetComponent<Tile>()->SetAttribute(ATTRIBUTE::NONE);
 		vTotal[i]->GetComponent<Tile>()->SetIsOpen(false);
-		vTotal[i]->GetComponent<PolygonDraw>()->SetColor(Color{ 1,1,1,1 });
+		//vTotal[i]->GetComponent<PolygonDraw>()->SetColor(Color{ 1,1,1,1 });
 	}
 
 	vClosed.push_back(vTotal[startIndex.x * TILENUM_Y + startIndex.y]);
@@ -125,9 +125,9 @@ void AStar::FindPath()
 				if (index == startIndex)
 					break;
 
-				auto poly = vTotal[index.x * TILENUM_Y + index.y]->GetComponent<PolygonDraw>();
-				poly->SetColor(Color{ 1,0,0,0.3 });
-				poly->SetDepth(10);
+				//auto poly = vTotal[index.x * TILENUM_Y + index.y]->GetComponent<PolygonDraw>();
+				//poly->SetColor(Color{ 1,0,0,0.3 });
+				//poly->SetDepth(10);
 
 				index = vTotal[index.x * TILENUM_Y + index.y]->GetComponent<Tile>()->GetParent()->GetIndex();
 				path.push_back(vTotal[index.x * TILENUM_Y + index.y]);
