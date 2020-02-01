@@ -32,6 +32,8 @@
 #include "CitizenAnimation.h"
 #include "Tutorial.h"
 
+#include "LotExpansion.h"
+
 void GameScene::Init()
 {
 	//ShowCursor(false);
@@ -129,6 +131,15 @@ void GameScene::Init()
 	//collider->SetSize(DesignResolution);
 	//tileMap->AddComponent<Physics>()->SetBodyType(StaticBody);
 
+
+	//부지 확장 테스트
+	auto lotExpansion = Object::CreateObject();
+	auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
+	auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
+	lotExpansionColliderCompo->SetSize(DesignResolution * 2);
+	expansionCompo->SetLinkToMap(tileMap);
+
+
 	/*for (int i = 0; i < 10; i++)
 	{
 		auto citizen = Object::CreateObject();
@@ -207,27 +218,27 @@ void GameScene::Init()
 
 		//빌딩 생성 테스트
 
-	auto test = Object::CreateObject();
-	test->AddComponent<BoxCollider>()->SetSize(DesignResolution * 2); 
-	test->AddComponent<TileCheck>()->SetLink(tileMap);
+	//auto test = Object::CreateObject();
+	//test->AddComponent<BoxCollider>()->SetSize(DesignResolution * 2); 
+	//test->AddComponent<TileCheck>()->SetLink(tileMap);
 
 
-	auto newBuilding = Object::CreateObject();
-	newBuilding->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/School.png"));
-	//newBuilding->AddComponent<BuildingComponent>();
-	newBuilding->SetIsActive(false);
-	newBuilding->AddComponent<Test>();
+	//auto newBuilding = Object::CreateObject();
+	//newBuilding->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/School.png"));
+	////newBuilding->AddComponent<BuildingComponent>();
+	//newBuilding->SetIsActive(false);
+	//newBuilding->AddComponent<Test>();
 
-	auto newBuildingButton = Object::CreateObject(test);
-	newBuildingButton->GetTransform()->SetPosition(Vector2(-100, -200));
-	newBuildingButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
-	newBuildingButton->AddComponent<LoadButton>()->setLinkToMap(tileMap);
-	newBuildingButton->GetComponent<LoadButton>()->setLinkToNewBuilding(newBuilding);
-	newBuildingButton->GetComponent<Sprite>()->SetDepth(1000);
+	//auto newBuildingButton = Object::CreateObject(test);
+	//newBuildingButton->GetTransform()->SetPosition(Vector2(-100, -200));
+	//newBuildingButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
+	//newBuildingButton->AddComponent<LoadButton>()->setLinkToMap(tileMap);
+	//newBuildingButton->GetComponent<LoadButton>()->setLinkToNewBuilding(newBuilding);
+	//newBuildingButton->GetComponent<Sprite>()->SetDepth(1000);
 
 
-	test->GetComponent<TileCheck>()->SetLinkToBuilding(newBuilding);
-	newBuildingButton->GetComponent<LoadButton>()->setLink(test);
+	//test->GetComponent<TileCheck>()->SetLinkToBuilding(newBuilding);
+	//newBuildingButton->GetComponent<LoadButton>()->setLink(test);
 
 
 #pragma endregion

@@ -90,6 +90,12 @@
     <Filter Include="소스 파일\Worker">
       <UniqueIdentifier>{53b06dfe-30f5-40a7-941c-15603c761068}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Construction\Expansion">
+      <UniqueIdentifier>{d1ba177b-3e73-4b57-a0aa-2aed54e6107a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Construction\Expansion\UI">
+      <UniqueIdentifier>{273c4429-8a45-43b8-b7af-514bb4923b94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -413,6 +419,15 @@
     <ClInclude Include="Tutorial.h">
       <Filter>소스 파일\UI\Tutorial</Filter>
     </ClInclude>
+    <ClInclude Include="LotExpansion.h">
+      <Filter>소스 파일\Construction\Expansion</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmButton.h">
+      <Filter>소스 파일\Construction\Expansion\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfirmWindow.h">
+      <Filter>소스 파일\Construction\Expansion\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -714,6 +729,15 @@
     </ClCompile>
     <ClCompile Include="Tutorial.cpp">
       <Filter>소스 파일\UI\Tutorial</Filter>
+    </ClCompile>
+    <ClCompile Include="LotExpansion.cpp">
+      <Filter>소스 파일\Construction\Expansion</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfirmButton.cpp">
+      <Filter>소스 파일\Construction\Expansion\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="ConfirmWindow.cpp">
+      <Filter>소스 파일\Construction\Expansion\UI</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

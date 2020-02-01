@@ -4,7 +4,7 @@
 
 void TileMap::Init()
 {
-	vector<Vector2> pos;
+	//vector<Vector2> pos;
 
 	//ISOMETRIC
 	//pos.push_back(Vector2(TILEWIDTH / 2, 0));
@@ -33,12 +33,11 @@ void TileMap::Init()
 	//
 
 	//GENERAL
-
 	testInfo a = { .name = "", .g = 1 };
-	pos.push_back(Vector2(-TILEWIDTH/2, TILEHEIGHT/2));
-	pos.push_back(Vector2(TILEWIDTH/2, TILEHEIGHT/2));
-	pos.push_back(Vector2(TILEWIDTH/2, -TILEHEIGHT/2));
-	pos.push_back(Vector2(-TILEHEIGHT/2, -TILEHEIGHT/2));
+	//pos.push_back(Vector2(-TILEWIDTH/2, TILEHEIGHT/2));
+	//pos.push_back(Vector2(TILEWIDTH/2, TILEHEIGHT/2));
+	//pos.push_back(Vector2(TILEWIDTH/2, -TILEHEIGHT/2));
+	//pos.push_back(Vector2(-TILEHEIGHT/2, -TILEHEIGHT/2));
 
 
 	for (int i = 0; i < TILENUM_X; i++)
@@ -48,41 +47,59 @@ void TileMap::Init()
 			Object* normalTile = Object::CreateObject(object);
 			
 			normalTile->GetTransform()->SetPosition(Vector2(-250 + i*TILEWIDTH, +250 - j*TILEHEIGHT));
-			
-			normalTile->SetName("Normal");
+			normalTile->SetTag("Normal");
 			auto tile = normalTile->AddComponent<Tile>();
 			tile->SetIndex(Vector2(i, j));
-
-
-			////test
-		/*	if (i > 2 && j>=5 && j<7)
-			{
-				normalTile->SetName("Wall");
-
-				tile->SetAttribute(ATTRIBUTE::WALL);
-				auto tilePoly = normalTile->AddComponent<PolygonDraw>();
-				tilePoly->SetDepth((int)ZORDER::TILE);
-				tilePoly->SetVertices(pos);
-				tilePoly->SetStrokeWidth(1);
-				tilePoly->SetColor(Color{ 0,0,1,0.7 });
-				vTotal.push_back(normalTile);
-
-				continue;
-			}*/
-
 			tile->SetAttribute(ATTRIBUTE::NONE);
-			auto tilePoly = normalTile->AddComponent<PolygonDraw>();
-			normalTile->GetComponent<PolygonDraw>()->SetDepth(-1);
-			tilePoly->SetDepth((int)ZORDER::TILE);
-			tilePoly->SetVertices(pos);
-			tilePoly->SetStrokeWidth(1);
-			tilePoly->SetColor(Color{ 1,1,1,0.7 });
 
 			vTotal.push_back(normalTile);
 
 		}
 	}
+	
+	//tileView 
+	tileView = Object::CreateObject();
+	for (int i = 0; i < TILENUM_X; i++)
+	{
+		Object* tileChild = Object::CreateObject(tileView);
+		auto poly = tileChild->AddComponent<PolygonDraw>();
+		vector<Vector2> pos;
+		Vector2 startPos = Vector2(vTotal[i*TILENUM_Y]->GetTransform()->GetPosition().x - TILEWIDTH/2, vTotal[0]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+		Vector2 endPos =   Vector2(vTotal[i * TILENUM_Y]->GetTransform()->GetPosition().x - TILEWIDTH / 2, vTotal[TILENUM_Y-1]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+		pos.push_back(startPos);
+		pos.push_back(endPos);
+		poly->SetVertices(pos);
+	}
+	for (int i = 0; i < TILENUM_Y; i++)
+	{
+		Object* tileChild = Object::CreateObject(tileView);
+		auto poly = tileChild->AddComponent<PolygonDraw>();
+		vector<Vector2> pos;
+		Vector2 startPos = Vector2(vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2, vTotal[i]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+		Vector2 endPos = Vector2(vTotal[vTotal.size() -TILENUM_Y]->GetTransform()->GetPosition().x + TILEWIDTH / 2, vTotal[i]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+		pos.push_back(startPos);
+		pos.push_back(endPos);
+		poly->SetVertices(pos);
+	}
 
+	//추가 라인 
+	Object* tileChild1 = Object::CreateObject(tileView);
+	auto poly1 = tileChild1->AddComponent<PolygonDraw>();
+	vector<Vector2> pos1;
+	Vector2 startPos1 = Vector2(vTotal[(TILENUM_X-1) * TILENUM_Y]->GetTransform()->GetPosition().x + TILEWIDTH / 2, vTotal[0]->GetTransform()->GetPosition().y + TILEHEIGHT / 2);
+	Vector2 endPos1 = Vector2(vTotal[(TILENUM_X - 1) * TILENUM_Y]->GetTransform()->GetPosition().x + TILEWIDTH / 2, vTotal[TILENUM_Y - 1]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+	pos1.push_back(endPos1);
+	pos1.push_back(startPos1);
+	poly1->SetVertices(pos1);
+
+	Object* tileChild2 = Object::CreateObject(tileView);
+	auto poly2 = tileChild2->AddComponent<PolygonDraw>();
+	vector<Vector2> pos2;
+	Vector2 startPos2 = Vector2(vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2, vTotal[TILENUM_Y-1]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+	Vector2 endPos2 = Vector2(vTotal[vTotal.size() - TILENUM_Y]->GetTransform()->GetPosition().x + TILEWIDTH / 2, vTotal[TILENUM_Y-1]->GetTransform()->GetPosition().y - TILEHEIGHT / 2);
+	pos2.push_back(endPos2);
+	pos2.push_back(startPos2);
+	poly2->SetVertices(pos2);
 
 	//테스트 코드  
 	testInfo infoNone;
@@ -120,11 +137,11 @@ void TileMap::Init()
 void TileMap::SetTile(Vector2 index, ATTRIBUTE attribute)
 {         
 	auto tile = vTotal[index.x * TILENUM_Y + index.y]->GetComponent<Tile>();
-	auto tilePoly = vTotal[index.x * TILENUM_Y + index.y]->GetComponent<PolygonDraw>();
+	//auto tilePoly = vTotal[index.x * TILENUM_Y + index.y]->GetComponent<PolygonDraw>();
 	tile->SetAttribute(attribute);
 
 	//테스트 코드 
 	vTotal[index.x * TILENUM_Y + index.y]->SetName(attributeInfo[attribute].name);
-	tilePoly->SetColor(Color{attributeInfo[attribute].r,attributeInfo[attribute].g,attributeInfo[attribute].b,1});
-	tilePoly->SetDepth(attributeInfo[attribute].depth);
+	//tilePoly->SetColor(Color{attributeInfo[attribute].r,attributeInfo[attribute].g,attributeInfo[attribute].b,1});
+	//tilePoly->SetDepth(attributeInfo[attribute].depth);
 }

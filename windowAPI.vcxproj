@@ -170,6 +170,8 @@
     <ClInclude Include="CitizenAnimation.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
+    <ClInclude Include="ConfirmButton.h" />
+    <ClInclude Include="ConfirmWindow.h" />
     <ClInclude Include="ConstructionTimeBar.h" />
     <ClInclude Include="ControlCamera.h" />
     <ClInclude Include="CraftBox.h" />
@@ -205,6 +207,7 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="LinkButton.h" />
     <ClInclude Include="LoadButton.h" />
+    <ClInclude Include="LotExpansion.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="NewBuilding.h" />
     <ClInclude Include="NotificationBox.h" />
@@ -277,6 +280,8 @@
     <ClCompile Include="CitizenAnimation.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
+    <ClCompile Include="ConfirmButton.cpp" />
+    <ClCompile Include="ConfirmWindow.cpp" />
     <ClCompile Include="ConstructionTimeBar.cpp" />
     <ClCompile Include="ControlCamera.cpp" />
     <ClCompile Include="CraftBox.cpp" />
@@ -322,6 +327,7 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="LinkButton.cpp" />
     <ClCompile Include="LoadButton.cpp" />
+    <ClCompile Include="LotExpansion.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="NewBuilding.cpp" />
     <ClCompile Include="NotificationBox.cpp" />

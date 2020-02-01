@@ -2,8 +2,8 @@
 #include "GgaetIp.h"
 #include "Tile.h"
 
-#define TILENUM_X 100
-#define TILENUM_Y 100
+#define TILENUM_X 20
+#define TILENUM_Y 20
 
 //ISOMETRIC 
 //#define TILEWIDTH 128
@@ -30,18 +30,19 @@ private:
 	vector<Object*> vTotal;
 	map<ATTRIBUTE, testInfo> attributeInfo;
 	Object* tilePick;
+	Object* tileView;
 
 	bool _isStart = false;
-	bool tileView = false;
 
 public:
 	virtual void Init() override;
 
 	void SetTile(Vector2 index, ATTRIBUTE attribute);
 	void SetLink(Object* tilePick) { this->tilePick = tilePick; }
-	void SetTileView(bool tileView) { this->tileView = tileView; }
+
+	void SetTileView(bool tileView) {this->tileView->SetIsActive(tileView);}
+	bool GetTileView() { return this->tileView->GetIsActive(); }
 
 	vector<Object*> GetVTotal() { return vTotal; }
-	bool GetTileView() { return tileView; }
 };
 

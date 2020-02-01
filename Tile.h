@@ -6,7 +6,8 @@ enum class ATTRIBUTE
 	NONE,
 	WALL,
 	PLAYER,
-	ENEMY
+	ENEMY,
+	UNDISCOVERED
 };
 
 

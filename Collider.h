@@ -23,9 +23,7 @@ public:
 	b2Body* GetBody();
 
 	void OnMouseDown();
-	//void OnMouse();
 	void OnMouseUp();
-	void OnMouseExit();
 
 	void SetFilter(b2Filter filter);
 
