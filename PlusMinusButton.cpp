@@ -21,7 +21,6 @@ void PlusMinusButton::OnMouseDown()
 	{
 		_sprite->GetTransform()->SetScale(Vector2(0.9f, 0.9f));
 	}
-	
 
 		if (object->GetTag() == "Button_Plus")
 		{

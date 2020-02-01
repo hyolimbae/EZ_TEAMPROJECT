@@ -31,7 +31,6 @@ public:
 
 	void SetLinkWithShowWorker(Object* showWorker) { _showWorker = showWorker; }
 	
-	virtual void OnMouseStay() override;
 	virtual void OnMouseDown() override;
 	virtual void OnMouseUp() override;
 };

@@ -431,6 +431,24 @@
     <ClInclude Include="Inventory.h">
       <Filter>소스 파일\Inventory</Filter>
     </ClInclude>
+    <ClInclude Include="SetPopulationScene.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ShowGameTutorialButton.h">
+      <Filter>소스 파일\UI\UI Button</Filter>
+    </ClInclude>
+    <ClInclude Include="FadeInAndOut.h">
+      <Filter>소스 파일\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingPanel.h">
+      <Filter>소스 파일\UI\UI Panel</Filter>
+    </ClInclude>
+    <ClInclude Include="SettingIcon.h">
+      <Filter>소스 파일\UI\UI Button</Filter>
+    </ClInclude>
+    <ClInclude Include="VolumeBar.h">
+      <Filter>소스 파일\UI\UI Button</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -741,6 +759,24 @@
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>소스 파일\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="SetPopulationScene.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ShowGameTutorialButton.cpp">
+      <Filter>소스 파일\UI\UI Button</Filter>
+    </ClCompile>
+    <ClCompile Include="FadeInAndOut.cpp">
+      <Filter>소스 파일\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingPanel.cpp">
+      <Filter>소스 파일\UI\UI Panel</Filter>
+    </ClCompile>
+    <ClCompile Include="SettingIcon.cpp">
+      <Filter>소스 파일\UI\UI Button</Filter>
+    </ClCompile>
+    <ClCompile Include="VolumeBar.cpp">
+      <Filter>소스 파일\UI\UI Button</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

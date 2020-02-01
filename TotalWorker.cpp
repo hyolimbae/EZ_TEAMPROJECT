@@ -19,15 +19,15 @@ void TotalWorker::Update()
 	_totalWorkerText->GetComponent<Text>()->ChangeText(to_wstring(TOTALPOPULATION));
 }
 
-void TotalWorker::OnMouseStay()
-{
-	_sprite->GetTransform()->SetScale(Vector2(0.98f, 0.98f));
-}
 
 void TotalWorker::OnMouseDown()
 {
+	if (_sprite)
+	{
+		_sprite->GetTransform()->SetScale(Vector2(0.97f, 0.97f));
+	}
+
 	_showWorker->SetIsActive(!_showWorker->GetIsActive());
-	//cout << "´­·¶´Ù.\n";
 }
 
 void TotalWorker::OnMouseUp()

@@ -27,7 +27,7 @@ public:
 
 	void SetTotalPopulation(int num) { _totalPopulation = num; }
 
-	void Init();
-	void Update();
+	void Init() {}
+	void Update() {}
 };
 
