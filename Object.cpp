@@ -57,8 +57,22 @@ bool Object::GetAllowsInit()
 	return allowsInit;
 }
 
+bool Compare(Object* a, Object* b)
+{
+	Transform* aD = a->GetTransform();
+	Transform* bD = b->GetTransform();
+
+	if (!aD)
+		return false;
+	else if (!bD)
+		return true;
+
+	return aD->GetDepth() < bD->GetDepth();
+}
+
 void Object::Update()
 {
+	SortChildren();
 	for (int i = 0; i < children.size(); i++)
 		if (children[i]->GetAllowsInit())
 			children[i]->Init();
@@ -101,19 +115,6 @@ bool Object::GetIsActive()
 	return isActive;
 }
 
-bool Compare(Object* a, Object* b)
-{
-	DrawComponent* aD = a->GetComponent<DrawComponent>();
-	DrawComponent* bD = b->GetComponent<DrawComponent>();
-
-	if (!aD)
-		return false;
-	else if (!bD)
-		return true;
-
-	return aD->GetDepth() < bD->GetDepth();
-}
-
 void Object::Render()
 {
 	if (!isActive)
@@ -151,6 +152,11 @@ Object::Object()
 	transform->SetPosition(Vector2::zero);
 }
 
+void Object::SortChildren()
+{
+	sort(children.begin(), children.end(), Compare);
+}
+
 Object* Object::CreateObject(Object* parent)
 {
 	Object* newObject = new Object();
@@ -176,7 +182,7 @@ void Object::AddChild(Object* child)
 	child->parent = this;
 	if (allowsInit)
 		child->Init();
-	sort(children.begin(), children.end(), Compare);
+	//sort(children.begin(), children.end(), Compare);
 }
 
 void Object::RemoveChild(Object* child)

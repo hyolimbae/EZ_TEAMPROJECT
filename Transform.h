@@ -14,6 +14,7 @@ private:
 	D2D1_RECT_F size = D2D1::RectF();
 	RECT rect;
 	float rotation;
+	int depth = 0;
 
 	Matrix3x3 scaleMatrix;
 	Matrix3x3 rotateMatrix;
@@ -46,6 +47,9 @@ public:
 	void SetWorldPosition(Vector2 position);
 
 	void Translate(Vector2 delta);
+
+	void SetDepth(int depth) { this->depth = depth; }
+	int GetDepth() { return depth; }
 
 	virtual void Init() override;
 	virtual void Update() override;

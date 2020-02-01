@@ -101,12 +101,10 @@ void BuildingManager::OnNotify(MSGTYPE type, string event)
 			return;
 
 		if (event == "DayStart")
-		{
 			_vHouses[i]->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/"+ _vHouses[i]->GetTag() + "_Fixed.png"));
-		}
+		
 		else if (event == "NightStart")
-		{
 			_vHouses[i]->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/" + _vHouses[i]->GetTag() + "_Lighted.png"));
-		}
+		
 	}
 }

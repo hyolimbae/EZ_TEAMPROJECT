@@ -55,6 +55,7 @@ void Scene::RunSceneInit()
 
 void Scene::Update()
 {
+	SortChildren();
 	CheckMouseEvent();
 
 	for (int i = 0; i < children.size(); i++)
@@ -79,7 +80,7 @@ void Scene::Render()
 	if (willRelease)
 		return;
 	Direct2D::GetInstance()->GetRenderTarget()->Clear(D2D1::ColorF(D2D1::ColorF::Black));
-	sort(children.begin(), children.end(), Compare);
+	//sort(children.begin(), children.end(), Compare);
 	for (Object* c : children)
 		c->Render();
 	if (PhysicsManager::GetInstance()->GetDrawDebug())

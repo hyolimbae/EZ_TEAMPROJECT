@@ -24,7 +24,6 @@
 
 #include "LoadButton.h"
 #include "TileCheck.h"
-#include "Test.h"
 #include "BuildingComponent.h"
 #include "NewBuilding.h"
 
@@ -128,56 +127,68 @@ void GameScene::Init()
 	tileMap->GetTransform()->SetPosition(Vector2::zero);
 	tileMap->AddComponent<ControlCamera>();
 	tileMap->AddComponent<TileMap>();
-	//auto collider = tileMap->AddComponent<BoxCollider>();
-	//collider->SetSize(DesignResolution);
-	//tileMap->AddComponent<Physics>()->SetBodyType(StaticBody);
+	/*auto collider = tileMap->AddComponent<BoxCollider>();
+	collider->SetSize(DesignResolution);
+	tileMap->AddComponent<Physics>()->SetBodyType(StaticBody);*/
 
 
 	//인벤토리 
-	auto inven = Object::CreateObject();
-	auto invenCompo = inven->AddComponent<Inventory>();
-	//부지 확장 테스트
+	//auto inven = Object::CreateObject();
+	//auto invenCompo = inven->AddComponent<Inventory>();
 
-	auto lotExpansion = Object::CreateObject();
-	auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
-	auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
-	lotExpansionColliderCompo->SetSize(DesignResolution * 2);
-	expansionCompo->SetLinkToMap(tileMap);
-	expansionCompo->SetLinkToInventory(invenCompo);
+	////부지 확장 테스트
+
+	//auto lotExpansion = Object::CreateObject();
+	//auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
+	//auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
+	//lotExpansionColliderCompo->SetSize(DesignResolution * 2);
+	//expansionCompo->SetLinkToMap(tileMap);
+	//expansionCompo->SetLinkToInventory(invenCompo);
+
+	//도시 에이스타 테스트 
+	//for (int i = 0; i < 10; i++)
+	//{
+	//	auto citizen = Object::CreateObject();
+	//	citizen->SetTag("H6");
+	//	citizen->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H6_Move_Front.png"));
+	//	citizen->GetTransform()->SetScale(Vector2(0.5, 0.5));
+	//	citizen->AddComponent<Animator>();
+	//	citizen->AddComponent<RandomMove>()->SetLinkToMap(tileMap);
+	//	citizen->AddComponent<CitizenAnimation>();
+	//}
+
+	auto check = Object::CreateObject();
+	check->SetName("2");
+	check->GetTransform()->SetDepth(2);
+	auto checkcompo = check->AddComponent<TileCheck>();
+	check->AddComponent<BoxCollider>()->SetSize(DesignResolution * 2);
+	checkcompo->SetLink(tileMap);
+
+	auto newBuildingTest = Object::CreateObject();
+	newBuildingTest->SetTag("House_A");
+	newBuildingTest->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/test.png"));
+	newBuildingTest->GetComponent<Sprite>()->SetDepth(1);
+
+	newBuildingTest->AddComponent<PolygonDraw>();
+	newBuildingTest->AddComponent<BoxCollider>();
+	newBuildingTest->AddComponent<BuildingComponent>()->SetBuilding(new NewBuilding(newBuildingTest));
+	newBuildingTest->SetIsActive(false);
+
+	checkcompo->SetLinkToBuilding(newBuildingTest);
 
 
-	/*for (int i = 0; i < 10; i++)
-	{
-		auto citizen = Object::CreateObject();
-		citizen->SetTag("H6");
-		citizen->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H6_Move_Front.png"));
-		citizen->GetTransform()->SetScale(Vector2(0.5, 0.5));
-		citizen->AddComponent<Animator>();
-		citizen->AddComponent<RandomMove>()->SetLinkToMap(tileMap);
-		citizen->AddComponent<CitizenAnimation>();
-	}*/
+	auto loadButton = Object::CreateObject();
+	loadButton->SetName("1");
+	loadButton->AddComponent<BoxCollider>();
+	auto compo = loadButton->AddComponent<LoadButton>();
+	loadButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
+	loadButton->GetComponent<Sprite>()->SetDepth(30);
+	
+	compo->setLinkToMap(tileMap);
+	compo->setLinkToNewBuilding(newBuildingTest);
+	compo->setLink(check);
 
-	//auto check = Object::CreateObject();
-	//auto checkcompo = check->AddComponent<TileCheck>();
-	//checkcompo->SetLink(tileMap);
-
-	//auto newBuildingTest = Object::CreateObject();
-	//newBuildingTest->SetTag("House_A");
-	//newBuildingTest->AddComponent<Sprite>();
-	//newBuildingTest->AddComponent<PolygonDraw>();
-	//newBuildingTest->AddComponent<BoxCollider>();
-	//newBuildingTest->AddComponent<BuildingComponent>()->SetBuilding(new NewBuilding(newBuildingTest));
-
-	//checkcompo->SetLinkToBuilding(newBuildingTest);
-
-
-	//auto loadButton = Object::CreateObject();
-	//auto compo = loadButton->AddComponent<LoadButton>();
-	////loadButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
-	//
-	//compo->setLinkToMap(tileMap);
-	//compo->setLinkToNewBuilding(newBuildingTest);
-	//compo->setLink(check);
+	//엄적 테스트
 
 	//auto achievementLinkButton = Object::CreateObject();
 	//achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 570));
@@ -222,30 +233,8 @@ void GameScene::Init()
 	//nightTestSprite->SetSprite(Image::CreateImage("Sprite/Night.png"));
 	//nightTestSprite->SetOpacity(0.7);
 
-		//빌딩 생성 테스트
 
-	//auto test = Object::CreateObject();
-	//test->AddComponent<BoxCollider>()->SetSize(DesignResolution * 2); 
-	//test->AddComponent<TileCheck>()->SetLink(tileMap);
-
-
-	//auto newBuilding = Object::CreateObject();
-	//newBuilding->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/School.png"));
-	////newBuilding->AddComponent<BuildingComponent>();
-	//newBuilding->SetIsActive(false);
-	//newBuilding->AddComponent<Test>();
-
-	//auto newBuildingButton = Object::CreateObject(test);
-	//newBuildingButton->GetTransform()->SetPosition(Vector2(-100, -200));
-	//newBuildingButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
-	//newBuildingButton->AddComponent<LoadButton>()->setLinkToMap(tileMap);
-	//newBuildingButton->GetComponent<LoadButton>()->setLinkToNewBuilding(newBuilding);
-	//newBuildingButton->GetComponent<Sprite>()->SetDepth(1000);
-
-
-	//test->GetComponent<TileCheck>()->SetLinkToBuilding(newBuilding);
-	//newBuildingButton->GetComponent<LoadButton>()->setLink(test);
-
+	
 
 #pragma endregion
 }

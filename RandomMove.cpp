@@ -56,12 +56,7 @@ void RandomMove::Update()
 	SetDirection();
 	Move();
 
-	//test code
-	for (int i = 0; i < vTotal.size(); i++)
-		if (vTotal[i]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL)
-			vTotal[i]->GetComponent<PolygonDraw>()->SetColor(Color{ 0,0,1,1 });
-		//else if (vTotal[i]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::NONE)
-			//vTotal[i]->GetComponent<PolygonDraw>()->SetColor(Color{ 1,1,1,0.5 });
+	
 }
 
 void RandomMove::Move()
