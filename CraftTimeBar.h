@@ -24,8 +24,10 @@ private:
 
 	bool _isDone = false;
 
-	// TimeBar¿ë PolyDraw
-	vector<Vector2> _polygonPos;
+	
+	vector<Vector2> _polygonPos;  
+
+
 	PolygonDraw* _polydraw;
 	Color _color;
 
