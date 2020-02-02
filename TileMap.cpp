@@ -46,7 +46,7 @@ void TileMap::Init()
 		{
 			Object* normalTile = Object::CreateObject(object);
 			
-			normalTile->GetTransform()->SetPosition(Vector2(-250 + i*TILEWIDTH, +250 - j*TILEHEIGHT));
+			normalTile->GetTransform()->SetPosition(Vector2(-937 + i*TILEWIDTH, +517 - j*TILEHEIGHT));
 			normalTile->SetTag("Normal");
 			auto tile = normalTile->AddComponent<Tile>();
 			tile->SetIndex(Vector2(i, j));
@@ -135,6 +135,11 @@ void TileMap::Init()
 	attributeInfo.insert(make_pair(ATTRIBUTE::PLAYER, infoPlayer));
 	attributeInfo.insert(make_pair(ATTRIBUTE::ENEMY, infoEnemy));
 
+
+}
+
+void TileMap::Update()
+{
 
 }
 

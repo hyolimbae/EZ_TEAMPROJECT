@@ -15,5 +15,7 @@ public:
 	int GetFixedNum() { return _fixedHouseNum;}
 	void SetFixedNum(int num);
 
+	vector<Object*> GetHouses() { return _vHouses; }
+
 	virtual void OnNotify(MSGTYPE type, string event);
 };

@@ -137,9 +137,6 @@ void LotExpansion::DrawExpansion()
 	Vector3 mousePosition_V3 = Vector3(mousePosition.x, mousePosition.y, 1);
 	Vector3 mouseWorldPosition = Matrix3x3::Mul(mousePosition_V3, CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetLocalToWorldMatrix().GetInverseMatrix());
 
-	//float mouseX = InputManager::GetInstance()->GetMouseWorldPosition().x - CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().x;
-	//float mouseY = -CameraManager::GetInstance()->GetRenderCamera()->GetTransform()->GetPosition().y - InputManager::GetInstance()->GetMouseWorldPosition().y;
-
 	float mouseX = mouseWorldPosition.x;
 	float mouseY = (-1) * mouseWorldPosition.y;
 

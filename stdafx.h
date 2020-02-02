@@ -25,7 +25,7 @@ using namespace std;
 
 enum class MSGTYPE
 {
-	INFORMATION,
+	INFORMATION, 
 	NOTIFICATION,
 	TIME,
 	TUTORIAL

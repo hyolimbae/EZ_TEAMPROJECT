@@ -428,6 +428,15 @@
     <ClInclude Include="Inventory.h">
       <Filter>소스 파일\Inventory</Filter>
     </ClInclude>
+    <ClInclude Include="LoadBox.h">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClInclude>
+    <ClInclude Include="CitizenTalk.h">
+      <Filter>소스 파일\AStar</Filter>
+    </ClInclude>
+    <ClInclude Include="MapManager.h">
+      <Filter>소스 파일\Map</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -735,6 +744,15 @@
     </ClCompile>
     <ClCompile Include="Inventory.cpp">
       <Filter>소스 파일\Inventory</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadBox.cpp">
+      <Filter>소스 파일\Construction\New</Filter>
+    </ClCompile>
+    <ClCompile Include="CitizenTalk.cpp">
+      <Filter>소스 파일\AStar</Filter>
+    </ClCompile>
+    <ClCompile Include="MapManager.cpp">
+      <Filter>소스 파일\Map</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

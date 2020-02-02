@@ -6,7 +6,7 @@
 
 #include <numeric>
 
-#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:console")
+//#pragma comment(linker, "/entry:WinMainCRTStartup /subsystem:")
 
 void WorkerPanel::Init()
 {

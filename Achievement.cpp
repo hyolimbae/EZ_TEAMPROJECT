@@ -6,7 +6,7 @@ void Achievement::Init()
 {
 	//업적 관리 
 	aList.push_back(aInfo{ L"수리의 귀재", L"마을의 건물을 4 채 수리하세요." , 4 });
-	aList.push_back(aInfo{ L"수리의 대가", L"마을의 건물을 8 채 수리하세요.", 8 });
+	aList.push_back(aInfo{ L"수리의 대가", L"마을의 건물을 8 채 수리하세요.", 1 });
 	aList.push_back(aInfo{ L"재료는 모든 것의 시작", L"재료를 300개 모으세요.",300 });
 	aList.push_back(aInfo{ L"한 단계 더 높게", L"2차 가공에 도전하세요." ,1 });
 	aList.push_back(aInfo{ L"더 큰 마을으로", L"인구가 50명으로 늘어났습니다.",50});
@@ -62,10 +62,12 @@ void Achievement::OnNotify(MSGTYPE type, string event)
 		if (aList[i].title == string_to_wstring(event))
 		{
 			aBox[i]->GetComponent<AchievementBox>()->SetProgress();
-			if (aBox[i]->GetComponent<AchievementBox>()->GetProgress()!=0)
+			if (aBox[i]->GetComponent<AchievementBox>()->GetProgress() != 0)
 				Notify(MSGTYPE::TUTORIAL, "Achievement");
-			
 
+			if (aBox[1]->GetComponent<AchievementBox>()->GetProgress())
+				Notify(MSGTYPE::INFORMATION, "AllowExpansion");
+			
 		}
 
 }

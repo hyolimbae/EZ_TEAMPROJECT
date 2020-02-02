@@ -2,16 +2,16 @@
 #include "GgaetIp.h"
 #include "Tile.h"
 
-#define TILENUM_X 20
-#define TILENUM_Y 20
+#define TILENUM_X 80
+#define TILENUM_Y 80
 
 //ISOMETRIC 
 //#define TILEWIDTH 128
 //#define TILEHEIGHT 32
 
 //GENERAL
-#define TILEWIDTH 48
-#define TILEHEIGHT 48
+#define TILEWIDTH 50
+#define TILEHEIGHT 50
 
 class TilePick;
 
@@ -36,6 +36,7 @@ private:
 
 public:
 	virtual void Init() override;
+	virtual void Update() override;
 
 	void SetTile(Vector2 index, ATTRIBUTE attribute);
 	void SetLink(Object* tilePick) { this->tilePick = tilePick; }
