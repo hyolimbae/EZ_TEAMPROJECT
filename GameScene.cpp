@@ -4,7 +4,7 @@
 #include "PlusMinusButton.h"
 #include "TotalWorker.h"
 #include "ShowWorker.h"
-#include "Time.h"
+//#include "Time.h"
 
 //Hyolim and Haeun
 #include "AStar.h"
@@ -36,9 +36,10 @@
 #include "Inventory.h"
 #include "LoadBox.h"
 
+#include <time.h>
+
 void GameScene::Init()
 {
-
 	//ShowCursor(false);
 
 	//Object* mouse = Object::CreateObject();
@@ -127,8 +128,6 @@ void GameScene::Init()
 #pragma region HYOLIM
 
 	
-
-
 	auto tileMap = Object::CreateObject();
 	tileMap->AddComponent<ControlCamera>();
 	tileMap->AddComponent<TileMap>();
@@ -138,48 +137,54 @@ void GameScene::Init()
 
 
 	//인벤토리 
-	//auto inven = Object::CreateObject();
-	//auto invenCompo = inven->AddComponent<Inventory>();
+	/*■■■■■■■■■■■■■■■■*/        Object* inventory = Object::CreateObject();
+	/*■■■■■■■■■■■■■■■■*/        inventory->AddComponent<Inventory>();
 
+	/*■■■■■■■■■■■■■■■■*/        MapManager::GetInstance()->SetInventoryLink(inventory->GetComponent<Inventory>());
 	//부지 확장 테스트
 
 	//auto lotExpansion = Object::CreateObject();
+	////lotExpansion->GetTransform()->SetPosition(Vector2(0, -1000));
 	//auto expansionCompo = lotExpansion->AddComponent<LotExpansion>();
 	//auto lotExpansionColliderCompo = lotExpansion->AddComponent<BoxCollider>();
-	//lotExpansionColliderCompo->SetSize(DesignResolution * 2);
+	////lotExpansionColliderCompo->SetSize(Vector2(50*80,50*80));
 	//expansionCompo->SetLinkToMap(tileMap);
 	//expansionCompo->SetLinkToInventory(invenCompo);
 
 	//도시 에이스타 테스트 
-	/*for (int i = 0; i < 10; i++)
-	{
-		auto citizen = Object::CreateObject();
-		citizen->SetTag("H3");
-		citizen->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H3_Move_Front.png"));
-		citizen->GetTransform()->SetScale(Vector2(0.5, 0.5));
-		citizen->AddComponent<Animator>();
-		citizen->AddComponent<RandomMove>()->SetLinkToMap(tileMap);
-		citizen->AddComponent<CitizenAnimation>();
 
 
-		auto citizentalk = Object::CreateObject();
-		citizentalk->GetTransform()->SetPosition(citizen->GetTransform()->GetPosition());
-		citizentalk->SetTag("H3");
-		citizentalk->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H3_Idle_Front.png"));
-		citizentalk->GetTransform()->SetScale(Vector2(0.5, 0.5));
 
-		citizentalk->GetComponent<Sprite>()->SetOpacity(0.f);
-		citizentalk->AddComponent<BoxCollider>();
-		citizentalk->AddComponent<CitizenTalk>()->SetLinkToCitizen(citizen);
+	//for (int i = 0; i < 3; i++)
+	//{
+	//	int random = rand() % 6;
+	//	auto citizen = Object::CreateObject();
+	//	citizen->SetTag("H" + to_string(random));
+	//	citizen->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H" + to_string(random)+"_Move_Front.png"));
+	//	//citizen->GetTransform()->SetScale(Vector2(0.5, 0.5));
+	//	citizen->AddComponent<Animator>();
+	//	citizen->AddComponent<RandomMove>()->SetLinkToMap(tileMap);
+	//	citizen->AddComponent<CitizenAnimation>();
+	//	citizen->GetTransform()->SetDepth(100);
 
 
-	}*/
+	//	auto citizentalk = Object::CreateObject();
+	//	citizentalk->GetTransform()->SetPosition(citizen->GetTransform()->GetPosition());
+	//	citizentalk->SetTag("H" + to_string(random));
+	//	citizentalk->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/H" +to_string(random)+"_Idle_Front.png"));
+	//	//citizentalk->GetTransform()->SetScale(Vector2(0.5, 0.5));
+
+	//	citizentalk->GetComponent<Sprite>()->SetOpacity(0.f);
+	//	citizentalk->AddComponent<BoxCollider>();
+	//	citizentalk->AddComponent<CitizenTalk>()->SetLinkToCitizen(citizen);
+	//	citizentalk->GetTransform()->SetDepth(100);
+	//}
 
 
-		auto check = Object::CreateObject();
+		/*auto check = Object::CreateObject();
 		check->GetTransform()->SetDepth(2);
 		auto checkcompo = check->AddComponent<TileCheck>();
-		check->AddComponent<BoxCollider>()->SetSize(DesignResolution * 2);
+		check->AddComponent<BoxCollider>()->SetSize(Vector2(50*100,50*100));
 		checkcompo->SetLink(tileMap);
 
 		auto newBuildingTest = Object::CreateObject();
@@ -192,54 +197,54 @@ void GameScene::Init()
 		newBuildingTest->AddComponent<BuildingComponent>()->SetBuilding(new NewBuilding(newBuildingTest));
 		newBuildingTest->SetIsActive(false);
 
-		checkcompo->SetLinkToBuilding(newBuildingTest);
+		checkcompo->SetLinkToBuilding(newBuildingTest);*/
 
 
 		//건물 생성 체크
-		auto constructionButton = Object::CreateObject();
-		constructionButton->GetTransform()->SetPosition(Vector2(-698, -207));
-		constructionButton->AddComponent<BoxCollider>();
-		constructionButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
-		constructionButton->GetTransform()->SetDepth(3);
+		//auto constructionButton = Object::CreateObject();
+		//constructionButton->GetTransform()->SetPosition(Vector2(-698, -207));
+		//constructionButton->AddComponent<BoxCollider>();
+		//constructionButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/BuildingConstructionIcon.png"));
+		//constructionButton->GetTransform()->SetDepth(3);
 
-		auto loadBox = Object::CreateObject();
-		loadBox->GetTransform()->SetPosition(Vector2(-477, -118));
-		loadBox->AddComponent<BoxCollider>();
-		loadBox->AddComponent<LoadBox>();
-		constructionButton->AddComponent<LinkButton>()->SetLink(loadBox);
-		loadBox->SetIsActive(false);
-		loadBox->GetTransform()->SetDepth(4);
-		loadBox->GetComponent<LoadBox>()->SetLinkToMap(tileMap);
-
-
-		//엄적 테스트
-
-		auto achievementLinkButton = Object::CreateObject();
-		achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 570));
-		auto aSprite = achievementLinkButton->AddComponent<Sprite>();
-		aSprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementButton.png"));
-		aSprite->SetDepth((int)ZORDER::UI);
+		//auto loadBox = Object::CreateObject();
+		//loadBox->GetTransform()->SetPosition(Vector2(-477, -118));
+		//loadBox->AddComponent<BoxCollider>();
+		//loadBox->AddComponent<LoadBox>();
+		//constructionButton->AddComponent<LinkButton>()->SetLink(loadBox);
+		//loadBox->SetIsActive(false);
+		//loadBox->GetTransform()->SetDepth(4);
+		//loadBox->GetComponent<LoadBox>()->SetLinkToMap(tileMap);
 
 
-		auto achievement = Object::CreateObject();
-		achievement->GetTransform()->SetPosition(Vector2(500, 200));
-		auto acompo = achievement->AddComponent<Achievement>();
-		auto asprite = achievement->AddComponent<Sprite>();
-		asprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementUI.png"));
-		asprite->SetDepth((int)ZORDER::UI);
-		achievement->AddComponent<BoxCollider>();
-		achievement->SetIsActive(false);
+		////엄적 테스트
 
-		achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
+		//auto achievementLinkButton = Object::CreateObject();
+		//achievementLinkButton->GetTransform()->SetPosition(Vector2(DesignResolution.x / 2 - 100, DesignResolution.y / 2 - 570));
+		//auto aSprite = achievementLinkButton->AddComponent<Sprite>();
+		//aSprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementButton.png"));
+		//aSprite->SetDepth((int)ZORDER::UI);
 
-		auto notificationBox = Object::CreateObject();
-		auto ncompo = notificationBox->AddComponent<NotificationBox>();
+
+		//auto achievement = Object::CreateObject();
+		//achievement->GetTransform()->SetPosition(Vector2(500, 200));
+		//auto acompo = achievement->AddComponent<Achievement>();
+		//auto asprite = achievement->AddComponent<Sprite>();
+		//asprite->SetSprite(Image::CreateImage("Sprite/Achievement/AchievementUI.png"));
+		//asprite->SetDepth((int)ZORDER::UI);
+		//achievement->AddComponent<BoxCollider>();
+		//achievement->SetIsActive(false);
+
+		//achievementLinkButton->AddComponent<LinkButton>()->SetLink(achievement);
+
+		//auto notificationBox = Object::CreateObject();
+		//auto ncompo = notificationBox->AddComponent<NotificationBox>();
 
 		auto buildingManager = Object::CreateObject();
 		auto manager = buildingManager->AddComponent<BuildingManager>();
-		manager->AddObserver(ncompo);
-		manager->AddObserver(acompo);
-		acompo->AddObserver(loadBox->GetComponent<LoadBox>()); 
+		//manager->AddObserver(ncompo);
+		//manager->AddObserver(acompo);
+		//acompo->AddObserver(loadBox->GetComponent<LoadBox>()); 
 
 		MapManager::GetInstance()->Load("CityMap", manager);
 
