@@ -19,7 +19,8 @@ void RandomMove::Init()
 		int randX = rand() % (TILENUM_X - 1);
 		int randY = rand() % (TILENUM_Y - 1);
 
-		if (vTotal[randX * TILENUM_Y + randY]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL)
+		if (vTotal[randX * TILENUM_Y + randY]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL ||
+			vTotal[randX * TILENUM_Y + randY]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::UNDISCOVERED)
 			continue;
 
 		currentIndex = Vector2(randX, randY);
@@ -45,7 +46,11 @@ void RandomMove::Init()
 	star->SetTarget(targetIndex);
 	star->SetAllowDiagonalMove(false);
 
+
 	nextIndex = star->GetNextMove();
+
+	if (nextIndex == Vector2(-1, -1))
+		nextIndex = currentIndex;
 	angle = (GetAngle(vTotal[currentIndex.x * TILENUM_Y + currentIndex.y]->GetTransform()->GetPosition(),
 		vTotal[nextIndex.x * TILENUM_Y + nextIndex.y]->GetTransform()->GetPosition()));
 
@@ -55,8 +60,6 @@ void RandomMove::Update()
 {
 	SetDirection();
 	Move();
-
-	
 }
 
 void RandomMove::Move()
@@ -148,8 +151,8 @@ void RandomMove::SetTarget()
 		break;
 	}
 	target->GetTransform()->SetPosition(vTotal[targetIndex.x * TILENUM_Y + targetIndex.y]->GetTransform()->GetPosition());
-	auto poly = target->GetComponent<PolygonDraw>();
+	/*auto poly = target->GetComponent<PolygonDraw>();
 	poly->SetVertices(pos);
 	poly->SetStrokeWidth(5);
-	poly->SetColor(Color{ 0,1,0,1 });
+	poly->SetColor(Color{ 0,1,0,1 });*/
 }

@@ -3,9 +3,10 @@
 class Inventory : public Script
 {
 private:
-	map<string, int> items;
+    map<string, int> items;
 public:
-	void AddItem(string itemName, int count) { items[itemName] += count; }
-	int GetItemCount(string itemName) { return items[itemName]; }
-};
+    void AddItem(string itemName, int count) { items[itemName] += count; }
+    int GetItemCount(string itemName) { return items[itemName]; }
 
+    /*¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á*/           map<string, int> GetMItems() { return items; }
+};

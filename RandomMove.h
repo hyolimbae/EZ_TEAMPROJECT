@@ -3,7 +3,7 @@
 #include "AStar.h"
 #include "TileMap.h"
 
-#define SPEED 1
+#define SPEED 2
 
 class RandomMove : public Script
 {

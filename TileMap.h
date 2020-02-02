@@ -2,8 +2,8 @@
 #include "GgaetIp.h"
 #include "Tile.h"
 
-#define TILENUM_X 80
-#define TILENUM_Y 80
+#define TILENUM_X (int)MapManager::GetInstance()->GetTileMap().second.x
+#define TILENUM_Y (int)MapManager::GetInstance()->GetTileMap().second.y
 
 //ISOMETRIC 
 //#define TILEWIDTH 128
@@ -28,6 +28,7 @@ class TileMap : public Script
 {
 private:
 	vector<Object*> vTotal;
+	vector<Object*> vUndiscovered;
 	map<ATTRIBUTE, testInfo> attributeInfo;
 	Object* tilePick;
 	Object* tileView;
@@ -45,5 +46,6 @@ public:
 	bool GetTileView() { return this->tileView->GetIsActive(); }
 
 	vector<Object*> GetVTotal() { return vTotal; }
+	vector<Object*> GetVUndiscovered() { return vUndiscovered; }
 };
 

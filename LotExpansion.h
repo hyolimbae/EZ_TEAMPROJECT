@@ -11,6 +11,8 @@ private:
 	vector<Object*> vExpansion;
 	vector<Object*> vInfo;
 
+	vector<Object*> vUndiscovered;
+
 	Text* dimensionText;
 	Vector2 dimension;
 	Vector2 startIndex;
@@ -34,6 +36,8 @@ public:
 	bool CostCheck();
 	void SetLinkToMap(Object* map) { this->map = map; }
 	void SetLinkToInventory(Inventory* inventory) { this->inventory = inventory; }
+
+	void AllowExpansion();
 	
 	Vector2 GetDimension() { return dimension; }
 };

@@ -8,12 +8,16 @@
 void LotExpansion::Init()
 {
 	vTotal = map->GetComponent<TileMap>()->GetVTotal();
+	vUndiscovered = map->GetComponent<TileMap>()->GetVUndiscovered();
+	
 
+	object->GetTransform()->SetDepth(100000);
 
 	for (int i = 0; i < 3; i++)
 	{
 		auto expansion = Object::CreateObject(object);
 		auto drawCompo = expansion->AddComponent<PolygonDraw>();
+		drawCompo->SetDepth(10000);
 		drawCompo->SetColor({ 0,1,0,0.4 });
 		if (i > 0)
 			drawCompo->SetColor({ 1,0,0,0.4 });
@@ -42,6 +46,7 @@ void LotExpansion::Init()
 	confirmationWindow->GetTransform()->SetScale(Vector2(1.5, 1.5));
 	confirmationWindow->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/ExpansionConfirmWindow.png"));
 	confirmationWindow->SetIsActive(false);
+	confirmationWindow->SetCameraAffected(true);
 	
 	auto linkButton = Object::CreateObject(confirmationWindow);
 	linkButton->AddComponent<BoxCollider>()->SetSize(confirmationWindow->GetComponent<BoxCollider>()->GetSize());
@@ -61,6 +66,8 @@ void LotExpansion::Init()
 	confirmationButton->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/Construction/ExpansionConfirmButton.png"));
 	confirmationButton->AddComponent<ConfirmButton>()->SetLinkToInventory(inventory);
 	confirmationButton->GetComponent<ConfirmButton>()->SetLinkToWindow(confirmationWindow);
+
+	confirmationButton->GetComponent<ConfirmButton>()->SetLinkToExpansion(this);
 
 	testDirt = testStone = 100;
 }
@@ -113,6 +120,8 @@ void LotExpansion::OnMouseUp()
 		confirmationWindow->SetIsActive(true);
 		confirmationText->ChangeText(to_wstring((int)(20*dimension.x*dimension.y)) + L"       " +
 									 to_wstring((int)(20 *dimension.x * dimension.y)));
+
+
 	}
 
 	for (int i = 0; i < 3; i++)
@@ -257,4 +266,16 @@ bool LotExpansion::CostCheck()
 		return true;
 	
 	return false;
+}
+
+void LotExpansion::AllowExpansion()
+{
+	//UNLOCK
+	for (int i = startIndex.x; i < startIndex.x + dimension.x; i++)
+	{
+		for (int j = startIndex.y; j < startIndex.y + dimension.y; j++)
+		{
+			vUndiscovered[i * 23 + j - 80 + 22]->SetIsActive(false);
+		}
+	}
 }

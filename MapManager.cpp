@@ -8,6 +8,14 @@
 #include "InfoBox.h"
 #include "BuildingManager.h"
 #include "LinkButton.h"
+#include "Inventory.h"
+bool operator==(ObjectData a,ObjectData b)
+{
+    bool position = (a.position == b.position);
+    string name1 = a.name;
+    string name2 = b.name;
+    return position && name1 == name2;
+}
 
 MapManager* MapManager::GetInstance()
 {
@@ -24,12 +32,23 @@ void MapManager::Load(string name, BuildingManager* manager)
     stream.open("Resources/Map/" + name + ".map", ios::binary);
     int size = 0;
     stream.read((char*)&size, sizeof(int));
-
-    for (int i = 0; i < size; i++)
+    ObjectData newData;
+    stream.read((char*)&newData, sizeof(ObjectData));
+    data.push_back(newData);
+    for (int i = 0; i < size-1; i++)
     {
         ObjectData newData;
         stream.read((char*)&newData, sizeof(ObjectData));
-        data.push_back(newData);
+        for (int j = 0; j < data.size(); j++)
+        {
+            if (newData == data[j])
+                break;
+            if (j == data.size() - 1)
+            {
+                data.push_back(newData);
+                break;
+            }
+        }
     }
 
     Vector2 mapSize;
@@ -46,15 +65,26 @@ void MapManager::Load(string name, BuildingManager* manager)
 
     int size2 = 0;
     stream.read((char*)&size2, sizeof(int));
-
-    for (int i = 0; i < size2; i++)
+    ObjectData newData2;
+    stream.read((char*)&newData2, sizeof(ObjectData));
+    data2.push_back(newData2);
+    for (int i = 0; i < size2-1; i++)
     {
         ObjectData newData;
         stream.read((char*)&newData, sizeof(ObjectData));
-        data2.push_back(newData);
+        for (int j = 0; j < data2.size(); j++)
+        {
+            if (newData == data2[j])
+                break;
+            if (j == data2.size() - 1)
+            {
+                data2.push_back(newData);
+                break;
+            }
+        }
     }
 
-    stream.close();
+     stream.close();
 
     this->mapSize = mapSize;
     tileMap = nowMap;
@@ -98,11 +128,12 @@ void MapManager::Load(string name, BuildingManager* manager)
         // InfoBox
         Object* infoBox = Object::CreateObject(testB);
         infoBox->AddComponent<InfoBox>();
+        /*¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á*/        infoBox->GetComponent<InfoBox>()->SetInventoryLink(_inventory);
 
         // ConstructionTimeBar
         Object* constructionTimeBar = Object::CreateObject(testB);
         constructionTimeBar->AddComponent<ConstructionTimeBar>();
-        constructionTimeBar->AddComponent<PolygonDraw>()->SetDepth(9999999999999999999);
+        constructionTimeBar->AddComponent<PolygonDraw>()->SetDepth(100);
         constructionTimeBar->SetIsActive(true);
         constructionTimeBar->GetComponent<ConstructionTimeBar>()->SetLink(newObject);
 

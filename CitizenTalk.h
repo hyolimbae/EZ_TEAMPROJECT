@@ -5,6 +5,9 @@ class CitizenTalk: public Script
 private:
 	Object* citizen;
 	Object* talk;
+	Object* talkText;
+
+	float lastTime = 0;
 	float stopTime = 0;
 public:
 	virtual void Init() override;

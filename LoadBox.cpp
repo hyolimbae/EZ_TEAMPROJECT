@@ -62,7 +62,7 @@ void LoadBox::Init()
 	//FIRESTATION - TILECHECK 
 	auto fCheck = Object::CreateObject();
 	auto fCheckCompo = fCheck->AddComponent<TileCheck>();
-	fCheck->AddComponent<BoxCollider>()->SetSize(DesignResolution * 2);
+	fCheck->AddComponent<BoxCollider>()->SetSize(Vector2(50*100,50*100));
 	fCheckCompo->SetLink(map);
 	fCheck->GetTransform()->SetDepth(3);
 	fCheck->SetIsActive(false);

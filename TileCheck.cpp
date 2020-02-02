@@ -46,6 +46,18 @@ void TileCheck::OnMouseDown()
 	if (!newBuilding->GetIsActive())
 		return;
 
+	//CHECK IF ALLOWED
+	for (int i = 0; i < dimension.x; i++)
+		for (int j = 0; j < dimension.y; j++)
+		{
+			if (vTotal[(GetMouseIndex().x - dimension.x / 2 + i) * TILENUM_Y + GetMouseIndex().y + dimension.y / 2 - j]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::NONE)
+				return;
+
+			//vTotal[(GetMouseIndex().x - dimension.x / 2 + i) * TILENUM_Y + GetMouseIndex().y + dimension.y / 2 - j]->GetComponent<Tile>()->SetAttribute(ATTRIBUTE::NONE);
+
+		}
+			
+
 	//FIX POSITION 
 	for (int i = 0; i < dimension.x; i++)
 		for (int j = 0; j < dimension.y; j++)
@@ -101,7 +113,7 @@ void TileCheck::DrawTile()
 			tilePoly->SetDepth(4);
 
 
-			if (vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2  - j]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL)
+			if (vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2  - j]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::NONE)
 				tilePoly->SetColor(Color{ 1,0,0,1 });
 			else
 				tilePoly->SetColor(Color{ 0,1,0,1 });

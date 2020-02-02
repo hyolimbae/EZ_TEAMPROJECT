@@ -9,21 +9,21 @@ void CitizenAnimation::Init()
 	moveLeftRight.SetFrameCount(Vector2(4, 1));
 	moveLeftRight.SetRepeat(true);
 	moveLeftRight.SetImage(Image::CreateImage("Sprite/" + object->GetTag() + "_Move_Left.png"));
-	moveLeftRight.SetTime(0.1f);
+	moveLeftRight.SetTime(0.07f);
 	animator->AddAnimation("Citizen_MoveLeftRight", moveLeftRight);
 
 	Animation moveUp;
 	moveUp.SetFrameCount(Vector2(4, 1));
 	moveUp.SetRepeat(true);
 	moveUp.SetImage(Image::CreateImage("Sprite/" + object->GetTag() + "_Move_Front.png"));
-	moveUp.SetTime(0.1f);
+	moveUp.SetTime(0.07f);
 	animator->AddAnimation("Citizen_MoveUp", moveUp);
 
 	Animation moveDown;
 	moveDown.SetFrameCount(Vector2(4, 1));
 	moveDown.SetRepeat(true);
 	moveDown.SetImage(Image::CreateImage("Sprite/" + object->GetTag() + "_Move_Back.png"));
-	moveDown.SetTime(0.1f);
+	moveDown.SetTime(0.07f);
 	animator->AddAnimation("Citizen_MoveDown", moveDown);
 
 	animator->AddParameter<int>("Move");
@@ -45,6 +45,5 @@ void CitizenAnimation::Init()
 
 	auto downToUp = animator->MakeTransition("Citizen_MoveDown", "Citizen_MoveUp");
 	downToUp->SetCondition("Move", 3, ConditionType::Equal);
-
 
 }

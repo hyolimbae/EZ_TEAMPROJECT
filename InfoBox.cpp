@@ -5,6 +5,7 @@
 #include "InfoSpriteAndText.h"
 #include "FixButton.h"
 #include "DefaultBuilding.h"
+/*■■■■■■■■■■■■■■■■*/        #include "Inventory.h"
 
 void InfoBox::Init()
 {
@@ -22,11 +23,25 @@ void InfoBox::Init()
         _mValidResources.insert(pair<string, int>(_miMaterial->first, _miMaterial->second));
     }
 
+    object->AddComponent<BoxCollider>();
+
     _sprite = object->AddComponent<Sprite>();
     _sprite->SetDepth(99999999999999999);
     _sprite->SetSprite(Image::CreateImage("Sprite/Need_" + to_string(_mValidResources.size()) + "K.png"));
 
     int i = 0;
+
+
+    // 수리 버튼 관련
+    Object* fixButton = Object::CreateObject(object);
+    fixButton->AddComponent<FixButton>();
+    fixButton->AddComponent<BoxCollider>();
+    fixButton->GetComponent<BoxCollider>()->SetSize(Vector2(36, 18));
+    fixButton->GetTransform()->SetPosition(Vector2(0,
+        -100));
+    fixButton->GetComponent<FixButton>()->SetLink(_building);
+    /*■■■■■■■■■■■■■■■■*/            fixButton->GetComponent<FixButton>()->SetInventoryLink(_inventory);
+
 
     for (auto it : _mValidResources)
     {
@@ -42,18 +57,11 @@ void InfoBox::Init()
             ->SetTextStartPos(Vector2(50, -136 + i * 50));
 
         infoSpriteAndText->GetComponent<InfoSpriteAndText>()->SetLink(this);
+        /*■■■■■■■■■■■■■■■■*/              infoSpriteAndText->GetComponent<InfoSpriteAndText>()->SetFixButtonLink(fixButton->GetComponent<FixButton>());
 
         i++;
     }
 
-    // 수리 버튼 관련
-    Object* fixButton = Object::CreateObject(object);
-    fixButton->AddComponent<FixButton>();
-    fixButton->AddComponent<BoxCollider>();
-    fixButton->GetComponent<BoxCollider>()->SetSize(Vector2(36, 18));
-    fixButton->GetTransform()->SetPosition(Vector2(0,
-        -100));
-    fixButton->GetComponent<FixButton>()->SetLink(_building);
 }
 
 void InfoBox::Update()

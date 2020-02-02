@@ -25,11 +25,17 @@ void DefaultBuilding::Init()
 
 void DefaultBuilding::Update()
 {
-    //if (!_thisObj->GetComponent<BoxCollider>()->GetOnMouse()
-    //   && InputManager::GetInstance()->GetKeyDown(VK_LBUTTON))
-    //{
-    //   _houseClicked = false;
-    //}
+     /*¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á*/        if (!_thisObj->GetComponent<BoxCollider>()->GetOnMouse()
+        /*¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á*/ && InputManager::GetInstance()->GetKey(VK_LBUTTON)
+        /*¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á*/ && !_infoBox->GetComponent<BoxCollider>()->GetOnMouse())
+    {
+        _houseClicked = false;
+    }
+
+    if (_houseState == HOUSE_UNDER_CONSTRUCTION)
+    {
+        _infoBox->SetIsActive(false);
+    }
 
     if (_houseState == HOUSE_RUINED)
     {
@@ -44,7 +50,7 @@ void DefaultBuilding::Update()
             _polydraw->SetColor(Color{ 1.0f,1.0f,1.0f,0.0f });
         }
     }
-    if (_houseState == HOUSE_UNDER_CONSTRUCTION || _houseState == HOUSE_FIXED)
+    else
     {
         _polydraw->SetColor(Color{ 1.0f,1.0f,1.0f,0.0f });
     }

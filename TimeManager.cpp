@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "GgaetIp.h"
-
+#include <time.h>
 TimeManager::TimeManager()
 {
+	srand(time(NULL));
 	startTime = GetTickCount();
 }
 

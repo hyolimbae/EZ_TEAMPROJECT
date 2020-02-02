@@ -39,12 +39,23 @@ void TileMap::Init()
 	//pos.push_back(Vector2(TILEWIDTH/2, -TILEHEIGHT/2));
 	//pos.push_back(Vector2(-TILEHEIGHT/2, -TILEHEIGHT/2));
 
+	vector<vector<Attribute>> test;
+
+	for (int i = 0; i < MapManager::GetInstance()->GetTileMap().second.y; i++)
+	{
+		vector<Attribute> now;
+		for (int j = 0; j < MapManager::GetInstance()->GetTileMap().second.x; j++)
+		{
+			now.push_back(MapManager::GetInstance()->GetTileMap().first[i][j]);
+		}
+		test.push_back(now);
+	}
 
 	for (int i = 0; i < TILENUM_X; i++)
 	{
 		for (int j = 0; j < TILENUM_Y; j++)
 		{
-			Object* normalTile = Object::CreateObject(object);
+			Object* normalTile = Object::CreateObject();
 			
 			normalTile->GetTransform()->SetPosition(Vector2(-937 + i*TILEWIDTH, +517 - j*TILEHEIGHT));
 			normalTile->SetTag("Normal");
@@ -52,15 +63,52 @@ void TileMap::Init()
 			tile->SetIndex(Vector2(i, j));
 			tile->SetAttribute(ATTRIBUTE::NONE);
 
-			
+			if(i>=80 || j>=80)
+				tile->SetAttribute(ATTRIBUTE::WALL);
 
+			if (MapManager::GetInstance()->GetTileMap().first[j][i] == Attribute::Wall)
+				tile->SetAttribute(ATTRIBUTE::WALL);
+
+			if (MapManager::GetInstance()->GetTileMap().first[j][i] == Attribute::Undiscovered)
+				tile->SetAttribute(ATTRIBUTE::UNDISCOVERED);
+			
 			vTotal.push_back(normalTile);
 
 		}
 	}
-	
+
+	//for expansion test
+	for (int i = 0; i < TILENUM_X/3; i++)
+	{
+		for (int j = 80 - 22; j < 81; j++)
+		{
+			auto test = Object::CreateObject();
+			test->GetTransform()->SetPosition(vTotal[i*TILENUM_Y+j]->GetTransform()->GetPosition() - Vector2(0,TILEWIDTH/2));
+			test->AddComponent<PolygonDraw>();
+			vector<Vector2> pos;
+
+			//Vector2 startPos = Vector2(test->GetTransform()->GetPosition() - Vector2(TILEWIDTH / 2, 0));
+			//Vector2 endPos = Vector2(test->GetTransform()->GetPosition() + Vector2(TILEWIDTH / 2, 0));
+			//pos.push_back(startPos);
+			//pos.push_back(endPos);
+
+			Vector2 startPos = Vector2(0, 0);
+			Vector2 endPos = Vector2(0, TILEWIDTH);
+			pos.push_back(startPos);
+			pos.push_back(endPos);
+			test->GetComponent<PolygonDraw>()->SetVertices(pos);
+			test->GetComponent<PolygonDraw>()->SetColor({ 0,0,0,1 });
+			test->GetComponent<PolygonDraw>()->SetStrokeWidth(TILEWIDTH);
+			test->GetTransform()->SetDepth(1);
+
+			vUndiscovered.push_back(test);
+
+		}
+	}
+
 	//tileView 
 	tileView = Object::CreateObject();
+	tileView->GetTransform()->SetDepth(100);
 	for (int i = 0; i < TILENUM_X; i++)
 	{
 		Object* tileChild = Object::CreateObject(tileView);
@@ -104,7 +152,7 @@ void TileMap::Init()
 	pos2.push_back(startPos2);
 	poly2->SetVertices(pos2);
 
-	//tileView->SetIsActive(false);
+	tileView->SetIsActive(false);
 
 	//테스트 코드  
 	testInfo infoNone;
@@ -140,6 +188,10 @@ void TileMap::Init()
 
 void TileMap::Update()
 {
+	//테스트 코드 
+
+	
+
 
 }
 
