@@ -168,6 +168,7 @@
     <ClInclude Include="Character.h" />
     <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="CitizenAnimation.h" />
+    <ClInclude Include="CitizenTalk.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ConfirmButton.h" />
@@ -207,8 +208,10 @@
     <ClInclude Include="InputManager.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="LinkButton.h" />
+    <ClInclude Include="LoadBox.h" />
     <ClInclude Include="LoadButton.h" />
     <ClInclude Include="LotExpansion.h" />
+    <ClInclude Include="MapManager.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="NewBuilding.h" />
     <ClInclude Include="NotificationBox.h" />
@@ -283,6 +286,7 @@
     <ClCompile Include="Character.cpp" />
     <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="CitizenAnimation.cpp" />
+    <ClCompile Include="CitizenTalk.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ConfirmButton.cpp" />
@@ -332,8 +336,10 @@
     <ClCompile Include="InputManager.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="LinkButton.cpp" />
+    <ClCompile Include="LoadBox.cpp" />
     <ClCompile Include="LoadButton.cpp" />
     <ClCompile Include="LotExpansion.cpp" />
+    <ClCompile Include="MapManager.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="NewBuilding.cpp" />
     <ClCompile Include="NotificationBox.cpp" />

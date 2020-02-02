@@ -15,8 +15,8 @@ void TileCheck::Init()
 	pos.push_back(Vector2(-TILEHEIGHT / 2, -TILEHEIGHT / 2));
 
 	newBuildingSprite = newBuilding->GetComponent<Sprite>();
-	dimension.x = newBuildingSprite->GetFrameSize().x / TILEWIDTH;
-	dimension.y = newBuildingSprite->GetFrameSize().y / TILEHEIGHT;
+	dimension.x = ceil(newBuildingSprite->GetFrameSize().x*1.5 / TILEWIDTH);
+	dimension.y = ceil(newBuildingSprite->GetFrameSize().y*1.5 / TILEHEIGHT);
 
 	for (int i = 0; i < dimension.x; i++)
 	{
@@ -35,10 +35,7 @@ void TileCheck::Init()
 void TileCheck::Update()
 {
 	if (object->GetComponent<BoxCollider>()->GetOnMouse())
-	{
 		DrawTile();
-	}
-	
 }
 
 void TileCheck::OnMouseDown()
@@ -46,7 +43,6 @@ void TileCheck::OnMouseDown()
 	if (((NewBuilding*)((newBuilding->GetComponent<BuildingComponent>()->GetBuilding())))->GetFixedPosition())
 		return;
 
-	int a = 0;
 	if (!newBuilding->GetIsActive())
 		return;
 
@@ -79,7 +75,6 @@ void TileCheck::DrawTile()
 	float mouseY = (-1)*mouseWorldPosition.y;
 
 
-
 	index_X = (int)(mouseX - (vTotal[0]->GetTransform()->GetPosition().x - TILEWIDTH / 2)) / TILEWIDTH;
 	index_Y = (int)(vTotal[0]->GetTransform()->GetPosition().y + TILEHEIGHT / 2 - mouseY) / TILEHEIGHT;
 
@@ -102,11 +97,11 @@ void TileCheck::DrawTile()
 			auto tilePoly = vTemp[i * dimension.y + j]->GetComponent<PolygonDraw>();
 
 			vTemp[i * dimension.y + j]->SetIsActive(true);
-			tilePoly->GetTransform()->SetPosition(vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2 - j]->GetTransform()->GetPosition());
+			tilePoly->GetTransform()->SetPosition(vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2 - 1 - j]->GetTransform()->GetPosition());
 			tilePoly->SetDepth(4);
 
 
-			if (vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2 - j]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL)
+			if (vTotal[(index_X - dimension.x / 2 + i) * TILENUM_Y + index_Y + dimension.y / 2  - j]->GetComponent<Tile>()->GetAttribute() == ATTRIBUTE::WALL)
 				tilePoly->SetColor(Color{ 1,0,0,1 });
 			else
 				tilePoly->SetColor(Color{ 0,1,0,1 });

@@ -22,9 +22,11 @@ void LoadButton::Update()
 
 void LoadButton::OnMouseDown()
 {
+
 	isClicked = true;
 	newBuilding->SetIsActive(true);
 	map->GetComponent<TileMap>()->SetTileView(true);
+	checkObj->SetIsActive(true);
 
 	////타일뷰 제어 
 	//if (isClicked)
