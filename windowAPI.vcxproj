@@ -187,6 +187,7 @@
     <ClInclude Include="DrawComponent.h" />
     <ClInclude Include="FactoryScene.h" />
     <ClInclude Include="FactoryWorkerMove.h" />
+    <ClInclude Include="FadeInAndOut.h" />
     <ClInclude Include="FixButton.h" />
     <ClInclude Include="ForestScene.h" />
     <ClInclude Include="ForestWorkerMove.h" />
@@ -233,6 +234,10 @@
     <ClInclude Include="Physics.h" />
     <ClInclude Include="Script.h" />
     <ClInclude Include="AudioClip.h" />
+    <ClInclude Include="SetPopulationScene.h" />
+    <ClInclude Include="SettingIcon.h" />
+    <ClInclude Include="SettingPanel.h" />
+    <ClInclude Include="ShowGameTutorialButton.h" />
     <ClInclude Include="ShowWorker.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SoundListenerManager.h" />
@@ -255,6 +260,7 @@
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="ImGuiWindow.h" />
+    <ClInclude Include="VolumeBar.h" />
     <ClInclude Include="WcDoneButton.h" />
     <ClInclude Include="WorkArea.h" />
     <ClInclude Include="WorkerAnimation.h" />
@@ -299,6 +305,7 @@
     <ClCompile Include="DrawComponent.cpp" />
     <ClCompile Include="FactoryScene.cpp" />
     <ClCompile Include="FactoryWorkerMove.cpp" />
+    <ClCompile Include="FadeInAndOut.cpp" />
     <ClCompile Include="FixButton.cpp" />
     <ClCompile Include="ForestScene.cpp" />
     <ClCompile Include="ForestWorkerMove.cpp" />
@@ -352,6 +359,10 @@
     <ClCompile Include="PhysicsManager.cpp" />
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="AudioClip.cpp" />
+    <ClCompile Include="SetPopulationScene.cpp" />
+    <ClCompile Include="SettingIcon.cpp" />
+    <ClCompile Include="SettingPanel.cpp" />
+    <ClCompile Include="ShowGameTutorialButton.cpp" />
     <ClCompile Include="ShowWorker.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundListenerManager.cpp" />
@@ -378,6 +389,7 @@
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
     <ClCompile Include="ImGuiWindow.cpp" />
+    <ClCompile Include="VolumeBar.cpp" />
     <ClCompile Include="windowAPI.cpp" />
     <ClCompile Include="WcDoneButton.cpp" />
     <ClCompile Include="WorkArea.cpp" />

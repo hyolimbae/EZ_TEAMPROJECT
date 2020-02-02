@@ -10,8 +10,9 @@
 
 void WorkerPanel::Init()
 {
-	_mForSettingWorker = WorkerControlManager::GetInstance()->GetMWorkers(); 
 
+	_mForSettingWorker = WorkerControlManager::GetInstance()->GetMWorkers(); 
+	
 	int i = 0;
 		for (auto it : _mForSettingWorker)
 		{

@@ -9,6 +9,8 @@ void ShowWorker::Init()
 	object->AddComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/ShowWorkerSprite/PeopleUI.png"));
 	object->GetComponent<Sprite>()->GetTransform()->SetAnchorPoint(Vector2(0, 0));
 
+	//map<string,int> check = WorkerControlManager::GetInstance()->GetMWorkers();
+
 	for (int i = 0; i < _workerPanel->GetVWorkerNum().size(); i++)
 	{
 		_showWorkerSprite = Object::CreateObject(object);
@@ -69,11 +71,11 @@ void ShowWorker::OnNotify(MSGTYPE type, string event)
 {
 	if (type != MSGTYPE::TIME) return;
 
-	if (event == "NightStart") //밤일 때
+	if (event == "isNight") //밤일 때
 	{
 		_isNight = true; 
 	}
-	else if (event == "NightEnd") //낮일 때 
+	else if (event == "isDay") //낮일 때 
 	{
 		_isNight = false; //두번째 날 아침은 신호가 안들어옴
 	}

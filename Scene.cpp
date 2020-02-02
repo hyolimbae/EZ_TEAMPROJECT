@@ -30,7 +30,6 @@ void Scene::Init()
 	physicsWorld->SetDebugDraw(DebugDraw::GetInstance());
 	physicsWorld->SetContactListener(PhysicsManager::GetInstance());
 
-	WorkerControlManager::GetInstance()->Init();
 }
 
 Camera* Scene::GetMainCamera()
@@ -73,7 +72,9 @@ void Scene::Update()
 	WorkerControlManager::GetInstance()->Update();
 }
 
+
 extern bool Compare(Object* a, Object* b);
+
 
 void Scene::Render()
 {
@@ -177,13 +178,6 @@ LRESULT Scene::MainProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM lParam)
 		{
 			Vector2 mousePosition = Vector2{ (float)LOWORD(lParam) ,(float)HIWORD(lParam) };
 			InputManager::GetInstance()->SetMousePosition(mousePosition);
-		}
-		break;
-
-		case WM_MOUSEWHEEL:
-		{
-			float delta = GET_WHEEL_DELTA_WPARAM(wParam);
-			InputManager::GetInstance()->SetWheelDelta(!delta ? 0 : delta / abs(delta));
 		}
 		break;
 

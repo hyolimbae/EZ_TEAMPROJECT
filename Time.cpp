@@ -42,16 +42,17 @@ void Time::Init()
 void Time::Update()
 {
 	GameTimeSet(); 
+
 }
 
 
 void Time::GameTimeSet()
 {
 	_realTime = TimeManager::GetInstance()->GetTime();
-	_gameTime = _realTime * 48 + 28800;
+	_gameTime = _realTime * 48 + 28800; //시간이 흘렀을 때 얘는 8시로 초기화 안될 것임 
 
-	int gameDayTime = _realTime % 20; //현실 시간 20분 // 900 = 15분(낮시간)
-
+	int gameDayTime = _realTime % 10; //현실 시간 20분 // 900 = 15분(낮시간)
+	//cout << "시간" << gameDayTime << endl;
 	//int gameDayTime = _gameTime % 720; //720초(48초*600) : realtime 기준 15분 (GameTime 기준 10시간 (낮시간)) 
 	//int gameNightTime = gameDayTime % 240; // 240초(48초*360) : realtime 기준 5분 (GameTime 기준 6시간 (밤시간))
 
@@ -66,32 +67,34 @@ void Time::GameTimeSet()
 
 
 	//TEST 
-
-
-	if (gameDayTime> 13)
+	if (gameDayTime == 0)
 	{
 		if (_isDay)
 			return;
 		_isDay = true;
-		gameDayTime = 0;
+		//cout << "낮이다" << endl;
 		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
-		Notify(MSGTYPE::TIME, "NightStart");
-		
-	}else if (gameDayTime>5)
+		Notify(MSGTYPE::TIME, "isDay");
+	}
+	else if (gameDayTime == 5)
 	{
 		if (!_isDay)
 			return;
 		_isDay = false;
+		//cout << "밤이다" << endl;
 		_dayNightSprite->GetComponent<Sprite>()->SetSprite(Image::CreateImage("Sprite/UI/DayIcon.png"));
-		Notify(MSGTYPE::TIME, "DayStart");
+		Notify(MSGTYPE::TIME, "isNight");
 	}
 
-	//cout << gameDayTime;
-
-	if (gameDayTime % 8 ==0)
+	if (gameDayTime == 10)
 	{
-		Notify(MSGTYPE::TIME, "SingleDateEnd"); //밤 시간일 때 --> 달 이미지 
+		Notify(MSGTYPE::TIME, "SingleDateEnd"); //밤 시간일 때
 	}
+
+	//if (gameDayTime == 10 && gameDayTime!=0)
+	//{
+	//	Notify(MSGTYPE::TIME, "SingleDateEnd"); //밤 시간일 때 
+	//}
 	
 
 #pragma region     요일 설정 
